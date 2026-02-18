@@ -1,0 +1,405 @@
+/* ========================================
+   Auth Page - Login / Sign Up
+======================================== */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-close {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.auth-close:hover {
+  color: var(--deep-charcoal);
+}
+
+.auth-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ========================================
+   Form Section (Left)
+======================================== */
+.auth-form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.auth-form-header {
+  margin-bottom: 40px;
+}
+
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--deep-charcoal);
+  margin-bottom: 12px;
+}
+
+.app[lang="ko"] .auth-title {
+  font-family: var(--font-korean);
+}
+
+.auth-subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Form Fields */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--white);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--deep-charcoal);
+  box-shadow: 0 0 0 3px rgba(15, 15, 16, 0.05);
+}
+
+.form-input.error {
+  border-color: #D32F2F;
+}
+
+.form-input.otp-input {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.form-error {
+  font-size: 13px;
+  font-weight: 400;
+  color: #D32F2F;
+  margin-top: -8px;
+}
+
+.form-success {
+  font-size: 13px;
+  font-weight: 400;
+  color: #2E7D32;
+  margin-top: -8px;
+}
+
+/* OTP Email Display */
+.otp-email-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--soft-warm-gray);
+  margin-bottom: 8px;
+}
+
+.otp-email-display span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.change-email-btn {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.change-email-btn:hover {
+  color: var(--deep-charcoal);
+}
+
+/* Buttons */
+.auth-btn {
+  width: 100%;
+  padding: 16px 24px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.auth-btn.primary {
+  background: var(--deep-charcoal);
+  color: var(--white);
+}
+
+.auth-btn.primary:hover:not(:disabled) {
+  background: #2A2A2B;
+}
+
+.auth-btn.primary:disabled {
+  background: var(--cool-light-gray);
+  cursor: not-allowed;
+}
+
+.auth-btn.secondary {
+  background: var(--white);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.auth-btn.secondary:hover {
+  border-color: var(--deep-charcoal);
+}
+
+.resend-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+  transition: color 0.2s ease;
+}
+
+.resend-btn:hover:not(:disabled) {
+  color: var(--deep-charcoal);
+}
+
+.resend-btn:disabled {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+/* Mode Toggle */
+.auth-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+}
+
+.auth-mode-toggle span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.mode-toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--deep-charcoal);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.mode-toggle-btn:hover {
+  opacity: 0.7;
+}
+
+/* Guest Option */
+.guest-option {
+  margin-top: 24px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.divider span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.guest-note {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ========================================
+   Benefits Section (Right)
+======================================== */
+.auth-benefits-section {
+  background: var(--soft-warm-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+}
+
+.benefits-content {
+  max-width: 400px;
+}
+
+.benefits-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--deep-charcoal);
+  margin-bottom: 32px;
+}
+
+.app[lang="ko"] .benefits-title {
+  font-family: var(--font-korean);
+}
+
+.benefits-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.benefits-list li svg {
+  flex-shrink: 0;
+  color: var(--desaturated-olive);
+  margin-top: 2px;
+}
+
+.benefits-list li span {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 992px) {
+  .auth-content {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-benefits-section {
+    display: none;
+  }
+
+  .auth-form-section {
+    padding: 100px 40px 60px;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .auth-form-section {
+    padding: 80px 24px 40px;
+  }
+
+  .auth-title {
+    font-size: 28px;
+  }
+
+  .auth-subtitle {
+    font-size: 14px;
+  }
+
+  .form-input {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .form-input.otp-input {
+    font-size: 20px;
+  }
+
+  .auth-btn {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}
