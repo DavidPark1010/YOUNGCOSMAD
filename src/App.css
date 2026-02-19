@@ -47,7 +47,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-primary);
-  background-color: var(--white);
+  background-color: #F5F2EF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -283,7 +283,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 140px 60px 60px;
-  background: var(--soft-warm-gray);
+  background: #F5F2EF;
 }
 
 .hero-content {
@@ -620,7 +620,7 @@ body {
 ======================================== */
 .products-section {
   padding: var(--section-padding) 0;
-  background: var(--white);
+  background: #F5F2EF;
 }
 
 .products-section-hero {
