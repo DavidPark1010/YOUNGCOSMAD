@@ -804,8 +804,68 @@ function AdminPage({ onClose }) {
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [filter, setFilter] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('') // 검색 기능 추가
   const [inquiries, setInquiries] = useState(initialInquiries)
-  const [orders, setOrders] = useState(initialOrders)
+
+  // localStorage의 customer_orders 통합
+  const [orders, setOrders] = useState(() => {
+    const customerOrders = JSON.parse(localStorage.getItem('customer_orders') || '[]')
+    const convertedOrders = customerOrders.map(co => ({
+      id: co.orderId,
+      refNo: co.orderId.replace('ORD-', 'EY'),
+      customerEmail: co.customer.email,
+      customerName: co.customer.contactPerson,
+      customerCompany: co.customer.companyName,
+      customerPhone: co.customer.phone,
+      customerAddress: co.customer.address + ', ' + co.customer.city + ' ' + (co.customer.postalCode || ''),
+      customerCountry: co.country,
+      status: co.status || 'pending',
+      trackingNumber: null,
+      items: [{
+        name: co.product.name,
+        nameKr: co.product.name,
+        quantity: co.quantity,
+        price: co.pricing.discountedPrice,
+        image: co.product.image
+      }],
+      total: co.pricing.total,
+      deliveryFee: co.pricing.shipping,
+      shippingAddress: co.customer.address + ', ' + co.customer.city + ' ' + (co.customer.postalCode || '') + ', ' + co.country,
+      createdAt: co.date,
+      updatedAt: co.date,
+      checklist: {
+        contactConfirmed: true,
+        priceAgreed: true,
+        invoiceSent: false,
+        paymentConfirmed: false,
+        productPrepared: false,
+        ciCreated: false,
+        shipped: false,
+        delivered: false
+      },
+      invoiceData: {
+        paymentTerm: 'T/T in Advance',
+        estimatedDelivery: 'After receipt of payment',
+        shipment: 'Forwarder',
+        validity: '1 WEEK',
+        warranty: '1 YEAR',
+        incoterms: 'Exwork',
+        customsCode: '3304-99-9000',
+        portOfLoading: 'KOREA',
+        finalDestination: co.country,
+        vessel: '',
+        sailingDate: ''
+      },
+      timeline: [
+        { status: 'pending', date: co.date, message: '주문 접수 (고객 직접 주문)' }
+      ],
+      sourceType: 'customer_direct',
+      memos: [],
+      customerNotes: co.customer.notes || ''
+    }))
+    return [...convertedOrders, ...initialOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  })
+
   const [products, setProducts] = useState(initialProducts)
   const [copied, setCopied] = useState(false)
   const [trackingInput, setTrackingInput] = useState('')
@@ -1570,98 +1630,38 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
 
                     <div className="order-customer-info">
                       <h4>{t.orders.customer}</h4>
-                      <div className="editable-field">
+                      <div className="info-display-field">
                         <label>이름</label>
-                        <input
-                          type="text"
-                          value={selectedOrder.customerName}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, customerName: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, customerName: newValue }))
-                          }}
-                          placeholder="고객 이름"
-                        />
+                        <p>{selectedOrder.customerName || '-'}</p>
                       </div>
-                      <div className="editable-field">
+                      <div className="info-display-field">
                         <label>회사명</label>
-                        <input
-                          type="text"
-                          value={selectedOrder.customerCompany}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, customerCompany: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, customerCompany: newValue }))
-                          }}
-                          placeholder="회사명"
-                        />
+                        <p>{selectedOrder.customerCompany || '-'}</p>
                       </div>
-                      <div className="editable-field">
+                      <div className="info-display-field">
                         <label>이메일</label>
-                        <input
-                          type="email"
-                          value={selectedOrder.customerEmail}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, customerEmail: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, customerEmail: newValue }))
-                          }}
-                          placeholder="이메일"
-                        />
+                        <p>{selectedOrder.customerEmail || '-'}</p>
                       </div>
-                      <div className="editable-field">
+                      <div className="info-display-field">
                         <label>전화번호</label>
-                        <input
-                          type="text"
-                          value={selectedOrder.customerPhone || ''}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, customerPhone: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, customerPhone: newValue }))
-                          }}
-                          placeholder="전화번호"
-                        />
+                        <p>{selectedOrder.customerPhone || '-'}</p>
                       </div>
+                      <div className="info-display-field">
+                        <label>국가</label>
+                        <p>{selectedOrder.customerCountry || '-'}</p>
+                      </div>
+                      {selectedOrder.customerNotes && (
+                        <div className="info-display-field">
+                          <label>고객 메모</label>
+                          <p className="customer-note">{selectedOrder.customerNotes}</p>
+                        </div>
+                      )}
                     </div>
 
                     <div className="order-shipping-info">
                       <h4>{t.orders.shippingAddress}</h4>
-                      <div className="editable-field">
-                        <textarea
-                          value={selectedOrder.shippingAddress}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, shippingAddress: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, shippingAddress: newValue }))
-                          }}
-                          placeholder="배송 주소"
-                          rows={3}
-                        />
-                      </div>
-                      <div className="editable-field">
-                        <label>국가</label>
-                        <input
-                          type="text"
-                          value={selectedOrder.customerCountry || ''}
-                          onChange={(e) => {
-                            const newValue = e.target.value
-                            setOrders(prev => prev.map(o =>
-                              o.id === selectedOrder.id ? { ...o, customerCountry: newValue } : o
-                            ))
-                            setSelectedOrder(prev => ({ ...prev, customerCountry: newValue }))
-                          }}
-                          placeholder="국가 (예: USA, Netherlands)"
-                        />
+                      <div className="info-display-field">
+                        <p>{selectedOrder.shippingAddress || '-'}</p>
                       </div>
                     </div>
 
