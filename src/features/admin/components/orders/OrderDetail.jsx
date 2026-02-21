@@ -17,10 +17,11 @@ function OrderDetail({
 
       <div className="order-detail-content">
         <div className="order-detail-main">
-          {/* Order Info */}
-          <div className="order-info-card">
-            <div className="order-info-header">
-              <div>
+
+          {/* 주문 헤더 */}
+          <div className="order-detail-header-card">
+            <div className="order-detail-header-top">
+              <div className="order-detail-header-left">
                 <span className="order-detail-id">{selectedOrder.id}</span>
                 <span className={`status-badge order-${selectedOrder.status}`}>
                   {t.orders.statuses[selectedOrder.status]}
@@ -28,9 +29,21 @@ function OrderDetail({
               </div>
               <span className="order-detail-date">{formatDate(selectedOrder.createdAt)}</span>
             </div>
+            {selectedOrder.refNo && (
+              <div className="order-detail-ref">
+                <span className="ref-label">Ref.</span>
+                <span className="ref-value">{selectedOrder.refNo}</span>
+              </div>
+            )}
+          </div>
 
-            <div className="order-customer-info">
+          {/* 고객 정보 */}
+          <div className="order-section-card">
+            <div className="order-section-header">
+              <span className="section-icon">&#x1D5A8;</span>
               <h4>{t.orders.customer}</h4>
+            </div>
+            <div className="customer-info-grid">
               <div className="info-display-field">
                 <label>이름</label>
                 <p>{selectedOrder.customerName || '-'}</p>
@@ -52,139 +65,160 @@ function OrderDetail({
                 <p>{selectedOrder.customerCountry || '-'}</p>
               </div>
               {selectedOrder.customerNotes && (
-                <div className="info-display-field">
+                <div className="info-display-field full-width">
                   <label>고객 메모</label>
                   <p className="customer-note">{selectedOrder.customerNotes}</p>
                 </div>
               )}
             </div>
+          </div>
 
-            <div className="order-shipping-info">
+          {/* 배송 정보 */}
+          <div className="order-section-card">
+            <div className="order-section-header">
+              <span className="section-icon">&#x25CB;</span>
               <h4>{t.orders.shippingAddress}</h4>
-              <div className="info-display-field">
-                <p>{selectedOrder.shippingAddress || '-'}</p>
-              </div>
+            </div>
+            <div className="shipping-address-box">
+              <p>{selectedOrder.shippingAddress || '-'}</p>
+            </div>
+          </div>
+
+          {/* 주문 상품 */}
+          <div className="order-section-card">
+            <div className="order-section-header">
+              <span className="section-icon">&#x25A1;</span>
+              <h4>{t.orders.items}</h4>
             </div>
 
-            <div className="order-items-info">
-              <h4>{t.orders.items}</h4>
-              {selectedOrder.items.map((item, idx) => (
-                <div key={idx} className="order-item-row editable">
-                  <div className="item-name-edit">
-                    <input
-                      type="text"
-                      value={item.name}
-                      onChange={(e) => {
-                        const newItems = [...selectedOrder.items]
-                        newItems[idx] = { ...newItems[idx], name: e.target.value }
-                        const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                        setOrders(prev => prev.map(o =>
-                          o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                        ))
-                        setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                      }}
-                      placeholder="제품명"
-                    />
-                  </div>
-                  <div className="item-qty-edit">
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => {
-                        const newItems = [...selectedOrder.items]
-                        newItems[idx] = { ...newItems[idx], quantity: parseInt(e.target.value) || 0 }
-                        const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                        setOrders(prev => prev.map(o =>
-                          o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                        ))
-                        setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                      }}
-                      placeholder="수량"
-                      min="0"
-                    />
-                    <span className="qty-label">개</span>
-                  </div>
-                  <div className="item-price-edit">
-                    <span className="price-prefix">$</span>
-                    <input
-                      type="number"
-                      step="0.01"
-                      value={item.price}
-                      onChange={(e) => {
-                        const newItems = [...selectedOrder.items]
-                        newItems[idx] = { ...newItems[idx], price: parseFloat(e.target.value) || 0 }
-                        const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                        setOrders(prev => prev.map(o =>
-                          o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                        ))
-                        setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                      }}
-                      placeholder="단가"
-                      min="0"
-                    />
-                  </div>
-                  <span className="item-subtotal">
-                    ${(item.quantity * item.price).toLocaleString()}
-                  </span>
-                  <button
-                    className="item-remove-btn"
-                    onClick={() => {
-                      const newItems = selectedOrder.items.filter((_, i) => i !== idx)
+            {/* 테이블 헤더 */}
+            <div className="items-table-header">
+              <span className="col-name">제품명</span>
+              <span className="col-qty">수량</span>
+              <span className="col-price">단가</span>
+              <span className="col-subtotal">소계</span>
+              <span className="col-action"></span>
+            </div>
+
+            {selectedOrder.items.map((item, idx) => (
+              <div key={idx} className="order-item-row editable">
+                <div className="item-name-edit">
+                  <input
+                    type="text"
+                    value={item.name}
+                    onChange={(e) => {
+                      const newItems = [...selectedOrder.items]
+                      newItems[idx] = { ...newItems[idx], name: e.target.value }
                       const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
                       setOrders(prev => prev.map(o =>
                         o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
                       ))
                       setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
                     }}
-                  >
-                    ✕
-                  </button>
+                    placeholder="제품명"
+                  />
                 </div>
-              ))}
-              {/* 품목 추가 버튼 */}
-              <button
-                className="add-item-btn"
-                onClick={() => {
-                  const newItems = [...selectedOrder.items, { name: '', nameKr: '', quantity: 0, price: 0 }]
-                  setOrders(prev => prev.map(o =>
-                    o.id === selectedOrder.id ? { ...o, items: newItems } : o
-                  ))
-                  setSelectedOrder(prev => ({ ...prev, items: newItems }))
-                }}
-              >
-                + 품목 추가
-              </button>
-
-              {/* 배송비 */}
-              <div className="order-item-row delivery-fee-row editable">
-                <span className="item-name">Delivery Fee</span>
-                <div className="item-price-edit delivery-fee-edit">
+                <div className="item-qty-edit">
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => {
+                      const newItems = [...selectedOrder.items]
+                      newItems[idx] = { ...newItems[idx], quantity: parseInt(e.target.value) || 0 }
+                      const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                      setOrders(prev => prev.map(o =>
+                        o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                      ))
+                      setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                    }}
+                    placeholder="수량"
+                    min="0"
+                  />
+                  <span className="qty-label">개</span>
+                </div>
+                <div className="item-price-edit">
                   <span className="price-prefix">$</span>
                   <input
                     type="number"
-                    value={selectedOrder.deliveryFee || 0}
+                    step="0.01"
+                    value={item.price}
                     onChange={(e) => {
-                      const newValue = parseFloat(e.target.value) || 0
+                      const newItems = [...selectedOrder.items]
+                      newItems[idx] = { ...newItems[idx], price: parseFloat(e.target.value) || 0 }
+                      const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
                       setOrders(prev => prev.map(o =>
-                        o.id === selectedOrder.id ? { ...o, deliveryFee: newValue } : o
+                        o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
                       ))
-                      setSelectedOrder(prev => ({ ...prev, deliveryFee: newValue }))
+                      setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
                     }}
+                    placeholder="단가"
                     min="0"
                   />
                 </div>
+                <span className="item-subtotal">
+                  ${(item.quantity * item.price).toLocaleString()}
+                </span>
+                <button
+                  className="item-remove-btn"
+                  onClick={() => {
+                    const newItems = selectedOrder.items.filter((_, i) => i !== idx)
+                    const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                    setOrders(prev => prev.map(o =>
+                      o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                    ))
+                    setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                  }}
+                >
+                  ✕
+                </button>
               </div>
+            ))}
 
-              <div className="order-total-row">
-                <span>{t.orders.totalLabel}</span>
-                <span className="total-value">${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
+            <button
+              className="add-item-btn"
+              onClick={() => {
+                const newItems = [...selectedOrder.items, { name: '', nameKr: '', quantity: 0, price: 0 }]
+                setOrders(prev => prev.map(o =>
+                  o.id === selectedOrder.id ? { ...o, items: newItems } : o
+                ))
+                setSelectedOrder(prev => ({ ...prev, items: newItems }))
+              }}
+            >
+              + 품목 추가
+            </button>
+
+            {/* 배송비 */}
+            <div className="order-item-row delivery-fee-row editable">
+              <span className="item-name">Delivery Fee</span>
+              <div className="item-price-edit delivery-fee-edit">
+                <span className="price-prefix">$</span>
+                <input
+                  type="number"
+                  value={selectedOrder.deliveryFee || 0}
+                  onChange={(e) => {
+                    const newValue = parseFloat(e.target.value) || 0
+                    setOrders(prev => prev.map(o =>
+                      o.id === selectedOrder.id ? { ...o, deliveryFee: newValue } : o
+                    ))
+                    setSelectedOrder(prev => ({ ...prev, deliveryFee: newValue }))
+                  }}
+                  min="0"
+                />
               </div>
+            </div>
+
+            <div className="order-total-row">
+              <span>{t.orders.totalLabel}</span>
+              <span className="total-value">${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
             </div>
           </div>
 
           {/* 진행사항 체크리스트 */}
           <div className="order-checklist-card">
-            <h4>진행사항 체크리스트</h4>
+            <div className="order-section-header">
+              <span className="section-icon">&#x2713;</span>
+              <h4>진행사항 체크리스트</h4>
+            </div>
             <div className="checklist-grid">
               {[
                 { key: 'contactConfirmed', label: '연락처 확인됨' },
@@ -232,7 +266,10 @@ function OrderDetail({
 
           {/* 인보이스 / CI 생성 버튼 */}
           <div className="invoice-ci-card">
-            <h4>서류 생성</h4>
+            <div className="order-section-header">
+              <span className="section-icon">&#x25B7;</span>
+              <h4>서류 생성</h4>
+            </div>
             <p className="invoice-ci-desc">
               주문 정보를 기반으로 PROFORMA INVOICE 또는 COMMERCIAL INVOICE를 생성합니다.
             </p>
@@ -241,7 +278,7 @@ function OrderDetail({
                 className="invoice-btn proforma"
                 onClick={() => onOpenInvoice(selectedOrder)}
               >
-                <span className="btn-icon">📄</span>
+                <span className="btn-icon">P</span>
                 <span className="btn-text">
                   <strong>PROFORMA INVOICE</strong>
                   <small>견적 인보이스 생성</small>
@@ -251,7 +288,7 @@ function OrderDetail({
                 className="invoice-btn commercial"
                 onClick={() => onOpenCI(selectedOrder)}
               >
-                <span className="btn-icon">📋</span>
+                <span className="btn-icon">C</span>
                 <span className="btn-text">
                   <strong>COMMERCIAL INVOICE</strong>
                   <small>상업 인보이스 (CI) 생성</small>
@@ -263,7 +300,10 @@ function OrderDetail({
 
         {/* Timeline */}
         <div className="order-timeline-card">
-          <h4>{t.orders.orderTimeline}</h4>
+          <div className="order-section-header">
+            <span className="section-icon">&#x25CF;</span>
+            <h4>{t.orders.orderTimeline}</h4>
+          </div>
           <div className="order-timeline-list">
             {selectedOrder.timeline.map((event, idx) => (
               <div key={idx} className="timeline-event">
