@@ -31,7 +31,8 @@ function AdminPage({ onClose }) {
     notificationSent,
     orderStats,
     deleteOrder,
-    selectOrder
+    selectOrder,
+    updateOrderStatus
   } = useOrders(lang)
 
   const {
@@ -104,6 +105,7 @@ function AdminPage({ onClose }) {
               onBack={() => setSelectedOrder(null)}
               onOpenInvoice={openInvoice}
               onOpenCI={openCI}
+              updateOrderStatus={updateOrderStatus}
             />
           )}
 

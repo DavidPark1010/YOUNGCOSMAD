@@ -1,0 +1,455 @@
+/* ========================================
+   Payment Instructions Page
+   - Submit Order 직후 결제 안내 전용 페이지
+======================================== */
+.payment-instructions-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.payment-instructions-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Header (sticky)
+======================================== */
+.pi-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--white);
+  z-index: 10;
+}
+
+.pi-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-left: -12px;
+  transition: color 0.2s ease;
+}
+
+.pi-back-btn:hover {
+  color: var(--deep-charcoal);
+}
+
+.pi-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.pi-close-btn:hover {
+  color: var(--deep-charcoal);
+}
+
+/* ========================================
+   Content
+======================================== */
+.pi-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 48px 40px 80px;
+}
+
+.pi-inner {
+  width: 100%;
+  max-width: 560px;
+  animation: piFadeIn 0.4s ease;
+}
+
+@keyframes piFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   Success Banner
+======================================== */
+.pi-success-banner {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pi-check-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #E8F5E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.pi-check-icon svg {
+  color: #2E7D32;
+}
+
+.pi-success-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--deep-charcoal);
+  margin-bottom: 8px;
+}
+
+.pi-success-orderId {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.pi-success-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ========================================
+   Payment Information Card
+======================================== */
+.pi-section-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.pi-payment-card {
+  border: 2px solid var(--deep-charcoal);
+  background: #FAFAF8;
+  padding: 28px 24px;
+  margin-bottom: 32px;
+}
+
+.pi-payment-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pi-payment-total-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.pi-payment-total-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--deep-charcoal);
+}
+
+.pi-payment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pi-payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.pi-payment-row span:first-child {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pi-payment-row span:last-child {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.pi-payment-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #F0EDE8;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.pi-payment-notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   Order Summary Card
+======================================== */
+.pi-order-summary {
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.pi-summary-product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pi-summary-product img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.pi-summary-product-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.pi-summary-product-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.pi-summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pi-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.pi-summary-row span:first-child {
+  color: var(--text-muted);
+}
+
+.pi-summary-row span:last-child {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.pi-summary-row.total {
+  padding-top: 16px;
+  margin-top: 6px;
+  border-top: 2px solid var(--deep-charcoal);
+}
+
+.pi-summary-row.total span:first-child {
+  font-weight: 600;
+  color: var(--deep-charcoal);
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.pi-summary-row.total span:last-child {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--deep-charcoal);
+}
+
+/* ========================================
+   What Happens Next
+======================================== */
+.pi-next-steps {
+  margin-bottom: 40px;
+}
+
+.pi-next-steps-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.pi-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pi-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.pi-step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--soft-warm-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Action Buttons
+======================================== */
+.pi-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.pi-btn-primary {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--deep-charcoal);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pi-btn-primary:hover {
+  background: #2A2A2B;
+}
+
+.pi-btn-secondary {
+  width: 100%;
+  padding: 16px 24px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pi-btn-secondary:hover {
+  border-color: var(--deep-charcoal);
+}
+
+/* ========================================
+   Support Link
+======================================== */
+.pi-support {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.pi-support a {
+  color: var(--deep-charcoal);
+  text-decoration: underline;
+}
+
+.pi-support a:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   Hidden Invoice for PDF
+======================================== */
+.pi-invoice-hidden {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 800px;
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 768px) {
+  .pi-header {
+    padding: 16px 20px;
+  }
+
+  .pi-content {
+    padding: 32px 20px 60px;
+  }
+
+  .pi-success-title {
+    font-size: 20px;
+  }
+
+  .pi-payment-card {
+    padding: 20px;
+  }
+
+  .pi-payment-total-value {
+    font-size: 22px;
+  }
+
+  .pi-payment-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pi-order-summary {
+    padding: 20px;
+  }
+
+  .pi-summary-product {
+    gap: 12px;
+  }
+
+  .pi-summary-product img {
+    width: 48px;
+    height: 48px;
+  }
+}

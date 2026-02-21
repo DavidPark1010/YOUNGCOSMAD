@@ -73,6 +73,83 @@ export function useOrders(lang) {
     delivered: orders.filter(o => o.status === 'delivered').length
   }
 
+  const autoUpdateChecklist = (checklist, newStatus) => {
+    const updated = { ...checklist }
+    if (newStatus === 'paid') {
+      updated.paymentConfirmed = true
+      updated.ciCreated = true
+    }
+    if (newStatus === 'preparing') {
+      updated.paymentConfirmed = true
+      updated.ciCreated = true
+      updated.productPrepared = true
+    }
+    if (newStatus === 'shipped') {
+      updated.paymentConfirmed = true
+      updated.ciCreated = true
+      updated.productPrepared = true
+      updated.shipped = true
+    }
+    if (newStatus === 'delivered') {
+      updated.paymentConfirmed = true
+      updated.ciCreated = true
+      updated.productPrepared = true
+      updated.shipped = true
+      updated.delivered = true
+    }
+    return updated
+  }
+
+  const syncToLocalStorage = (orderId, newStatus, message, now) => {
+    try {
+      const customerOrders = JSON.parse(localStorage.getItem('customer_orders') || '[]')
+      const updated = customerOrders.map(co => {
+        if (co.orderId !== orderId) return co
+        return {
+          ...co,
+          status: newStatus,
+          timeline: [...(co.timeline || []), { status: newStatus, date: now, message }]
+        }
+      })
+      localStorage.setItem('customer_orders', JSON.stringify(updated))
+    } catch (e) {
+      console.error('Failed to sync customer_orders:', e)
+    }
+  }
+
+  const updateOrderStatus = (orderId, newStatus, message, trackingNumber) => {
+    const now = new Date().toISOString()
+
+    setOrders(prev => prev.map(o => {
+      if (o.id !== orderId) return o
+      return {
+        ...o,
+        status: newStatus,
+        updatedAt: now,
+        trackingNumber: trackingNumber || o.trackingNumber,
+        timeline: [...o.timeline, { status: newStatus, date: now, message }],
+        checklist: autoUpdateChecklist(o.checklist, newStatus)
+      }
+    }))
+
+    setSelectedOrder(prev => {
+      if (!prev || prev.id !== orderId) return prev
+      return {
+        ...prev,
+        status: newStatus,
+        updatedAt: now,
+        trackingNumber: trackingNumber || prev.trackingNumber,
+        timeline: [...prev.timeline, { status: newStatus, date: now, message }],
+        checklist: autoUpdateChecklist(prev.checklist, newStatus)
+      }
+    })
+
+    syncToLocalStorage(orderId, newStatus, message, now)
+
+    setNotificationSent(true)
+    setTimeout(() => setNotificationSent(false), 3000)
+  }
+
   const deleteOrder = (orderId) => {
     if (window.confirm(lang === 'ko' ? '정말 이 주문을 삭제하시겠습니까?' : 'Are you sure you want to delete this order?')) {
       setOrders(prev => prev.filter(order => order.id !== orderId))
@@ -94,6 +171,7 @@ export function useOrders(lang) {
     notificationSent, setNotificationSent,
     orderStats,
     deleteOrder,
-    selectOrder
+    selectOrder,
+    updateOrderStatus
   }
 }

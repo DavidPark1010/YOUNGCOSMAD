@@ -1154,6 +1154,151 @@
   margin: 0;
 }
 
+/* ========================================
+   Status Action Bar
+======================================== */
+.status-action-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 32px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  border: 2px solid;
+}
+
+.status-action-bar.green {
+  background: #E8F5EC;
+  border-color: #7BC68F;
+}
+
+.status-action-bar.blue {
+  background: #F0F7FF;
+  border-color: #92B8E8;
+}
+
+.status-action-bar.teal {
+  background: #EDF5F0;
+  border-color: #8AB89D;
+}
+
+.status-action-bar.gray {
+  background: #F0F2F4;
+  border-color: #CCCCCC;
+}
+
+.status-action-bar.completed {
+  background: #F8F8F8;
+  border-color: #E0E0E0;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 32px;
+}
+
+.status-action-current {
+  font-size: 18px;
+  font-weight: 700;
+  color: #555555;
+  letter-spacing: 0.02em;
+}
+
+.status-action-btn {
+  width: 100%;
+  padding: 18px 28px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid;
+  text-align: center;
+}
+
+.status-action-btn.green {
+  background: #E8F5EC;
+  border-color: #7BC68F;
+  color: #156E2E;
+}
+
+.status-action-btn.green:hover {
+  background: #D4EDDA;
+  border-color: #5CB87A;
+}
+
+.status-action-btn.blue {
+  background: #F0F7FF;
+  border-color: #92B8E8;
+  color: #2255AA;
+}
+
+.status-action-btn.blue:hover {
+  background: #DDE9FA;
+  border-color: #6FA0DD;
+}
+
+.status-action-btn.teal {
+  background: #EDF5F0;
+  border-color: #8AB89D;
+  color: #3A6C4C;
+}
+
+.status-action-btn.teal:hover {
+  background: #DCE9E1;
+  border-color: #6BA384;
+}
+
+.status-action-btn.gray {
+  background: #F0F2F4;
+  border-color: #CCCCCC;
+  color: #555555;
+}
+
+.status-action-btn.gray:hover {
+  background: #E4E6E8;
+  border-color: #AAAAAA;
+}
+
+.status-action-hint {
+  font-size: 16px;
+  font-weight: 500;
+  color: #888888;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.status-action-complete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #E8F5EC;
+  color: #156E2E;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.status-action-complete-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-action-complete-text strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.status-action-complete-text span {
+  font-size: 16px;
+  color: #888888;
+}
+
 .checklist-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

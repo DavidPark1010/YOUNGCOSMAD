@@ -8,6 +8,7 @@ import OrderLookup from './features/order/OrderLookup'
 import ProductDetail from './features/product/ProductDetail'
 import CustomerOrderFlow from './features/order/CustomerOrderFlow'
 import OrderStatusPage from './features/order/OrderStatusPage'
+import PaymentInstructionsPage from './features/order/PaymentInstructionsPage'
 import { content } from './i18n'
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
   const [orderFlowProduct, setOrderFlowProduct] = useState(null)
   const [isOrderStatusOpen, setIsOrderStatusOpen] = useState(false)
   const [currentOrderId, setCurrentOrderId] = useState(null)
+  const [isPaymentInstructionsOpen, setIsPaymentInstructionsOpen] = useState(false)
+  const [completedOrderData, setCompletedOrderData] = useState(null)
   const t = content[lang]
 
   // Load user from localStorage on mount
@@ -233,11 +236,22 @@ function App() {
   }
 
   const handleOrderComplete = (orderData) => {
-    // 주문 완료 후 주문 상태 페이지로 이동
+    // 주문 완료 후 결제 안내 페이지로 이동
     closeOrderFlow()
-    setCurrentOrderId(orderData.orderId)
-    setIsOrderStatusOpen(true)
+    setCompletedOrderData(orderData)
+    setIsPaymentInstructionsOpen(true)
     document.body.style.overflow = 'hidden'
+  }
+
+  const closePaymentInstructions = () => {
+    setIsPaymentInstructionsOpen(false)
+    setCompletedOrderData(null)
+    document.body.style.overflow = ''
+  }
+
+  const handleTrackOrderFromPayment = () => {
+    closePaymentInstructions()
+    openOrderLookup()
   }
 
   const closeOrderStatus = () => {
@@ -272,6 +286,18 @@ function App() {
         lang={lang}
         onClose={closeOrderFlow}
         onOrderComplete={handleOrderComplete}
+      />
+    )
+  }
+
+  // PaymentInstructions가 열려있으면 PaymentInstructions만 렌더링
+  if (isPaymentInstructionsOpen && completedOrderData) {
+    return (
+      <PaymentInstructionsPage
+        orderData={completedOrderData}
+        lang={lang}
+        onClose={closePaymentInstructions}
+        onTrackOrder={handleTrackOrderFromPayment}
       />
     )
   }

@@ -7,10 +7,43 @@ const PRODUCT_IMAGE_MAP = {
   'Tone-Up Sun Shield': '/product6.png',
 }
 
+const STATUS_ACTIONS = {
+  pending: {
+    label: '입금 확인 완료',
+    nextStatus: 'paid',
+    message: '입금 확인 완료',
+    hint: '입금 확인 시 상태가 \'Paid\'로 변경됩니다.',
+    style: 'green'
+  },
+  paid: {
+    label: '상품 준비 시작',
+    nextStatus: 'preparing',
+    message: '상품 준비 시작',
+    hint: '상품 준비가 시작되면 바이어에게 알림됩니다.',
+    style: 'blue'
+  },
+  preparing: {
+    label: '배송 시작',
+    nextStatus: 'shipped',
+    message: '배송 시작',
+    hint: '운송장 번호를 먼저 입력해주세요.',
+    requiresTracking: true,
+    style: 'teal'
+  },
+  shipped: {
+    label: '배송 완료 처리',
+    nextStatus: 'delivered',
+    message: '배송 완료',
+    hint: '배송 완료 처리 시 주문이 최종 완료됩니다.',
+    style: 'gray'
+  }
+}
+
 function OrderDetail({
   selectedOrder, setSelectedOrder, orders, setOrders,
   t, trackingInput, setTrackingInput, notificationSent,
-  formatDate, onBack, onOpenInvoice, onOpenCI
+  formatDate, onBack, onOpenInvoice, onOpenCI,
+  updateOrderStatus
 }) {
   const getProductImage = (name) => {
     return PRODUCT_IMAGE_MAP[name] || null
@@ -175,6 +208,54 @@ function OrderDetail({
               </div>
               <h4>진행사항 체크리스트</h4>
             </div>
+
+            {/* Status Action Bar */}
+            {selectedOrder.status === 'delivered' ? (
+              <div className="status-action-bar completed">
+                <span className="status-action-complete-icon">&#x2713;</span>
+                <div className="status-action-complete-text">
+                  <strong>주문 처리 완료</strong>
+                  <span>모든 단계가 정상적으로 완료되었습니다.</span>
+                </div>
+              </div>
+            ) : STATUS_ACTIONS[selectedOrder.status] && (
+              <div className={`status-action-bar ${STATUS_ACTIONS[selectedOrder.status].style}`}>
+                <div className="status-action-current">
+                  현재: {t.orders.statuses[selectedOrder.status]}
+                  {['paid', 'preparing', 'shipped'].includes(selectedOrder.status) && ' \u2713'}
+                </div>
+                <button
+                  className={`status-action-btn ${STATUS_ACTIONS[selectedOrder.status].style}`}
+                  onClick={() => {
+                    const action = STATUS_ACTIONS[selectedOrder.status]
+                    if (action.requiresTracking && !trackingInput.trim()) {
+                      alert('운송장 번호를 먼저 입력해주세요.')
+                      return
+                    }
+                    const confirmMsg = `주문 상태를 '${action.label}'(으)로 변경하시겠습니까?`
+                    if (!window.confirm(confirmMsg)) return
+                    const message = action.requiresTracking
+                      ? `${action.message} - ${trackingInput.trim()}`
+                      : action.message
+                    updateOrderStatus(
+                      selectedOrder.id,
+                      action.nextStatus,
+                      message,
+                      action.requiresTracking ? trackingInput.trim() : undefined
+                    )
+                  }}
+                >
+                  {STATUS_ACTIONS[selectedOrder.status].label}
+                </button>
+                <span className="status-action-hint">
+                  {STATUS_ACTIONS[selectedOrder.status].requiresTracking && !trackingInput.trim()
+                    ? '\u26A0 ' + STATUS_ACTIONS[selectedOrder.status].hint
+                    : STATUS_ACTIONS[selectedOrder.status].hint
+                  }
+                </span>
+              </div>
+            )}
+
             <div className="checklist-grid">
               {[
                 { key: 'contactConfirmed', label: '연락처 확인됨' },
