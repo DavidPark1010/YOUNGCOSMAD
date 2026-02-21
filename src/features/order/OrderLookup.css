@@ -579,6 +579,115 @@
 }
 
 /* ========================================
+   Payment Information Card (OrderLookup)
+======================================== */
+.lookup-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.lookup-payment-card {
+  margin-bottom: 24px;
+}
+
+.lookup-payment-inner {
+  border: 2px solid var(--deep-charcoal);
+  background: #FAFAF8;
+  padding: 24px;
+}
+
+.lookup-payment-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.lookup-payment-amount {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--deep-charcoal);
+}
+
+.lookup-payment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.lookup-payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.lookup-payment-row span:first-child {
+  color: var(--text-muted);
+}
+
+.lookup-payment-row span:last-child {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.lookup-payment-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #F0EDE8;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.lookup-payment-notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--text-muted);
+}
+
+/* Documents Section (OrderLookup) */
+.lookup-documents-section {
+  margin-bottom: 24px;
+}
+
+.lookup-documents-row {
+  display: flex;
+  gap: 12px;
+}
+
+.lookup-doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--deep-charcoal);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lookup-doc-btn:hover {
+  background: #2A2A2B;
+}
+
+/* ========================================
    Responsive
 ======================================== */
 @media (max-width: 768px) {
@@ -639,5 +748,23 @@
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
+  }
+
+  .lookup-payment-inner {
+    padding: 20px;
+  }
+
+  .lookup-payment-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lookup-documents-row {
+    flex-direction: column;
+  }
+
+  .lookup-doc-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

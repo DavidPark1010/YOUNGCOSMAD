@@ -195,6 +195,10 @@ function OrderDetail({
                         ...selectedOrder.checklist,
                         [item.key]: e.target.checked
                       }
+                      // Auto-check ciCreated when paymentConfirmed is checked
+                      if (item.key === 'paymentConfirmed' && e.target.checked) {
+                        newChecklist.ciCreated = true
+                      }
                       setOrders(prev => prev.map(o =>
                         o.id === selectedOrder.id
                           ? { ...o, checklist: newChecklist }

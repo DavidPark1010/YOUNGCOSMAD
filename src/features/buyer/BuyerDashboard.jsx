@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import './BuyerDashboard.css'
+import { useInvoice } from '../admin/hooks/useInvoice'
+import { companyInfo } from '../admin/constants/companyInfo'
+import ProformaInvoiceModal from '../admin/components/modals/ProformaInvoiceModal'
+import CommercialInvoiceModal from '../admin/components/modals/CommercialInvoiceModal'
 
 const uiText = {
   en: {
@@ -79,11 +83,40 @@ const uiText = {
       downloadInvoice: 'Download Invoice',
       statuses: {
         pending: 'Pending Payment',
-        paid: 'Paid',
+        paid: 'Payment Confirmed',
         preparing: 'Preparing',
         shipped: 'Shipped',
         delivered: 'Delivered'
-      }
+      },
+      backToOrders: '← Back to Orders',
+      timeline: 'Order Timeline',
+      paymentInfo: {
+        title: 'Payment Information',
+        totalDue: 'Total Amount Due',
+        method: 'Payment Method',
+        methodValue: 'T/T (Wire Transfer)',
+        bankName: 'Bank Name',
+        accountName: 'Account Name',
+        accountNo: 'Account No.',
+        swiftCode: 'SWIFT Code',
+        notice: 'Please include your order number ({orderId}) in the transfer memo.'
+      },
+      documents: {
+        title: 'Documents',
+        proformaInvoice: 'Proforma Invoice',
+        commercialInvoice: 'Commercial Invoice'
+      },
+      tracking: {
+        title: 'Tracking',
+        trackingNumber: 'Tracking Number',
+        copy: 'Copy',
+        copied: 'Copied!'
+      },
+      orderItems: 'Order Items',
+      deliveryFee: 'Delivery Fee',
+      shippingAddress: 'Shipping Address',
+      needHelp: 'Need help?',
+      contactSupport: 'Contact Support'
     },
     inquiries: {
       title: 'Inquiries & Quotes',
@@ -229,7 +262,36 @@ const uiText = {
         preparing: '준비 중',
         shipped: '배송 중',
         delivered: '배송 완료'
-      }
+      },
+      backToOrders: '← 주문 내역으로 돌아가기',
+      timeline: '주문 진행 상황',
+      paymentInfo: {
+        title: '결제 안내',
+        totalDue: '결제 금액',
+        method: '결제 방법',
+        methodValue: 'T/T (해외 송금)',
+        bankName: '은행명',
+        accountName: '예금주',
+        accountNo: '계좌번호',
+        swiftCode: 'SWIFT 코드',
+        notice: '송금 시 주문번호({orderId})를 메모란에 기입해주세요.'
+      },
+      documents: {
+        title: '서류',
+        proformaInvoice: 'Proforma Invoice',
+        commercialInvoice: 'Commercial Invoice'
+      },
+      tracking: {
+        title: '배송 추적',
+        trackingNumber: '운송장 번호',
+        copy: '복사',
+        copied: '복사됨!'
+      },
+      orderItems: '주문 상품',
+      deliveryFee: '배송비',
+      shippingAddress: '배송지',
+      needHelp: '도움이 필요하신가요?',
+      contactSupport: '고객지원 문의'
     },
     inquiries: {
       title: '문의 및 견적',
@@ -302,17 +364,86 @@ const demoOrders = [
     id: 'ORD-2024-001',
     date: '2024-01-15',
     status: 'shipped',
-    total: 2450.00,
+    total: 4490.00,
+    deliveryFee: 320,
     itemCount: 3,
-    items: ['Hydra Glow Serum x 500', 'Cica Repair Cream x 400', 'Tone-Up Sun Shield x 300']
+    items: [
+      { name: 'Hydra Glow Serum', quantity: 500, price: 4.50 },
+      { name: 'Cica Repair Cream', quantity: 400, price: 3.80 },
+      { name: 'Tone-Up Sun Shield', quantity: 300, price: 3.20 }
+    ],
+    shippingAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
+    trackingNumber: 'KR1234567890',
+    customerName: 'John Smith',
+    customerCompany: 'Beauty Global Inc.',
+    customerEmail: 'buyer@example.com',
+    customerCountry: 'USA',
+    invoiceData: {
+      piNumber: 'PI-2024-001',
+      ciNumber: 'CI-2024-001'
+    },
+    timeline: [
+      { status: 'pending', date: '2024-01-15 09:00', completed: true },
+      { status: 'paid', date: '2024-01-15 14:30', completed: true },
+      { status: 'preparing', date: '2024-01-17 10:00', completed: true },
+      { status: 'shipped', date: '2024-01-19 16:00', completed: true },
+      { status: 'delivered', date: null, completed: false }
+    ]
   },
   {
     id: 'ORD-2024-002',
     date: '2024-01-28',
     status: 'preparing',
-    total: 1820.00,
+    total: 1750.00,
+    deliveryFee: 280,
     itemCount: 2,
-    items: ['Velvet Matte Lip Tint x 300', 'Double Cleansing Oil x 200']
+    items: [
+      { name: 'Velvet Matte Lip Tint', quantity: 300, price: 2.90 },
+      { name: 'Double Cleansing Oil', quantity: 200, price: 4.40 }
+    ],
+    shippingAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
+    trackingNumber: null,
+    customerName: 'John Smith',
+    customerCompany: 'Beauty Global Inc.',
+    customerEmail: 'buyer@example.com',
+    customerCountry: 'USA',
+    invoiceData: {
+      piNumber: 'PI-2024-002',
+      ciNumber: 'CI-2024-002'
+    },
+    timeline: [
+      { status: 'pending', date: '2024-01-28 11:00', completed: true },
+      { status: 'paid', date: '2024-01-28 15:00', completed: true },
+      { status: 'preparing', date: '2024-01-30 09:00', completed: true },
+      { status: 'shipped', date: null, completed: false },
+      { status: 'delivered', date: null, completed: false }
+    ]
+  },
+  {
+    id: 'ORD-2024-003',
+    date: '2024-02-05',
+    status: 'pending',
+    total: 3200.00,
+    deliveryFee: 300,
+    itemCount: 2,
+    items: [
+      { name: 'Peptide Eye Contour', quantity: 400, price: 5.00 },
+      { name: 'Hydra Glow Serum', quantity: 200, price: 6.00 }
+    ],
+    shippingAddress: '789 Trade Blvd, Miami, FL 33101, USA',
+    trackingNumber: null,
+    customerName: 'John Smith',
+    customerCompany: 'Beauty Global Inc.',
+    customerEmail: 'buyer@example.com',
+    customerCountry: 'USA',
+    invoiceData: {},
+    timeline: [
+      { status: 'pending', date: '2024-02-05 10:00', completed: true },
+      { status: 'paid', date: null, completed: false },
+      { status: 'preparing', date: null, completed: false },
+      { status: 'shipped', date: null, completed: false },
+      { status: 'delivered', date: null, completed: false }
+    ]
   }
 ]
 
@@ -335,6 +466,14 @@ const demoInquiries = [
 
 function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts }) {
   const [activeTab, setActiveTab] = useState('overview')
+  const [selectedOrder, setSelectedOrder] = useState(null)
+  const [copiedTracking, setCopiedTracking] = useState(false)
+  const {
+    showInvoiceModal, showCIModal,
+    editingInvoice,
+    openInvoice, openCI,
+    closeInvoice, closeCI
+  } = useInvoice()
   const [profile, setProfile] = useState({
     name: user?.name || '',
     email: user?.email || '',
@@ -428,6 +567,26 @@ function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts })
         return ''
     }
   }
+
+  const statusOrder = ['pending', 'paid', 'preparing', 'shipped', 'delivered']
+  const isStatusAtLeast = (current, target) => {
+    return statusOrder.indexOf(current) >= statusOrder.indexOf(target)
+  }
+
+  const handleCopyTracking = (trackingNumber) => {
+    navigator.clipboard.writeText(trackingNumber)
+    setCopiedTracking(true)
+    setTimeout(() => setCopiedTracking(false), 2000)
+  }
+
+  const buildInvoiceOrder = (order) => ({
+    ...order,
+    customerName: order.customerName,
+    customerCompany: order.customerCompany,
+    customerEmail: order.customerEmail,
+    customerCountry: order.customerCountry,
+    invoiceData: order.invoiceData || {}
+  })
 
   return (
     <div className="dashboard-overlay">
@@ -614,7 +773,7 @@ function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts })
                   {demoOrders.filter(o => o.status !== 'delivered').length > 0 ? (
                     <div className="mini-order-list">
                       {demoOrders.filter(o => o.status !== 'delivered').map(order => (
-                        <div key={order.id} className="mini-order-card">
+                        <div key={order.id} className="mini-order-card" onClick={() => { setSelectedOrder(order); setActiveTab('orders'); }} style={{ cursor: 'pointer' }}>
                           <div className="order-info">
                             <span className="order-id">{order.id}</span>
                             <span className={`order-status ${getStatusClass(order.status)}`}>
@@ -622,7 +781,7 @@ function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts })
                             </span>
                           </div>
                           <div className="order-meta">
-                            <span>${order.total.toLocaleString()}</span>
+                            <span>${(order.total + (order.deliveryFee || 0)).toLocaleString()}</span>
                             <span>{order.itemCount} {text.orders.items}</span>
                           </div>
                         </div>
@@ -681,53 +840,220 @@ function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts })
             {/* Orders Tab */}
             {activeTab === 'orders' && (
               <div className="tab-content orders">
-                <h2 className="tab-title">{text.orders.title}</h2>
+                {selectedOrder ? (
+                  /* ===== Order Detail View ===== */
+                  <div className="buyer-order-detail">
+                    <button className="buyer-detail-back" onClick={() => setSelectedOrder(null)}>
+                      {text.orders.backToOrders}
+                    </button>
 
-                {demoOrders.length > 0 ? (
-                  <div className="orders-list">
-                    {demoOrders.map(order => (
-                      <div key={order.id} className="order-card">
-                        <div className="order-header">
-                          <div className="order-id-date">
-                            <span className="order-id">{text.orders.orderNumber}{order.id}</span>
-                            <span className="order-date">{order.date}</span>
+                    {/* Order Header */}
+                    <div className="buyer-detail-header">
+                      <div className="buyer-detail-header-left">
+                        <h2 className="buyer-detail-order-id">Order #{selectedOrder.id}</h2>
+                        <span className="buyer-detail-date">{selectedOrder.date}</span>
+                      </div>
+                      <span className={`order-status ${getStatusClass(selectedOrder.status)}`}>
+                        {text.orders.statuses[selectedOrder.status]}
+                      </span>
+                    </div>
+
+                    {/* Order Timeline */}
+                    <div className="buyer-detail-section">
+                      <h3 className="buyer-detail-section-title">{text.orders.timeline}</h3>
+                      <div className="buyer-timeline-steps">
+                        {selectedOrder.timeline.map((step, index) => (
+                          <div
+                            key={step.status}
+                            className={`buyer-timeline-step ${step.completed ? 'completed' : ''} ${selectedOrder.status === step.status ? 'current' : ''}`}
+                          >
+                            <div className="buyer-timeline-dot">
+                              {step.completed && (
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                  <path d="M2 6l3 3 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                            </div>
+                            <div className="buyer-timeline-content">
+                              <span className="buyer-timeline-status">{text.orders.statuses[step.status]}</span>
+                              {step.date && <span className="buyer-timeline-date">{step.date}</span>}
+                            </div>
+                            {index < selectedOrder.timeline.length - 1 && (
+                              <div className={`buyer-timeline-line ${step.completed ? 'completed' : ''}`} />
+                            )}
                           </div>
-                          <span className={`order-status ${getStatusClass(order.status)}`}>
-                            {text.orders.statuses[order.status]}
-                          </span>
-                        </div>
-                        <div className="order-items">
-                          {order.items.map((item, idx) => (
-                            <span key={idx} className="order-item">{item}</span>
-                          ))}
-                        </div>
-                        <div className="order-footer">
-                          <span className="order-total">{text.orders.total}: ${order.total.toLocaleString()}</span>
-                          <div className="order-actions">
-                            {order.status === 'shipped' && (
-                              <button className="order-action-btn">{text.orders.trackShipment}</button>
-                            )}
-                            <button className="order-action-btn">{text.orders.downloadInvoice}</button>
-                            {order.status === 'delivered' && (
-                              <button className="order-action-btn primary">{text.orders.reorder}</button>
-                            )}
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Payment Information - pending only */}
+                    {selectedOrder.status === 'pending' && (
+                      <div className="buyer-detail-section">
+                        <h3 className="buyer-detail-section-title">{text.orders.paymentInfo.title}</h3>
+                        <div className="buyer-payment-card">
+                          <div className="buyer-payment-total">
+                            <span className="buyer-payment-total-label">{text.orders.paymentInfo.totalDue}</span>
+                            <span className="buyer-payment-total-value">${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
+                          </div>
+                          <div className="buyer-payment-details">
+                            <div className="buyer-payment-row">
+                              <span className="buyer-payment-label">{text.orders.paymentInfo.method}</span>
+                              <span className="buyer-payment-value">{text.orders.paymentInfo.methodValue}</span>
+                            </div>
+                            <div className="buyer-payment-row">
+                              <span className="buyer-payment-label">{text.orders.paymentInfo.bankName}</span>
+                              <span className="buyer-payment-value">{companyInfo.bankName}</span>
+                            </div>
+                            <div className="buyer-payment-row">
+                              <span className="buyer-payment-label">{text.orders.paymentInfo.accountName}</span>
+                              <span className="buyer-payment-value">{companyInfo.accountName}</span>
+                            </div>
+                            <div className="buyer-payment-row">
+                              <span className="buyer-payment-label">{text.orders.paymentInfo.accountNo}</span>
+                              <span className="buyer-payment-value">{companyInfo.accountNo}</span>
+                            </div>
+                            <div className="buyer-payment-row">
+                              <span className="buyer-payment-label">{text.orders.paymentInfo.swiftCode}</span>
+                              <span className="buyer-payment-value">{companyInfo.swiftCode}</span>
+                            </div>
+                          </div>
+                          <div className="buyer-payment-notice">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                              <circle cx="8" cy="8" r="7" />
+                              <path d="M8 5v3M8 10.5v.5" />
+                            </svg>
+                            <span>{text.orders.paymentInfo.notice.replace('{orderId}', selectedOrder.id)}</span>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    )}
+
+                    {/* Documents - paid and above */}
+                    {isStatusAtLeast(selectedOrder.status, 'paid') && (
+                      <div className="buyer-detail-section">
+                        <h3 className="buyer-detail-section-title">{text.orders.documents.title}</h3>
+                        <div className="buyer-documents-row">
+                          <button className="buyer-doc-btn" onClick={() => openInvoice(buildInvoiceOrder(selectedOrder))}>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+                              <path d="M4 2h7l5 5v9H4V2z" />
+                              <path d="M11 2v5h5" />
+                            </svg>
+                            {text.orders.documents.proformaInvoice}
+                          </button>
+                          <button className="buyer-doc-btn" onClick={() => openCI(buildInvoiceOrder(selectedOrder))}>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+                              <path d="M4 2h7l5 5v9H4V2z" />
+                              <path d="M11 2v5h5" />
+                            </svg>
+                            {text.orders.documents.commercialInvoice}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tracking - shipped and above */}
+                    {isStatusAtLeast(selectedOrder.status, 'shipped') && selectedOrder.trackingNumber && (
+                      <div className="buyer-detail-section">
+                        <h3 className="buyer-detail-section-title">{text.orders.tracking.title}</h3>
+                        <div className="buyer-tracking-card">
+                          <span className="buyer-tracking-label">{text.orders.tracking.trackingNumber}</span>
+                          <div className="buyer-tracking-value">
+                            <span>{selectedOrder.trackingNumber}</span>
+                            <button className="buyer-copy-btn" onClick={() => handleCopyTracking(selectedOrder.trackingNumber)}>
+                              {copiedTracking ? text.orders.tracking.copied : text.orders.tracking.copy}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Order Items */}
+                    <div className="buyer-detail-section">
+                      <h3 className="buyer-detail-section-title">{text.orders.orderItems}</h3>
+                      <div className="buyer-items-card">
+                        <div className="buyer-items-list">
+                          {selectedOrder.items.map((item, index) => (
+                            <div key={index} className="buyer-item-row">
+                              <span className="buyer-item-name">{item.name}</span>
+                              <span className="buyer-item-qty">x {item.quantity}</span>
+                              <span className="buyer-item-price">${(item.quantity * item.price).toLocaleString()}</span>
+                            </div>
+                          ))}
+                        </div>
+                        {selectedOrder.deliveryFee > 0 && (
+                          <div className="buyer-delivery-fee-row">
+                            <span>{text.orders.deliveryFee}</span>
+                            <span>${selectedOrder.deliveryFee.toLocaleString()}</span>
+                          </div>
+                        )}
+                        <div className="buyer-total-row">
+                          <span>{text.orders.total}</span>
+                          <span>${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Shipping Address */}
+                    <div className="buyer-detail-section">
+                      <h3 className="buyer-detail-section-title">{text.orders.shippingAddress}</h3>
+                      <div className="buyer-address-card">
+                        <p>{selectedOrder.shippingAddress}</p>
+                      </div>
+                    </div>
+
+                    {/* Need Help */}
+                    <div className="buyer-detail-help">
+                      <span>{text.orders.needHelp}</span>
+                      <a href="mailto:support@youngcosmed.com">{text.orders.contactSupport}</a>
+                    </div>
                   </div>
                 ) : (
-                  <div className="empty-state">
-                    <div className="empty-icon">
-                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M8 12h32v28H8z" />
-                        <path d="M16 12V8h16v4" />
-                        <path d="M16 24h16M16 32h10" />
-                      </svg>
-                    </div>
-                    <h3>{text.orders.noOrders}</h3>
-                    <p>{text.orders.noOrdersDesc}</p>
-                  </div>
+                  /* ===== Order List View ===== */
+                  <>
+                    <h2 className="tab-title">{text.orders.title}</h2>
+                    {demoOrders.length > 0 ? (
+                      <div className="orders-list">
+                        {demoOrders.map(order => (
+                          <div key={order.id} className="order-card" onClick={() => setSelectedOrder(order)} style={{ cursor: 'pointer' }}>
+                            <div className="order-header">
+                              <div className="order-id-date">
+                                <span className="order-id">{text.orders.orderNumber}{order.id}</span>
+                                <span className="order-date">{order.date}</span>
+                              </div>
+                              <span className={`order-status ${getStatusClass(order.status)}`}>
+                                {text.orders.statuses[order.status]}
+                              </span>
+                            </div>
+                            <div className="order-items">
+                              {order.items.map((item, idx) => (
+                                <span key={idx} className="order-item">{item.name} x {item.quantity}</span>
+                              ))}
+                            </div>
+                            <div className="order-footer">
+                              <span className="order-total">{text.orders.total}: ${(order.total + (order.deliveryFee || 0)).toLocaleString()}</span>
+                              <div className="order-actions">
+                                <button className="order-action-btn" onClick={(e) => { e.stopPropagation(); setSelectedOrder(order); }}>
+                                  {text.orders.viewDetails}
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="empty-state">
+                        <div className="empty-icon">
+                          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M8 12h32v28H8z" />
+                            <path d="M16 12V8h16v4" />
+                            <path d="M16 24h16M16 32h10" />
+                          </svg>
+                        </div>
+                        <h3>{text.orders.noOrders}</h3>
+                        <p>{text.orders.noOrdersDesc}</p>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}
@@ -914,6 +1240,22 @@ function BuyerDashboard({ lang, user, onClose, onLogout, onNavigateToProducts })
           </main>
         </div>
       </div>
+
+      {/* Invoice Modals */}
+      {showInvoiceModal && editingInvoice && (
+        <ProformaInvoiceModal
+          editingInvoice={editingInvoice}
+          companyInfo={companyInfo}
+          onClose={closeInvoice}
+        />
+      )}
+      {showCIModal && editingInvoice && (
+        <CommercialInvoiceModal
+          editingInvoice={editingInvoice}
+          companyInfo={companyInfo}
+          onClose={closeCI}
+        />
+      )}
     </div>
   )
 }

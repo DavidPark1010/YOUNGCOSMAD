@@ -1017,6 +1017,405 @@
 }
 
 /* ========================================
+   Buyer Order Detail View
+======================================== */
+.buyer-order-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+.buyer-detail-back {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+
+.buyer-detail-back:hover {
+  color: var(--deep-charcoal);
+}
+
+.buyer-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.buyer-detail-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.buyer-detail-order-id {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--deep-charcoal);
+  letter-spacing: -0.02em;
+}
+
+.app[lang="ko"] .buyer-detail-order-id {
+  font-family: var(--font-korean);
+}
+
+.buyer-detail-date {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Detail Sections */
+.buyer-detail-section {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.buyer-detail-section:last-of-type {
+  border-bottom: none;
+}
+
+.buyer-detail-section-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.app[lang="ko"] .buyer-detail-section-title {
+  font-family: var(--font-korean);
+}
+
+/* Timeline */
+.buyer-timeline-steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-timeline-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.buyer-timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.buyer-timeline-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--soft-warm-gray);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.buyer-timeline-step.completed .buyer-timeline-dot {
+  background: var(--deep-charcoal);
+  border-color: var(--deep-charcoal);
+  color: var(--white);
+}
+
+.buyer-timeline-step.current .buyer-timeline-dot {
+  background: var(--white);
+  border-color: var(--deep-charcoal);
+  border-width: 3px;
+}
+
+.buyer-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.buyer-timeline-status {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.buyer-timeline-step.completed .buyer-timeline-status,
+.buyer-timeline-step.current .buyer-timeline-status {
+  color: var(--text-primary);
+}
+
+.buyer-timeline-date {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.buyer-timeline-line {
+  position: absolute;
+  left: 11px;
+  top: 24px;
+  width: 2px;
+  height: calc(100% - 24px);
+  background: var(--border-color);
+}
+
+.buyer-timeline-line.completed {
+  background: var(--deep-charcoal);
+}
+
+/* Payment Information Card */
+.buyer-payment-card {
+  border: 2px solid var(--deep-charcoal);
+  background: #FAFAF8;
+  padding: 28px;
+}
+
+.buyer-payment-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.buyer-payment-total-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.buyer-payment-total-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--deep-charcoal);
+}
+
+.buyer-payment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.buyer-payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buyer-payment-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.buyer-payment-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.buyer-payment-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #F0EDE8;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.buyer-payment-notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--text-muted);
+}
+
+/* Documents */
+.buyer-documents-row {
+  display: flex;
+  gap: 12px;
+}
+
+.buyer-doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--deep-charcoal);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.buyer-doc-btn:hover {
+  background: #2A2A2B;
+}
+
+/* Tracking */
+.buyer-tracking-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--soft-warm-gray);
+}
+
+.buyer-tracking-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.buyer-tracking-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.buyer-tracking-value > span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep-charcoal);
+  font-family: monospace;
+}
+
+.buyer-copy-btn {
+  padding: 6px 12px;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buyer-copy-btn:hover {
+  border-color: var(--deep-charcoal);
+  color: var(--deep-charcoal);
+}
+
+/* Order Items */
+.buyer-items-card {
+  border: 1px solid var(--border-color);
+}
+
+.buyer-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-item-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.buyer-item-row:last-child {
+  border-bottom: none;
+}
+
+.buyer-item-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.buyer-item-qty {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-right: 24px;
+  min-width: 60px;
+  text-align: right;
+}
+
+.buyer-item-price {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 80px;
+  text-align: right;
+}
+
+.buyer-delivery-fee-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--soft-warm-gray);
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.buyer-total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--deep-charcoal);
+}
+
+/* Shipping Address */
+.buyer-address-card {
+  padding: 16px 20px;
+  background: var(--soft-warm-gray);
+}
+
+.buyer-address-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Need Help */
+.buyer-detail-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.buyer-detail-help a {
+  color: var(--deep-charcoal);
+  text-decoration: underline;
+}
+
+.buyer-detail-help a:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
    Responsive
 ======================================== */
 @media (max-width: 992px) {
@@ -1151,5 +1550,57 @@
 
   .save-btn {
     width: 100%;
+  }
+
+  /* Order Detail Mobile */
+  .buyer-detail-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .buyer-detail-order-id {
+    font-size: 18px;
+  }
+
+  .buyer-payment-card {
+    padding: 20px;
+  }
+
+  .buyer-payment-total-value {
+    font-size: 20px;
+  }
+
+  .buyer-payment-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .buyer-documents-row {
+    flex-direction: column;
+  }
+
+  .buyer-doc-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .buyer-tracking-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .buyer-item-row {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .buyer-item-name {
+    flex-basis: 100%;
+  }
+
+  .buyer-item-qty {
+    margin-right: auto;
   }
 }

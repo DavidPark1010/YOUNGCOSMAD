@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 import './OrderLookup.css'
+import { useInvoice } from '../admin/hooks/useInvoice'
+import { companyInfo } from '../admin/constants/companyInfo'
+import ProformaInvoiceModal from '../admin/components/modals/ProformaInvoiceModal'
+import CommercialInvoiceModal from '../admin/components/modals/CommercialInvoiceModal'
 
 const uiText = {
   en: {
@@ -46,6 +50,22 @@ const uiText = {
       preparing: 'Preparing Shipment',
       shipped: 'Shipped',
       delivered: 'Delivered'
+    },
+    paymentInfo: {
+      title: 'Payment Information',
+      totalDue: 'Total Amount Due',
+      method: 'Payment Method',
+      methodValue: 'T/T (Wire Transfer)',
+      bankName: 'Bank Name',
+      accountName: 'Account Name',
+      accountNo: 'Account No.',
+      swiftCode: 'SWIFT Code',
+      notice: 'Please include your order number ({orderId}) in the transfer memo.'
+    },
+    documents: {
+      title: 'Documents',
+      proformaInvoice: 'Proforma Invoice',
+      commercialInvoice: 'Commercial Invoice'
     },
     createAccount: {
       title: 'Want easier order tracking?',
@@ -98,6 +118,22 @@ const uiText = {
       shipped: '배송 중',
       delivered: '배송 완료'
     },
+    paymentInfo: {
+      title: '결제 안내',
+      totalDue: '결제 금액',
+      method: '결제 방법',
+      methodValue: 'T/T (해외 송금)',
+      bankName: '은행명',
+      accountName: '예금주',
+      accountNo: '계좌번호',
+      swiftCode: 'SWIFT 코드',
+      notice: '송금 시 주문번호({orderId})를 메모란에 기입해주세요.'
+    },
+    documents: {
+      title: '서류',
+      proformaInvoice: 'Proforma Invoice',
+      commercialInvoice: 'Commercial Invoice'
+    },
     createAccount: {
       title: '더 쉬운 주문 조회를 원하시나요?',
       desc: '계정을 만들어 모든 주문을 한 곳에서 관리하세요.',
@@ -115,13 +151,19 @@ const demoOrders = {
     orderDate: '2024-01-15',
     estimatedDelivery: '2024-01-25',
     shippingAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
+    customerName: 'John Smith',
+    customerCompany: 'Beauty Global Inc.',
+    customerEmail: 'buyer@example.com',
+    customerCountry: 'USA',
     items: [
       { name: 'Hydra Glow Serum', quantity: 500, price: 4.50 },
       { name: 'Cica Repair Cream', quantity: 400, price: 3.80 },
       { name: 'Tone-Up Sun Shield', quantity: 300, price: 3.20 }
     ],
-    total: 4810.00,
+    total: 4490.00,
+    deliveryFee: 320,
     trackingNumber: 'KR1234567890',
+    invoiceData: { piNumber: 'PI-2024-001', ciNumber: 'CI-2024-001' },
     timeline: [
       { status: 'pending', date: '2024-01-15 09:00', completed: true },
       { status: 'paid', date: '2024-01-15 14:30', completed: true },
@@ -137,12 +179,18 @@ const demoOrders = {
     orderDate: '2024-01-28',
     estimatedDelivery: '2024-02-07',
     shippingAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
+    customerName: 'Jane Doe',
+    customerCompany: 'Glow Cosmetics',
+    customerEmail: 'test@example.com',
+    customerCountry: 'USA',
     items: [
       { name: 'Velvet Matte Lip Tint', quantity: 300, price: 2.90 },
       { name: 'Double Cleansing Oil', quantity: 200, price: 4.40 }
     ],
     total: 1750.00,
+    deliveryFee: 280,
     trackingNumber: null,
+    invoiceData: { piNumber: 'PI-2024-002', ciNumber: 'CI-2024-002' },
     timeline: [
       { status: 'pending', date: '2024-01-28 11:00', completed: true },
       { status: 'paid', date: '2024-01-28 15:00', completed: true },
@@ -163,8 +211,19 @@ function OrderLookup({ lang, onClose, onCreateAccount }) {
   const [error, setError] = useState('')
   const [orderResult, setOrderResult] = useState(null)
   const [copiedTracking, setCopiedTracking] = useState(false)
+  const {
+    showInvoiceModal, showCIModal,
+    editingInvoice,
+    openInvoice, openCI,
+    closeInvoice, closeCI
+  } = useInvoice()
 
   const text = uiText[lang]
+
+  const statusOrder = ['pending', 'paid', 'preparing', 'shipped', 'delivered']
+  const isStatusAtLeast = (current, target) => {
+    return statusOrder.indexOf(current) >= statusOrder.indexOf(target)
+  }
 
   // ESC key to close
   useEffect(() => {
@@ -410,6 +469,71 @@ function OrderLookup({ lang, onClose, onCreateAccount }) {
                 )}
               </div>
 
+              {/* Payment Information - pending only */}
+              {orderResult.status === 'pending' && (
+                <div className="lookup-payment-card">
+                  <h4 className="lookup-section-title">{text.paymentInfo.title}</h4>
+                  <div className="lookup-payment-inner">
+                    <div className="lookup-payment-total">
+                      <span>{text.paymentInfo.totalDue}</span>
+                      <span className="lookup-payment-amount">${(orderResult.total + (orderResult.deliveryFee || 0)).toLocaleString()}</span>
+                    </div>
+                    <div className="lookup-payment-details">
+                      <div className="lookup-payment-row">
+                        <span>{text.paymentInfo.method}</span>
+                        <span>{text.paymentInfo.methodValue}</span>
+                      </div>
+                      <div className="lookup-payment-row">
+                        <span>{text.paymentInfo.bankName}</span>
+                        <span>{companyInfo.bankName}</span>
+                      </div>
+                      <div className="lookup-payment-row">
+                        <span>{text.paymentInfo.accountName}</span>
+                        <span>{companyInfo.accountName}</span>
+                      </div>
+                      <div className="lookup-payment-row">
+                        <span>{text.paymentInfo.accountNo}</span>
+                        <span>{companyInfo.accountNo}</span>
+                      </div>
+                      <div className="lookup-payment-row">
+                        <span>{text.paymentInfo.swiftCode}</span>
+                        <span>{companyInfo.swiftCode}</span>
+                      </div>
+                    </div>
+                    <div className="lookup-payment-notice">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <circle cx="8" cy="8" r="7" />
+                        <path d="M8 5v3M8 10.5v.5" />
+                      </svg>
+                      <span>{text.paymentInfo.notice.replace('{orderId}', orderResult.orderNumber)}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Documents - paid and above */}
+              {isStatusAtLeast(orderResult.status, 'paid') && (
+                <div className="lookup-documents-section">
+                  <h4 className="lookup-section-title">{text.documents.title}</h4>
+                  <div className="lookup-documents-row">
+                    <button className="lookup-doc-btn" onClick={() => openInvoice({ ...orderResult, invoiceData: orderResult.invoiceData || {} })}>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 2h7l5 5v9H4V2z" />
+                        <path d="M11 2v5h5" />
+                      </svg>
+                      {text.documents.proformaInvoice}
+                    </button>
+                    <button className="lookup-doc-btn" onClick={() => openCI({ ...orderResult, invoiceData: orderResult.invoiceData || {} })}>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 2h7l5 5v9H4V2z" />
+                        <path d="M11 2v5h5" />
+                      </svg>
+                      {text.documents.commercialInvoice}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Order Details */}
               <div className="order-details-card">
                 <div className="detail-row">
@@ -457,6 +581,22 @@ function OrderLookup({ lang, onClose, onCreateAccount }) {
           )}
         </div>
       </div>
+
+      {/* Invoice Modals */}
+      {showInvoiceModal && editingInvoice && (
+        <ProformaInvoiceModal
+          editingInvoice={editingInvoice}
+          companyInfo={companyInfo}
+          onClose={closeInvoice}
+        />
+      )}
+      {showCIModal && editingInvoice && (
+        <CommercialInvoiceModal
+          editingInvoice={editingInvoice}
+          companyInfo={companyInfo}
+          onClose={closeCI}
+        />
+      )}
     </div>
   )
 }
