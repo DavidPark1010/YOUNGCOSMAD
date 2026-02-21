@@ -33,14 +33,12 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
 
   // Step 2: 고객 정보
   const [customerInfo, setCustomerInfo] = useState({
-    companyName: '',
-    contactPerson: '',
+    name: '',
     email: '',
     phone: '',
     address: '',
     city: '',
     postalCode: '',
-    businessNumber: '',
     notes: ''
   })
 
@@ -67,7 +65,7 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
       }
     } else if (currentStep === 2) {
       // 필수 필드 검증
-      const required = ['companyName', 'contactPerson', 'email', 'phone', 'address', 'city']
+      const required = ['name', 'email', 'phone', 'address', 'city']
       const missing = required.filter(field => !customerInfo[field])
       if (missing.length > 0) {
         alert(lang === 'ko' ? '필수 정보를 모두 입력해주세요.' : 'Please fill in all required fields.')
@@ -206,45 +204,33 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
               <h3>{lang === 'ko' ? '고객 정보 입력' : 'Enter Customer Information'}</h3>
 
               <div className="form-group">
-                <label>{lang === 'ko' ? '회사명' : 'Company Name'} *</label>
+                <label>{lang === 'ko' ? '이름' : 'Name'} *</label>
                 <input
                   type="text"
-                  value={customerInfo.companyName}
-                  onChange={(e) => setCustomerInfo({...customerInfo, companyName: e.target.value})}
-                  placeholder={lang === 'ko' ? '회사명을 입력하세요' : 'Enter company name'}
+                  value={customerInfo.name}
+                  onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
+                  placeholder={lang === 'ko' ? '이름을 입력하세요' : 'Enter your name'}
                 />
               </div>
 
               <div className="form-group">
-                <label>{lang === 'ko' ? '담당자명' : 'Contact Person'} *</label>
+                <label>{lang === 'ko' ? '이메일' : 'Email'} *</label>
                 <input
-                  type="text"
-                  value={customerInfo.contactPerson}
-                  onChange={(e) => setCustomerInfo({...customerInfo, contactPerson: e.target.value})}
-                  placeholder={lang === 'ko' ? '담당자명을 입력하세요' : 'Enter contact person'}
+                  type="email"
+                  value={customerInfo.email}
+                  onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
+                  placeholder="email@example.com"
                 />
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>{lang === 'ko' ? '이메일' : 'Email'} *</label>
-                  <input
-                    type="email"
-                    value={customerInfo.email}
-                    onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
-                    placeholder="email@company.com"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>{lang === 'ko' ? '전화번호' : 'Phone'} *</label>
-                  <input
-                    type="tel"
-                    value={customerInfo.phone}
-                    onChange={(e) => setCustomerInfo({...customerInfo, phone: e.target.value})}
-                    placeholder="+1 234 567 8900"
-                  />
-                </div>
+              <div className="form-group">
+                <label>{lang === 'ko' ? '전화번호' : 'Phone'} *</label>
+                <input
+                  type="tel"
+                  value={customerInfo.phone}
+                  onChange={(e) => setCustomerInfo({...customerInfo, phone: e.target.value})}
+                  placeholder="+1 234 567 8900"
+                />
               </div>
 
               <div className="form-group">
@@ -277,16 +263,6 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
                     placeholder={lang === 'ko' ? '우편번호' : 'Postal code'}
                   />
                 </div>
-              </div>
-
-              <div className="form-group">
-                <label>{lang === 'ko' ? '사업자등록번호' : 'Business Registration Number'}</label>
-                <input
-                  type="text"
-                  value={customerInfo.businessNumber}
-                  onChange={(e) => setCustomerInfo({...customerInfo, businessNumber: e.target.value})}
-                  placeholder={lang === 'ko' ? '사업자등록번호 (선택)' : 'Optional'}
-                />
               </div>
 
               <div className="form-group">
@@ -325,12 +301,8 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
               <div className="confirmation-section">
                 <h4>{lang === 'ko' ? '고객 정보' : 'Customer Information'}</h4>
                 <div className="confirmation-row">
-                  <span>{lang === 'ko' ? '회사명' : 'Company'}:</span>
-                  <span>{customerInfo.companyName}</span>
-                </div>
-                <div className="confirmation-row">
-                  <span>{lang === 'ko' ? '담당자' : 'Contact'}:</span>
-                  <span>{customerInfo.contactPerson}</span>
+                  <span>{lang === 'ko' ? '이름' : 'Name'}:</span>
+                  <span>{customerInfo.name}</span>
                 </div>
                 <div className="confirmation-row">
                   <span>{lang === 'ko' ? '이메일' : 'Email'}:</span>

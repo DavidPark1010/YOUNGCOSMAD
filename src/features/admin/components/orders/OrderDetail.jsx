@@ -1,8 +1,21 @@
+const PRODUCT_IMAGE_MAP = {
+  'Hydra Glow Serum': '/product1.png',
+  'Velvet Matte Lip Tint': '/product2.png',
+  'Cica Repair Cream': '/product3.png',
+  'Double Cleansing Oil': '/product4.png',
+  'Peptide Eye Contour': '/product5.png',
+  'Tone-Up Sun Shield': '/product6.png',
+}
+
 function OrderDetail({
   selectedOrder, setSelectedOrder, orders, setOrders,
   t, trackingInput, setTrackingInput, notificationSent,
   formatDate, onBack, onOpenInvoice, onOpenCI
 }) {
+  const getProductImage = (name) => {
+    return PRODUCT_IMAGE_MAP[name] || null
+  }
+
   return (
     <div className="order-detail">
       <button className="detail-back-btn" onClick={onBack}>
@@ -18,7 +31,7 @@ function OrderDetail({
       <div className="order-detail-content">
         <div className="order-detail-main">
 
-          {/* 주문 헤더 */}
+          {/* 주문 헤더 + 상품 프리뷰 */}
           <div className="order-detail-header-card">
             <div className="order-detail-header-top">
               <div className="order-detail-header-left">
@@ -35,12 +48,32 @@ function OrderDetail({
                 <span className="ref-value">{selectedOrder.refNo}</span>
               </div>
             )}
+            <div className="header-products-preview">
+              {selectedOrder.items.map((item, idx) => {
+                const img = getProductImage(item.name)
+                return (
+                  <div key={idx} className="header-product-chip">
+                    {img ? (
+                      <img src={img} alt={item.name} className="header-product-thumb" />
+                    ) : (
+                      <div className="header-product-thumb placeholder">{item.name.charAt(0)}</div>
+                    )}
+                    <div className="header-product-info">
+                      <span className="header-product-name">{item.name}</span>
+                      <span className="header-product-qty">x{item.quantity}</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           {/* 고객 정보 */}
           <div className="order-section-card">
             <div className="order-section-header">
-              <span className="section-icon">&#x1D5A8;</span>
+              <div className="section-icon-wrap customer">
+                <span className="section-icon-text">C</span>
+              </div>
               <h4>{t.orders.customer}</h4>
             </div>
             <div className="customer-info-grid">
@@ -76,7 +109,9 @@ function OrderDetail({
           {/* 배송 정보 */}
           <div className="order-section-card">
             <div className="order-section-header">
-              <span className="section-icon">&#x25CB;</span>
+              <div className="section-icon-wrap shipping">
+                <span className="section-icon-text">S</span>
+              </div>
               <h4>{t.orders.shippingAddress}</h4>
             </div>
             <div className="shipping-address-box">
@@ -84,131 +119,50 @@ function OrderDetail({
             </div>
           </div>
 
-          {/* 주문 상품 */}
-          <div className="order-section-card">
+          {/* 주문 상품 (읽기 전용) */}
+          <div className="order-section-card order-items-section">
             <div className="order-section-header">
-              <span className="section-icon">&#x25A1;</span>
-              <h4>{t.orders.items}</h4>
+              <div className="section-icon-wrap items">
+                <span className="section-icon-text">P</span>
+              </div>
+              <div className="section-header-right">
+                <h4>{t.orders.items}</h4>
+                <span className="items-count">{selectedOrder.items.length}개 품목</span>
+              </div>
             </div>
 
             {/* 테이블 헤더 */}
             <div className="items-table-header">
+              <span className="col-idx"></span>
               <span className="col-name">제품명</span>
               <span className="col-qty">수량</span>
               <span className="col-price">단가</span>
               <span className="col-subtotal">소계</span>
-              <span className="col-action"></span>
             </div>
 
-            {selectedOrder.items.map((item, idx) => (
-              <div key={idx} className="order-item-row editable">
-                <div className="item-name-edit">
-                  <input
-                    type="text"
-                    value={item.name}
-                    onChange={(e) => {
-                      const newItems = [...selectedOrder.items]
-                      newItems[idx] = { ...newItems[idx], name: e.target.value }
-                      const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                      setOrders(prev => prev.map(o =>
-                        o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                      ))
-                      setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                    }}
-                    placeholder="제품명"
-                  />
+            <div className="items-list-wrap">
+              {selectedOrder.items.map((item, idx) => (
+                <div key={idx} className="order-item-row readonly">
+                  <div className="item-index">{String(idx + 1).padStart(2, '0')}</div>
+                  <div className="item-name-display">{item.name || '-'}</div>
+                  <div className="item-qty-display">{item.quantity}<span className="qty-unit">개</span></div>
+                  <div className="item-price-display">${item.price.toLocaleString()}</div>
+                  <div className="item-subtotal">${(item.quantity * item.price).toLocaleString()}</div>
                 </div>
-                <div className="item-qty-edit">
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) => {
-                      const newItems = [...selectedOrder.items]
-                      newItems[idx] = { ...newItems[idx], quantity: parseInt(e.target.value) || 0 }
-                      const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                      setOrders(prev => prev.map(o =>
-                        o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                      ))
-                      setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                    }}
-                    placeholder="수량"
-                    min="0"
-                  />
-                  <span className="qty-label">개</span>
-                </div>
-                <div className="item-price-edit">
-                  <span className="price-prefix">$</span>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={item.price}
-                    onChange={(e) => {
-                      const newItems = [...selectedOrder.items]
-                      newItems[idx] = { ...newItems[idx], price: parseFloat(e.target.value) || 0 }
-                      const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                      setOrders(prev => prev.map(o =>
-                        o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                      ))
-                      setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                    }}
-                    placeholder="단가"
-                    min="0"
-                  />
-                </div>
-                <span className="item-subtotal">
-                  ${(item.quantity * item.price).toLocaleString()}
-                </span>
-                <button
-                  className="item-remove-btn"
-                  onClick={() => {
-                    const newItems = selectedOrder.items.filter((_, i) => i !== idx)
-                    const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
-                    setOrders(prev => prev.map(o =>
-                      o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
-                    ))
-                    setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-
-            <button
-              className="add-item-btn"
-              onClick={() => {
-                const newItems = [...selectedOrder.items, { name: '', nameKr: '', quantity: 0, price: 0 }]
-                setOrders(prev => prev.map(o =>
-                  o.id === selectedOrder.id ? { ...o, items: newItems } : o
-                ))
-                setSelectedOrder(prev => ({ ...prev, items: newItems }))
-              }}
-            >
-              + 품목 추가
-            </button>
+              ))}
+            </div>
 
             {/* 배송비 */}
-            <div className="order-item-row delivery-fee-row editable">
-              <span className="item-name">Delivery Fee</span>
-              <div className="item-price-edit delivery-fee-edit">
-                <span className="price-prefix">$</span>
-                <input
-                  type="number"
-                  value={selectedOrder.deliveryFee || 0}
-                  onChange={(e) => {
-                    const newValue = parseFloat(e.target.value) || 0
-                    setOrders(prev => prev.map(o =>
-                      o.id === selectedOrder.id ? { ...o, deliveryFee: newValue } : o
-                    ))
-                    setSelectedOrder(prev => ({ ...prev, deliveryFee: newValue }))
-                  }}
-                  min="0"
-                />
+            {(selectedOrder.deliveryFee > 0) && (
+              <div className="delivery-fee-row readonly">
+                <span className="delivery-fee-label">Delivery Fee</span>
+                <span className="delivery-fee-value">${(selectedOrder.deliveryFee || 0).toLocaleString()}</span>
               </div>
-            </div>
+            )}
 
+            {/* 합계 */}
             <div className="order-total-row">
-              <span>{t.orders.totalLabel}</span>
+              <span className="total-label">{t.orders.totalLabel}</span>
               <span className="total-value">${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
             </div>
           </div>
@@ -216,7 +170,9 @@ function OrderDetail({
           {/* 진행사항 체크리스트 */}
           <div className="order-checklist-card">
             <div className="order-section-header">
-              <span className="section-icon">&#x2713;</span>
+              <div className="section-icon-wrap checklist">
+                <span className="section-icon-text">&#x2713;</span>
+              </div>
               <h4>진행사항 체크리스트</h4>
             </div>
             <div className="checklist-grid">
@@ -267,7 +223,9 @@ function OrderDetail({
           {/* 인보이스 / CI 생성 버튼 */}
           <div className="invoice-ci-card">
             <div className="order-section-header">
-              <span className="section-icon">&#x25B7;</span>
+              <div className="section-icon-wrap invoice">
+                <span className="section-icon-text">D</span>
+              </div>
               <h4>서류 생성</h4>
             </div>
             <p className="invoice-ci-desc">
@@ -278,7 +236,7 @@ function OrderDetail({
                 className="invoice-btn proforma"
                 onClick={() => onOpenInvoice(selectedOrder)}
               >
-                <span className="btn-icon">P</span>
+                <span className="btn-icon">PI</span>
                 <span className="btn-text">
                   <strong>PROFORMA INVOICE</strong>
                   <small>견적 인보이스 생성</small>
@@ -288,7 +246,7 @@ function OrderDetail({
                 className="invoice-btn commercial"
                 onClick={() => onOpenCI(selectedOrder)}
               >
-                <span className="btn-icon">C</span>
+                <span className="btn-icon">CI</span>
                 <span className="btn-text">
                   <strong>COMMERCIAL INVOICE</strong>
                   <small>상업 인보이스 (CI) 생성</small>
@@ -301,12 +259,14 @@ function OrderDetail({
         {/* Timeline */}
         <div className="order-timeline-card">
           <div className="order-section-header">
-            <span className="section-icon">&#x25CF;</span>
+            <div className="section-icon-wrap timeline">
+              <span className="section-icon-text">T</span>
+            </div>
             <h4>{t.orders.orderTimeline}</h4>
           </div>
           <div className="order-timeline-list">
             {selectedOrder.timeline.map((event, idx) => (
-              <div key={idx} className="timeline-event">
+              <div key={idx} className={`timeline-event ${idx === 0 ? 'latest' : ''}`}>
                 <div className={`timeline-event-dot ${event.status}`} />
                 <div className="timeline-event-content">
                   <span className="timeline-event-status">{t.orders.statuses[event.status]}</span>
