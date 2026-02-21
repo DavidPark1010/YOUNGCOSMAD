@@ -65,6 +65,7 @@
   font-weight: 400;
   color: #333333;
   border-bottom: 1px solid #EEEEEE;
+  vertical-align: middle;
 }
 
 .table-row {

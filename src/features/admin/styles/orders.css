@@ -4,6 +4,20 @@
 ======================================== */
 
 /* Order Status Badges */
+.admin-table .status-badge.order-pending,
+.admin-table .status-badge.order-paid,
+.admin-table .status-badge.order-preparing,
+.admin-table .status-badge.order-shipped,
+.admin-table .status-badge.order-delivered {
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+  position: relative;
+  top: 8px;
+}
+
 .status-badge.order-pending {
   background: #FFF4E5;
   color: #8B6B0B;
