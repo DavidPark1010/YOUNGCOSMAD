@@ -3051,13 +3051,13 @@
 .checklist-item input[type="checkbox"] {
   width: 26px;
   height: 26px;
-  accent-color: #2ECC71;
+  accent-color: #9FA7A0;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .checklist-item input[type="checkbox"]:checked + .checklist-label {
-  color: #27AE60;
+  color: #6B7A6F;
   text-decoration: line-through;
 }
 
@@ -3118,21 +3118,21 @@
 }
 
 .invoice-btn.proforma {
-  background: linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%);
-  border-color: #E6D085;
+  background: linear-gradient(135deg, #D8CFC4 0%, #C9BFB4 100%);
+  border-color: #9FA7A0;
 }
 
 .invoice-btn.proforma:hover {
-  border-color: #C9A227;
+  border-color: #6B7A6F;
 }
 
 .invoice-btn.commercial {
-  background: linear-gradient(135deg, #E6F4FF 0%, #CCE7FF 100%);
-  border-color: #85C1E6;
+  background: linear-gradient(135deg, #D8CFC4 0%, #C9BFB4 100%);
+  border-color: #9FA7A0;
 }
 
 .invoice-btn.commercial:hover {
-  border-color: #2980B9;
+  border-color: #6B7A6F;
 }
 
 .invoice-btn .btn-icon {
@@ -3212,18 +3212,18 @@
   align-items: center;
   gap: 8px;
   padding: 14px 28px;
-  background: #2ECC71;
+  background: #D8CFC4;
   border: none;
   border-radius: 12px;
   font-size: 18px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #4A3F33;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .pdf-generate-btn:hover {
-  background: #27AE60;
+  background: #CFC5B8;
   transform: scale(1.02);
 }
 
@@ -3491,7 +3491,7 @@
   justify-content: center;
   gap: 12px;
   padding: 22px 28px;
-  background: linear-gradient(135deg, #2ECC71 0%, #27AE60 100%);
+  background: linear-gradient(135deg, #0F0F10 0%, #2A2A2B 100%);
   border: none;
   border-radius: 14px;
   font-size: 22px;
@@ -3499,12 +3499,13 @@
   color: #FFFFFF;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 4px 16px rgba(15, 15, 16, 0.2);
 }
 
 .convert-to-order-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(46, 204, 113, 0.4);
+  box-shadow: 0 6px 24px rgba(15, 15, 16, 0.3);
+  background: linear-gradient(135deg, #1A1A1B 0%, #3A3A3B 100%);
 }
 
 .convert-to-order-btn:active {
