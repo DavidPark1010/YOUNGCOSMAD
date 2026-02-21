@@ -1,6 +1,99 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './AdminPage.css'
 import ProductRegistration from './ProductRegistration'
+
+// PDF 생성을 위한 유틸리티 함수
+const generatePDF = (contentRef, fileName) => {
+  const printWindow = window.open('', '_blank')
+  const content = contentRef.current.innerHTML
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>${fileName}</title>
+      <style>
+        @page { size: A4; margin: 10mm; }
+        body {
+          font-family: 'Arial', sans-serif;
+          padding: 20px;
+          margin: 0;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .invoice-container, .ci-container {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 10px 0;
+        }
+        th, td {
+          border: 1px solid #333;
+          padding: 8px 12px;
+          text-align: left;
+          font-size: 12px;
+        }
+        th {
+          background: #f5f5f5;
+          font-weight: bold;
+        }
+        .header-title {
+          text-align: center;
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+          text-decoration: underline;
+        }
+        .info-row {
+          display: flex;
+          margin-bottom: 8px;
+        }
+        .info-label {
+          font-weight: bold;
+          min-width: 140px;
+        }
+        .section { margin: 15px 0; }
+        .total-row {
+          font-weight: bold;
+          background: #f9f9f9;
+        }
+        .signature-area {
+          margin-top: 30px;
+          text-align: right;
+        }
+        @media print {
+          body { padding: 0; }
+          button { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      ${content}
+      <script>
+        window.onload = function() {
+          window.print();
+          window.onafterprint = function() {
+            window.close();
+          }
+        }
+      </script>
+    </body>
+    </html>
+  `)
+  printWindow.document.close()
+}
+
+// 날짜 포맷 함수
+const formatInvoiceDate = (date) => {
+  const d = new Date(date)
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
 
 // 샘플 문의 데이터
 const initialInquiries = [
@@ -82,20 +175,50 @@ const initialInquiries = [
 const initialOrders = [
   {
     id: 'ORD-2024-001',
+    refNo: 'EY2024-02-06',
     customerEmail: 'buyer@example.com',
     customerName: 'John Smith',
     customerCompany: 'Beauty Wholesale Co.',
+    customerPhone: '+1 555-0123',
+    customerAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
+    customerCountry: 'USA',
     status: 'shipped',
     trackingNumber: 'KR1234567890',
     items: [
-      { name: 'Hydra Glow Serum', quantity: 500, price: 4.50 },
-      { name: 'Cica Repair Cream', quantity: 400, price: 3.80 },
-      { name: 'Tone-Up Sun Shield', quantity: 300, price: 3.20 }
+      { name: 'Hydra Glow Serum', nameKr: '하이드라 글로우 세럼', quantity: 500, price: 4.50 },
+      { name: 'Cica Repair Cream', nameKr: '시카 리페어 크림', quantity: 400, price: 3.80 },
+      { name: 'Tone-Up Sun Shield', nameKr: '톤업 선쉴드', quantity: 300, price: 3.20 }
     ],
     total: 4810.00,
+    deliveryFee: 320,
     shippingAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
     createdAt: '2024-01-15T09:00:00Z',
     updatedAt: '2024-01-19T16:00:00Z',
+    // 진행사항 체크리스트
+    checklist: {
+      contactConfirmed: true,
+      priceAgreed: true,
+      invoiceSent: true,
+      paymentConfirmed: true,
+      productPrepared: true,
+      ciCreated: true,
+      shipped: true,
+      delivered: false
+    },
+    // 인보이스/CI 데이터
+    invoiceData: {
+      paymentTerm: 'T/T in Advance',
+      estimatedDelivery: 'After receipt of payment',
+      shipment: 'Forwarder',
+      validity: '1 WEEK',
+      warranty: '1 YEAR',
+      incoterms: 'Exwork',
+      customsCode: '3304-99-9000',
+      portOfLoading: 'KOREA',
+      finalDestination: 'USA',
+      vessel: '',
+      sailingDate: ''
+    },
     timeline: [
       { status: 'pending', date: '2024-01-15T09:00:00Z', message: 'Order received' },
       { status: 'paid', date: '2024-01-15T14:30:00Z', message: 'Payment confirmed' },
@@ -105,19 +228,47 @@ const initialOrders = [
   },
   {
     id: 'ORD-2024-002',
+    refNo: 'EY2024-02-07',
     customerEmail: 'test@example.com',
     customerName: 'Sarah Johnson',
     customerCompany: 'Glow Beauty Ltd.',
+    customerPhone: '+1 555-0456',
+    customerAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
+    customerCountry: 'USA',
     status: 'preparing',
     trackingNumber: null,
     items: [
-      { name: 'Velvet Matte Lip Tint', quantity: 300, price: 2.90 },
-      { name: 'Double Cleansing Oil', quantity: 200, price: 4.40 }
+      { name: 'Velvet Matte Lip Tint', nameKr: '벨벳 매트 립틴트', quantity: 300, price: 2.90 },
+      { name: 'Double Cleansing Oil', nameKr: '더블 클렌징 오일', quantity: 200, price: 4.40 }
     ],
     total: 1750.00,
+    deliveryFee: 280,
     shippingAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
     createdAt: '2024-01-28T11:00:00Z',
     updatedAt: '2024-01-30T09:00:00Z',
+    checklist: {
+      contactConfirmed: true,
+      priceAgreed: true,
+      invoiceSent: true,
+      paymentConfirmed: true,
+      productPrepared: false,
+      ciCreated: false,
+      shipped: false,
+      delivered: false
+    },
+    invoiceData: {
+      paymentTerm: 'T/T in Advance',
+      estimatedDelivery: 'After receipt of payment',
+      shipment: 'Forwarder',
+      validity: '1 WEEK',
+      warranty: '1 YEAR',
+      incoterms: 'Exwork',
+      customsCode: '3304-99-9000',
+      portOfLoading: 'KOREA',
+      finalDestination: 'USA',
+      vessel: '',
+      sailingDate: ''
+    },
     timeline: [
       { status: 'pending', date: '2024-01-28T11:00:00Z', message: 'Order received' },
       { status: 'paid', date: '2024-01-28T15:00:00Z', message: 'Payment confirmed' },
@@ -126,18 +277,46 @@ const initialOrders = [
   },
   {
     id: 'ORD-2024-003',
+    refNo: 'EY2024-02-08',
     customerEmail: 'wholesale@beautyshop.eu',
     customerName: 'Emma Wilson',
     customerCompany: 'European Beauty Imports',
+    customerPhone: '+31 20 123 4567',
+    customerAddress: '789 Trade Blvd, Amsterdam, Netherlands',
+    customerCountry: 'Netherlands',
     status: 'pending',
     trackingNumber: null,
     items: [
-      { name: 'Peptide Eye Contour', quantity: 350, price: 5.20 }
+      { name: 'Peptide Eye Contour', nameKr: '펩타이드 아이 컨투어', quantity: 350, price: 5.20 }
     ],
     total: 1820.00,
+    deliveryFee: 350,
     shippingAddress: '789 Trade Blvd, Amsterdam, Netherlands',
     createdAt: '2024-02-01T08:00:00Z',
     updatedAt: '2024-02-01T08:00:00Z',
+    checklist: {
+      contactConfirmed: true,
+      priceAgreed: false,
+      invoiceSent: false,
+      paymentConfirmed: false,
+      productPrepared: false,
+      ciCreated: false,
+      shipped: false,
+      delivered: false
+    },
+    invoiceData: {
+      paymentTerm: 'T/T in Advance',
+      estimatedDelivery: 'After receipt of payment',
+      shipment: 'Forwarder',
+      validity: '1 WEEK',
+      warranty: '1 YEAR',
+      incoterms: 'Exwork',
+      customsCode: '3304-99-9000',
+      portOfLoading: 'KOREA',
+      finalDestination: 'Netherlands',
+      vessel: '',
+      sailingDate: ''
+    },
     timeline: [
       { status: 'pending', date: '2024-02-01T08:00:00Z', message: 'Order received - Awaiting payment' }
     ]
@@ -657,6 +836,28 @@ function AdminPage({ onClose }) {
   // Delete Confirm State
   const [deleteConfirm, setDeleteConfirm] = useState(null)
 
+  // Invoice/CI Modal State
+  const [showInvoiceModal, setShowInvoiceModal] = useState(false)
+  const [showCIModal, setShowCIModal] = useState(false)
+  const [editingInvoice, setEditingInvoice] = useState(null)
+  const invoiceRef = useRef(null)
+  const ciRef = useRef(null)
+
+  // Company Info for Invoice/CI
+  const [companyInfo] = useState({
+    name: 'eun young Kwak',
+    address: '69, Seongsui-ro, Seongdong-gu, Republic of Korea',
+    country: 'South Korea',
+    phone: '+8210 63010851',
+    bankName: 'KOOKMIN BANK',
+    bankAddress: '26, Gukjegeumyung-ro 8-gil, Yeongdeungpo-gu, Seoul, Korea',
+    accountName: 'Kwak Eunyoung',
+    accountNo: '093668-11-025748(영 코스메드)',
+    swiftCode: 'CZNBKRSEXXX',
+    ceoName: 'Kwak Eunyoung',
+    ceoTitle: 'CEO'
+  })
+
   // Settings State
   const [settings, setSettings] = useState({
     adminName: '관리자',
@@ -773,6 +974,83 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
     if (selectedInquiry?.id === id) {
       setSelectedInquiry(prev => ({ ...prev, status: newStatus }))
     }
+  }
+
+  // 문의를 주문으로 전환하는 함수
+  const convertInquiryToOrder = (inquiry) => {
+    // 새 주문 ID 생성
+    const newOrderId = `ORD-${new Date().getFullYear()}-${String(orders.length + 1).padStart(3, '0')}`
+    const newRefNo = `EY${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
+
+    // 제품 정보 찾기
+    const product = products.find(p => p.id === inquiry.productId || p.nameEn === inquiry.productName)
+
+    const newOrder = {
+      id: newOrderId,
+      refNo: newRefNo,
+      customerEmail: inquiry.contactMethod === 'email' ? inquiry.contactValue : '',
+      customerName: '',
+      customerCompany: '',
+      customerPhone: inquiry.contactMethod === 'whatsapp' ? inquiry.contactValue : '',
+      customerAddress: '',
+      customerCountry: '',
+      status: 'pending',
+      trackingNumber: null,
+      items: [{
+        name: inquiry.productName,
+        nameKr: product?.nameKr || inquiry.productName,
+        quantity: 0, // 관리자가 입력
+        price: 0 // 관리자가 입력
+      }],
+      total: 0,
+      deliveryFee: 0,
+      shippingAddress: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      checklist: {
+        contactConfirmed: true,
+        priceAgreed: false,
+        invoiceSent: false,
+        paymentConfirmed: false,
+        productPrepared: false,
+        ciCreated: false,
+        shipped: false,
+        delivered: false
+      },
+      invoiceData: {
+        paymentTerm: 'T/T in Advance',
+        estimatedDelivery: 'After receipt of payment',
+        shipment: 'Forwarder',
+        validity: '1 WEEK',
+        warranty: '1 YEAR',
+        incoterms: 'Exwork',
+        customsCode: '3304-99-9000',
+        portOfLoading: 'KOREA',
+        finalDestination: '',
+        vessel: '',
+        sailingDate: ''
+      },
+      timeline: [
+        { status: 'pending', date: new Date().toISOString(), message: `주문 생성됨 (문의 #${inquiry.id}에서 전환)` }
+      ],
+      sourceInquiryId: inquiry.id
+    }
+
+    // 주문 추가
+    setOrders(prev => [newOrder, ...prev])
+
+    // 문의 상태를 'responded'로 변경
+    updateInquiryStatus(inquiry.id, 'responded')
+
+    // 알림
+    setNotificationSent(true)
+    setTimeout(() => setNotificationSent(false), 3000)
+
+    // 주문 확인 섹션으로 이동
+    setActiveMenu('orders')
+    setSelectedInquiry(null)
+    setSelectedOrder(newOrder)
+    setTrackingInput('')
   }
 
   const updateOrderStatus = (orderId, newStatus, tracking = null) => {
@@ -1139,6 +1417,19 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
                       ))}
                     </div>
                   </div>
+
+                  {/* 주문으로 전환 버튼 */}
+                  <div className="convert-to-order-section">
+                    <button
+                      className="convert-to-order-btn"
+                      onClick={() => convertInquiryToOrder(selectedInquiry)}
+                    >
+                      📦 주문 확인으로 전환
+                    </button>
+                    <p className="convert-hint">
+                      이 문의를 주문으로 전환하여 인보이스/CI 생성 및 진행 관리가 가능합니다.
+                    </p>
+                  </div>
                   <div className="detail-contact-section">
                     <span className="detail-label">{t.detail.contactInfo}</span>
                     <div className="contact-box">
@@ -1279,62 +1570,254 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
 
                     <div className="order-customer-info">
                       <h4>{t.orders.customer}</h4>
-                      <p className="customer-detail-name">{selectedOrder.customerName}</p>
-                      <p className="customer-detail-company">{selectedOrder.customerCompany}</p>
-                      <p className="customer-detail-email">{selectedOrder.customerEmail}</p>
+                      <div className="editable-field">
+                        <label>이름</label>
+                        <input
+                          type="text"
+                          value={selectedOrder.customerName}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, customerName: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, customerName: newValue }))
+                          }}
+                          placeholder="고객 이름"
+                        />
+                      </div>
+                      <div className="editable-field">
+                        <label>회사명</label>
+                        <input
+                          type="text"
+                          value={selectedOrder.customerCompany}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, customerCompany: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, customerCompany: newValue }))
+                          }}
+                          placeholder="회사명"
+                        />
+                      </div>
+                      <div className="editable-field">
+                        <label>이메일</label>
+                        <input
+                          type="email"
+                          value={selectedOrder.customerEmail}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, customerEmail: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, customerEmail: newValue }))
+                          }}
+                          placeholder="이메일"
+                        />
+                      </div>
+                      <div className="editable-field">
+                        <label>전화번호</label>
+                        <input
+                          type="text"
+                          value={selectedOrder.customerPhone || ''}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, customerPhone: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, customerPhone: newValue }))
+                          }}
+                          placeholder="전화번호"
+                        />
+                      </div>
                     </div>
 
                     <div className="order-shipping-info">
                       <h4>{t.orders.shippingAddress}</h4>
-                      <p>{selectedOrder.shippingAddress}</p>
+                      <div className="editable-field">
+                        <textarea
+                          value={selectedOrder.shippingAddress}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, shippingAddress: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, shippingAddress: newValue }))
+                          }}
+                          placeholder="배송 주소"
+                          rows={3}
+                        />
+                      </div>
+                      <div className="editable-field">
+                        <label>국가</label>
+                        <input
+                          type="text"
+                          value={selectedOrder.customerCountry || ''}
+                          onChange={(e) => {
+                            const newValue = e.target.value
+                            setOrders(prev => prev.map(o =>
+                              o.id === selectedOrder.id ? { ...o, customerCountry: newValue } : o
+                            ))
+                            setSelectedOrder(prev => ({ ...prev, customerCountry: newValue }))
+                          }}
+                          placeholder="국가 (예: USA, Netherlands)"
+                        />
+                      </div>
                     </div>
 
                     <div className="order-items-info">
                       <h4>{t.orders.items}</h4>
                       {selectedOrder.items.map((item, idx) => (
-                        <div key={idx} className="order-item-row">
-                          <span className="item-name">{item.name}</span>
-                          <span className="item-qty">x {item.quantity}</span>
-                          <span className="item-price">${(item.quantity * item.price).toLocaleString()}</span>
+                        <div key={idx} className="order-item-row editable">
+                          <div className="item-name-edit">
+                            <input
+                              type="text"
+                              value={item.name}
+                              onChange={(e) => {
+                                const newItems = [...selectedOrder.items]
+                                newItems[idx] = { ...newItems[idx], name: e.target.value }
+                                const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                                setOrders(prev => prev.map(o =>
+                                  o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                                ))
+                                setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                              }}
+                              placeholder="제품명"
+                            />
+                          </div>
+                          <div className="item-qty-edit">
+                            <input
+                              type="number"
+                              value={item.quantity}
+                              onChange={(e) => {
+                                const newItems = [...selectedOrder.items]
+                                newItems[idx] = { ...newItems[idx], quantity: parseInt(e.target.value) || 0 }
+                                const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                                setOrders(prev => prev.map(o =>
+                                  o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                                ))
+                                setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                              }}
+                              placeholder="수량"
+                              min="0"
+                            />
+                            <span className="qty-label">개</span>
+                          </div>
+                          <div className="item-price-edit">
+                            <span className="price-prefix">$</span>
+                            <input
+                              type="number"
+                              step="0.01"
+                              value={item.price}
+                              onChange={(e) => {
+                                const newItems = [...selectedOrder.items]
+                                newItems[idx] = { ...newItems[idx], price: parseFloat(e.target.value) || 0 }
+                                const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                                setOrders(prev => prev.map(o =>
+                                  o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                                ))
+                                setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                              }}
+                              placeholder="단가"
+                              min="0"
+                            />
+                          </div>
+                          <span className="item-subtotal">
+                            ${(item.quantity * item.price).toLocaleString()}
+                          </span>
+                          <button
+                            className="item-remove-btn"
+                            onClick={() => {
+                              const newItems = selectedOrder.items.filter((_, i) => i !== idx)
+                              const newTotal = newItems.reduce((sum, i) => sum + (i.quantity * i.price), 0)
+                              setOrders(prev => prev.map(o =>
+                                o.id === selectedOrder.id ? { ...o, items: newItems, total: newTotal } : o
+                              ))
+                              setSelectedOrder(prev => ({ ...prev, items: newItems, total: newTotal }))
+                            }}
+                          >
+                            ✕
+                          </button>
                         </div>
                       ))}
+                      {/* 품목 추가 버튼 */}
+                      <button
+                        className="add-item-btn"
+                        onClick={() => {
+                          const newItems = [...selectedOrder.items, { name: '', nameKr: '', quantity: 0, price: 0 }]
+                          setOrders(prev => prev.map(o =>
+                            o.id === selectedOrder.id ? { ...o, items: newItems } : o
+                          ))
+                          setSelectedOrder(prev => ({ ...prev, items: newItems }))
+                        }}
+                      >
+                        + 품목 추가
+                      </button>
+
+                      {/* 배송비 */}
+                      <div className="order-item-row delivery-fee-row editable">
+                        <span className="item-name">Delivery Fee</span>
+                        <div className="item-price-edit delivery-fee-edit">
+                          <span className="price-prefix">$</span>
+                          <input
+                            type="number"
+                            value={selectedOrder.deliveryFee || 0}
+                            onChange={(e) => {
+                              const newValue = parseFloat(e.target.value) || 0
+                              setOrders(prev => prev.map(o =>
+                                o.id === selectedOrder.id ? { ...o, deliveryFee: newValue } : o
+                              ))
+                              setSelectedOrder(prev => ({ ...prev, deliveryFee: newValue }))
+                            }}
+                            min="0"
+                          />
+                        </div>
+                      </div>
+
                       <div className="order-total-row">
                         <span>{t.orders.totalLabel}</span>
-                        <span className="total-value">${selectedOrder.total.toLocaleString()}</span>
+                        <span className="total-value">${(selectedOrder.total + (selectedOrder.deliveryFee || 0)).toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Status Update */}
-                  <div className="order-status-card">
-                    <h4>{t.orders.updateStatus}</h4>
-                    <div className="status-flow">
-                      {['pending', 'paid', 'preparing', 'shipped', 'delivered'].map((status, idx) => {
-                        const isActive = selectedOrder.status === status
-                        const isPast = ['pending', 'paid', 'preparing', 'shipped', 'delivered']
-                          .indexOf(selectedOrder.status) >= idx
-                        return (
-                          <div key={status} className={`status-flow-item ${isPast ? 'past' : ''} ${isActive ? 'active' : ''}`}>
-                            <button
-                              className={`status-flow-btn ${isActive ? 'active' : ''}`}
-                              onClick={() => {
-                                if (status === 'shipped' && !trackingInput) {
-                                  alert(t.orders.trackingAlert)
-                                  return
-                                }
-                                updateOrderStatus(selectedOrder.id, status, status === 'shipped' ? trackingInput : null)
-                              }}
-                              disabled={isPast && !isActive}
-                            >
-                              {t.orders.statuses[status]}
-                            </button>
-                            {idx < 4 && <div className={`status-flow-line ${isPast && idx < ['pending', 'paid', 'preparing', 'shipped', 'delivered'].indexOf(selectedOrder.status) ? 'active' : ''}`} />}
-                          </div>
-                        )
-                      })}
+                  {/* 진행사항 체크리스트 */}
+                  <div className="order-checklist-card">
+                    <h4>진행사항 체크리스트</h4>
+                    <div className="checklist-grid">
+                      {[
+                        { key: 'contactConfirmed', label: '연락처 확인됨' },
+                        { key: 'priceAgreed', label: '가격 협의 완료' },
+                        { key: 'invoiceSent', label: '인보이스 발송' },
+                        { key: 'paymentConfirmed', label: '입금 확인' },
+                        { key: 'productPrepared', label: '상품 준비 완료' },
+                        { key: 'ciCreated', label: 'CI 작성 완료' },
+                        { key: 'shipped', label: '배송 시작' },
+                        { key: 'delivered', label: '배송 완료' }
+                      ].map(item => (
+                        <label key={item.key} className="checklist-item">
+                          <input
+                            type="checkbox"
+                            checked={selectedOrder.checklist?.[item.key] || false}
+                            onChange={(e) => {
+                              const newChecklist = {
+                                ...selectedOrder.checklist,
+                                [item.key]: e.target.checked
+                              }
+                              setOrders(prev => prev.map(o =>
+                                o.id === selectedOrder.id
+                                  ? { ...o, checklist: newChecklist }
+                                  : o
+                              ))
+                              setSelectedOrder(prev => ({ ...prev, checklist: newChecklist }))
+                            }}
+                          />
+                          <span className="checklist-label">{item.label}</span>
+                        </label>
+                      ))}
                     </div>
 
-                    {/* Tracking Input for Shipped */}
+                    {/* 운송장 번호 입력 */}
                     <div className="tracking-input-section">
                       <label>{t.orders.trackingNumber}</label>
                       <input
@@ -1343,6 +1826,48 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
                         onChange={e => setTrackingInput(e.target.value)}
                         placeholder={t.orders.trackingPlaceholder}
                       />
+                    </div>
+                  </div>
+
+                  {/* 인보이스 / CI 생성 버튼 */}
+                  <div className="invoice-ci-card">
+                    <h4>서류 생성</h4>
+                    <p className="invoice-ci-desc">
+                      주문 정보를 기반으로 PROFORMA INVOICE 또는 COMMERCIAL INVOICE를 생성합니다.
+                    </p>
+                    <div className="invoice-ci-buttons">
+                      <button
+                        className="invoice-btn proforma"
+                        onClick={() => {
+                          setEditingInvoice({
+                            ...selectedOrder,
+                            invoiceData: selectedOrder.invoiceData || {}
+                          })
+                          setShowInvoiceModal(true)
+                        }}
+                      >
+                        <span className="btn-icon">📄</span>
+                        <span className="btn-text">
+                          <strong>PROFORMA INVOICE</strong>
+                          <small>견적 인보이스 생성</small>
+                        </span>
+                      </button>
+                      <button
+                        className="invoice-btn commercial"
+                        onClick={() => {
+                          setEditingInvoice({
+                            ...selectedOrder,
+                            invoiceData: selectedOrder.invoiceData || {}
+                          })
+                          setShowCIModal(true)
+                        }}
+                      >
+                        <span className="btn-icon">📋</span>
+                        <span className="btn-text">
+                          <strong>COMMERCIAL INVOICE</strong>
+                          <small>상업 인보이스 (CI) 생성</small>
+                        </span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1791,6 +2316,454 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
               <button className="modal-delete" onClick={() => deleteProduct(deleteConfirm)}>
                 {t.products.delete}
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PROFORMA INVOICE Modal */}
+      {showInvoiceModal && editingInvoice && (
+        <div className="modal-overlay invoice-modal-overlay" onClick={() => setShowInvoiceModal(false)}>
+          <div className="invoice-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="invoice-modal-header">
+              <h2>PROFORMA INVOICE 미리보기</h2>
+              <div className="invoice-modal-actions">
+                <button
+                  className="pdf-generate-btn"
+                  onClick={() => generatePDF(invoiceRef, `Invoice_${editingInvoice.id}`)}
+                >
+                  📥 PDF 생성 / 인쇄
+                </button>
+                <button className="modal-close-btn" onClick={() => setShowInvoiceModal(false)}>✕</button>
+              </div>
+            </div>
+
+            <div className="invoice-modal-body">
+              {/* 수정 가능한 필드들 */}
+              <div className="invoice-edit-section">
+                <h3>인보이스 정보 수정</h3>
+                <div className="invoice-edit-grid">
+                  <div className="invoice-edit-field">
+                    <label>Ref. No.</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.refNo || ''}
+                      onChange={e => setEditingInvoice({ ...editingInvoice, refNo: e.target.value })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Payment Term</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.paymentTerm || 'T/T in Advance'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, paymentTerm: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Shipment</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.shipment || 'Forwarder'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, shipment: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Validity</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.validity || '1 WEEK'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, validity: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Warranty</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.warranty || '1 YEAR'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, warranty: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Delivery Fee ($)</label>
+                    <input
+                      type="number"
+                      value={editingInvoice.deliveryFee || 0}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        deliveryFee: parseFloat(e.target.value) || 0
+                      })}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 인보이스 미리보기 */}
+              <div className="invoice-preview-wrapper">
+                <div ref={invoiceRef} className="invoice-container">
+                  <h1 className="header-title">PROFORMA INVOICE</h1>
+
+                  <table className="invoice-header-table">
+                    <tbody>
+                      <tr>
+                        <td style={{ width: '60%' }}>
+                          <strong>From</strong><br />
+                          {companyInfo.name}<br />
+                          {companyInfo.address}<br />
+                          {companyInfo.country}<br />
+                          <strong>Contact</strong> {companyInfo.phone}
+                        </td>
+                        <td style={{ width: '40%' }}>
+                          <strong>Date</strong> {formatInvoiceDate(new Date())}<br />
+                          <strong>Ref. No.</strong> {editingInvoice.refNo || editingInvoice.id}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>To</strong><br />
+                          {editingInvoice.shippingAddress}<br />
+                          {editingInvoice.customerName}<br />
+                          {editingInvoice.customerCountry || ''}<br />
+                          <strong>Contact</strong> {editingInvoice.customerPhone || editingInvoice.customerEmail}
+                        </td>
+                        <td>
+                          <strong>Total Page</strong> 1 OF 1
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p style={{ margin: '15px 0', fontSize: '12px' }}>
+                    We have the pleasure in offering you the following merchandise under the terms and conditions
+                    set forth hereunder subject to our final confirmation
+                  </p>
+
+                  <p style={{ textAlign: 'right', margin: '10px 0', fontSize: '12px' }}>
+                    ({editingInvoice.invoiceData?.incoterms || 'Exwork'})
+                  </p>
+
+                  <table className="invoice-items-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '8%' }}>No.</th>
+                        <th style={{ width: '42%' }}>Description</th>
+                        <th style={{ width: '15%' }}>Quantity</th>
+                        <th style={{ width: '15%' }}>Unit Price</th>
+                        <th style={{ width: '20%' }}>Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {editingInvoice.items.map((item, idx) => (
+                        <tr key={idx}>
+                          <td>{idx + 1}</td>
+                          <td>{item.nameKr || item.name}</td>
+                          <td style={{ textAlign: 'center' }}>{item.quantity}</td>
+                          <td style={{ textAlign: 'right' }}>$ {item.price.toFixed(2)}</td>
+                          <td style={{ textAlign: 'right' }}>$ {(item.quantity * item.price).toLocaleString()}</td>
+                        </tr>
+                      ))}
+                      {/* 빈 행 추가 */}
+                      {Array(Math.max(0, 8 - editingInvoice.items.length)).fill(0).map((_, idx) => (
+                        <tr key={`empty-${idx}`}>
+                          <td>&nbsp;</td>
+                          <td></td>
+                          <td></td>
+                          <td>$</td>
+                          <td style={{ textAlign: 'right' }}>-</td>
+                        </tr>
+                      ))}
+                      <tr style={{ background: '#fff8dc' }}>
+                        <td colSpan="4" style={{ textAlign: 'center' }}>
+                          Delivery Fee( {editingInvoice.invoiceData?.shipment === 'Forwarder' ? 'handcarry' : editingInvoice.invoiceData?.shipment} )
+                        </td>
+                        <td style={{ textAlign: 'right' }}>$ {(editingInvoice.deliveryFee || 0).toLocaleString()}</td>
+                      </tr>
+                      <tr className="total-row" style={{ fontWeight: 'bold', background: '#f5f5f5' }}>
+                        <td colSpan="4" style={{ textAlign: 'center' }}>TOTAL</td>
+                        <td style={{ textAlign: 'right' }}>$ {(editingInvoice.total + (editingInvoice.deliveryFee || 0)).toLocaleString()}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div className="invoice-terms" style={{ marginTop: '20px', fontSize: '12px' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                      <tbody>
+                        <tr><td><strong>Payment Term:</strong></td><td>{editingInvoice.invoiceData?.paymentTerm || 'T/T in Advance'}</td></tr>
+                        <tr><td><strong>Estimated Delivery:</strong></td><td>{editingInvoice.invoiceData?.estimatedDelivery || 'After receipt of payment'}</td></tr>
+                        <tr><td><strong>Shipment:</strong></td><td>{editingInvoice.invoiceData?.shipment || 'Forwarder'}</td></tr>
+                        <tr><td><strong>Validity:</strong></td><td>{editingInvoice.invoiceData?.validity || '1 WEEK'}</td></tr>
+                        <tr><td><strong>Warranty:</strong></td><td>{editingInvoice.invoiceData?.warranty || '1 YEAR'}</td></tr>
+                        <tr><td><strong>Bank Name:</strong></td><td>{companyInfo.bankName}</td></tr>
+                        <tr><td><strong>Bank Address:</strong></td><td>{companyInfo.bankAddress}</td></tr>
+                        <tr><td><strong>A/C Name:</strong></td><td>{companyInfo.accountName}</td></tr>
+                        <tr><td><strong>A/C No.:</strong></td><td>{companyInfo.accountNo}</td></tr>
+                        <tr><td><strong>Swift code:</strong></td><td>{companyInfo.swiftCode}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="signature-area">
+                    <p><strong>Accepted By</strong></p>
+                    <p>Name: {companyInfo.ceoName}</p>
+                    <p>Title: {companyInfo.ceoTitle}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* COMMERCIAL INVOICE (CI) Modal */}
+      {showCIModal && editingInvoice && (
+        <div className="modal-overlay invoice-modal-overlay" onClick={() => setShowCIModal(false)}>
+          <div className="invoice-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="invoice-modal-header">
+              <h2>COMMERCIAL INVOICE (CI) 미리보기</h2>
+              <div className="invoice-modal-actions">
+                <button
+                  className="pdf-generate-btn"
+                  onClick={() => generatePDF(ciRef, `CI_${editingInvoice.id}`)}
+                >
+                  📥 PDF 생성 / 인쇄
+                </button>
+                <button className="modal-close-btn" onClick={() => setShowCIModal(false)}>✕</button>
+              </div>
+            </div>
+
+            <div className="invoice-modal-body">
+              {/* 수정 가능한 필드들 */}
+              <div className="invoice-edit-section">
+                <h3>CI 정보 수정</h3>
+                <div className="invoice-edit-grid">
+                  <div className="invoice-edit-field">
+                    <label>NO. & Date of Invoice</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.refNo || formatInvoiceDate(new Date())}
+                      onChange={e => setEditingInvoice({ ...editingInvoice, refNo: e.target.value })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Terms of Payment</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.paymentTerm || 'T/T ADVANCE'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, paymentTerm: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>INCOTERMS</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.incoterms || 'ExWork'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, incoterms: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Port of Loading</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.portOfLoading || 'KOREA'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, portOfLoading: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Final Destination</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.finalDestination || editingInvoice.customerCountry || 'USA'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, finalDestination: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Customs Code</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.customsCode || '3304-99-9000'}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, customsCode: e.target.value }
+                      })}
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Vessel</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.vessel || ''}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, vessel: e.target.value }
+                      })}
+                      placeholder="선박/항공편명"
+                    />
+                  </div>
+                  <div className="invoice-edit-field">
+                    <label>Sailing on or about</label>
+                    <input
+                      type="text"
+                      value={editingInvoice.invoiceData?.sailingDate || ''}
+                      onChange={e => setEditingInvoice({
+                        ...editingInvoice,
+                        invoiceData: { ...editingInvoice.invoiceData, sailingDate: e.target.value }
+                      })}
+                      placeholder="출항일"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* CI 미리보기 */}
+              <div className="invoice-preview-wrapper">
+                <div ref={ciRef} className="ci-container">
+                  <h1 className="header-title">COMMERCIAL INVOICE</h1>
+
+                  <table className="ci-header-table" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '15px' }}>
+                    <tbody>
+                      <tr>
+                        <td style={{ width: '50%', border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>1. Shipper/Exporter</strong><br />
+                          {companyInfo.name}<br />
+                          {companyInfo.address}
+                        </td>
+                        <td style={{ width: '50%', border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>8. NO. & Date of Invoice</strong><br />
+                          {formatInvoiceDate(new Date())}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }} rowSpan="2">
+                          <strong>2. Buyer/Consignee</strong><br />
+                          {editingInvoice.customerName}<br />
+                          {editingInvoice.shippingAddress}<br /><br />
+                          Tel: {editingInvoice.customerPhone || editingInvoice.customerEmail}
+                        </td>
+                        <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>9. Terms of Payment</strong><br />
+                          {editingInvoice.invoiceData?.paymentTerm || 'T/T ADVANCE'}<br />
+                          INCOTERMS: {editingInvoice.invoiceData?.incoterms || 'ExWork'}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>10. Remark</strong><br />
+                          &nbsp;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>3. Notify Party</strong><br />
+                          SAME AS ABOVE
+                        </td>
+                        <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
+                          <strong>11. Other Reference</strong><br />
+                          * Customs Code: {editingInvoice.invoiceData?.customsCode || '3304-99-9000'}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #333', padding: '10px' }}>
+                          <strong>4. Port of Loading</strong><br />
+                          {editingInvoice.invoiceData?.portOfLoading || 'KOREA'}
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <strong>5. Final Destination</strong><br />
+                          {editingInvoice.invoiceData?.finalDestination || editingInvoice.customerCountry || 'USA'}
+                        </td>
+                        <td style={{ border: '1px solid #333', padding: '10px' }}>
+                          {/* 박스 크기 정보 */}
+                          41*31*40 1box, {((editingInvoice.total + (editingInvoice.deliveryFee || 0)) / 100).toFixed(1)}kg
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style={{ border: '1px solid #333', padding: '10px' }}>
+                          <strong>6. Vessel</strong><br />
+                          {editingInvoice.invoiceData?.vessel || ''}
+                        </td>
+                        <td style={{ border: '1px solid #333', padding: '10px' }}>
+                          <strong>7. Sailing on or about</strong><br />
+                          {editingInvoice.invoiceData?.sailingDate || ''}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <table className="ci-items-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr>
+                        <th style={{ border: '1px solid #333', padding: '8px', width: '15%' }}>12. Shipping mark</th>
+                        <th style={{ border: '1px solid #333', padding: '8px', width: '35%' }}>13. Description of Goods</th>
+                        <th style={{ border: '1px solid #333', padding: '8px', width: '15%' }}>14. Q'ty (ea)</th>
+                        <th style={{ border: '1px solid #333', padding: '8px', width: '15%' }}>15. Unit-Price</th>
+                        <th style={{ border: '1px solid #333', padding: '8px', width: '20%' }}>16. Amount (USD)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {editingInvoice.items.map((item, idx) => (
+                        <tr key={idx}>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}></td>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}>{item.nameKr || item.name}</td>
+                          <td style={{ border: '1px solid #333', padding: '8px', textAlign: 'center' }}>{item.quantity}</td>
+                          <td style={{ border: '1px solid #333', padding: '8px', textAlign: 'right' }}>$ {item.price.toFixed(2)}</td>
+                          <td style={{ border: '1px solid #333', padding: '8px', textAlign: 'right' }}>$ {(item.quantity * item.price).toLocaleString()}</td>
+                        </tr>
+                      ))}
+                      {/* 빈 행 추가 */}
+                      {Array(Math.max(0, 6 - editingInvoice.items.length)).fill(0).map((_, idx) => (
+                        <tr key={`empty-${idx}`}>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}>&nbsp;</td>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}></td>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}></td>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}></td>
+                          <td style={{ border: '1px solid #333', padding: '8px' }}></td>
+                        </tr>
+                      ))}
+                      <tr>
+                        <td colSpan="4" style={{ border: '1px solid #333', padding: '8px' }}>
+                          Delivery Fee( hand carry→UPS)
+                        </td>
+                        <td style={{ border: '1px solid #333', padding: '8px', textAlign: 'right' }}>
+                          $ {(editingInvoice.deliveryFee || 0).toLocaleString()}
+                        </td>
+                      </tr>
+                      <tr style={{ fontWeight: 'bold', background: '#f5f5f5' }}>
+                        <td colSpan="4" style={{ border: '2px solid #333', padding: '10px', textAlign: 'center' }}>
+                          TOTAL
+                        </td>
+                        <td style={{ border: '2px solid #333', padding: '10px', textAlign: 'right' }}>
+                          $ {(editingInvoice.total + (editingInvoice.deliveryFee || 0)).toLocaleString()}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div className="signature-area" style={{ marginTop: '50px', textAlign: 'right' }}>
+                    <p>Signed by _________________</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
