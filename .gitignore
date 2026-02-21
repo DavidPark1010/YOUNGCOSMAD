@@ -4,3 +4,4 @@ dist/
 .idea/
 nul
 *.log
+.DS_Store

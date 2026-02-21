@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import './AdminPage.css'
-import ProductRegistration from './ProductRegistration'
+import ProductRegistration from '../product/ProductRegistration'
 
 // PDF 생성을 위한 유틸리티 함수
 const generatePDF = (contentRef, fileName) => {
