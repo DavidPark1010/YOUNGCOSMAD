@@ -57,16 +57,22 @@ const content = {
         { key: 'botox', label: 'Botulinum Toxin' }
       ],
       items: [
+        // New Filler Products (Top Priority)
+        { id: 101, name: 'REVOLAX SUB-Q', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax sub-q.png' },
+        { id: 102, name: 'REVOLAX FINE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax fine.png' },
+        { id: 103, name: 'REVOLAX DEEP', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax deep.png' },
+        { id: 104, name: 'ELASTY G PLUS', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty g.png' },
+        { id: 105, name: 'ELASTY F', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty f2..png' },
+        { id: 106, name: 'ELASTY D', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty d.png' },
+        { id: 107, name: 'REGENOVUE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/regenovue.png' },
+        { id: 108, name: 'REJEUNESSE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/rejeunesse.png' },
+        // Existing Products
         { id: 1, name: 'Hydra Glow Serum', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'EU, US, ASIA', image: '/product1.png' },
         { id: 2, name: 'Velvet Matte Lip Tint', category: 'Makeup', categoryKey: 'makeup', moq: '300 units', region: 'Global', image: '/product2.png' },
         { id: 3, name: 'Cica Repair Cream', category: 'Skincare', categoryKey: 'skincare', moq: '400 units', region: 'EU, ASIA', image: '/product3.png' },
         { id: 4, name: 'Double Cleansing Oil', category: 'Skincare', categoryKey: 'skincare', moq: '600 units', region: 'Global', image: '/product4.png' },
         { id: 5, name: 'Peptide Eye Contour', category: 'Skincare', categoryKey: 'skincare', moq: '350 units', region: 'US, EU', image: '/product5.png' },
         { id: 6, name: 'Tone-Up Sun Shield', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'Global', image: '/product6.png' },
-        { id: 7, name: 'Hyaluronic Filler 1ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: 'Deep Volume Filler 2ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: 'Botulinum Type A 100U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: 'Premium Botox 200U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product10.png', medical: true },
       ]
     },
     cta: {
@@ -137,16 +143,22 @@ const content = {
         { key: 'botox', label: '보툴리눔 톡신' }
       ],
       items: [
+        // New Filler Products (Top Priority)
+        { id: 101, name: 'REVOLAX SUB-Q', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax sub-q.png' },
+        { id: 102, name: 'REVOLAX FINE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax fine.png' },
+        { id: 103, name: 'REVOLAX DEEP', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax deep.png' },
+        { id: 104, name: 'ELASTY G PLUS', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty g.png' },
+        { id: 105, name: 'ELASTY F', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty f2..png' },
+        { id: 106, name: 'ELASTY D', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty d.png' },
+        { id: 107, name: 'REGENOVUE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/regenovue.png' },
+        { id: 108, name: 'REJEUNESSE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/rejeunesse.png' },
+        // Existing Products
         { id: 1, name: '하이드라 글로우 세럼', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'EU, US, ASIA', image: '/product1.png' },
         { id: 2, name: '벨벳 매트 립틴트', category: '메이크업', categoryKey: 'makeup', moq: '300개', region: 'Global', image: '/product2.png' },
         { id: 3, name: '시카 리페어 크림', category: '스킨케어', categoryKey: 'skincare', moq: '400개', region: 'EU, ASIA', image: '/product3.png' },
         { id: 4, name: '더블 클렌징 오일', category: '스킨케어', categoryKey: 'skincare', moq: '600개', region: 'Global', image: '/product4.png' },
         { id: 5, name: '펩타이드 아이 컨투어', category: '스킨케어', categoryKey: 'skincare', moq: '350개', region: 'US, EU', image: '/product5.png' },
         { id: 6, name: '톤업 선쉴드', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'Global', image: '/product6.png' },
-        { id: 7, name: '히알루론 필러 1ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: '딥 볼륨 필러 2ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: '보툴리눔 타입A 100U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: '프리미엄 보톡스 200U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product10.png', medical: true },
       ]
     },
     cta: {
@@ -404,12 +416,12 @@ function App() {
       <header className="header">
         <div className="header-inner">
           <div className="logo">Young Cosmed</div>
-          <nav className="nav">
-            <a href="#products">{t.nav.products}</a>
-            <a href="#about">{t.nav.about}</a>
-            <a href="#contact">{t.nav.contact}</a>
-          </nav>
           <div className="header-right">
+            <nav className="nav">
+              <a href="#products">{t.nav.products}</a>
+              <a href="#about">{t.nav.about}</a>
+              <a href="#contact">{t.nav.contact}</a>
+            </nav>
             <div className="lang-switch">
               <button
                 className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
@@ -425,18 +437,6 @@ function App() {
                 KR
               </button>
             </div>
-            <button className="header-track-btn" onClick={openOrderLookup}>
-              {t.nav.trackOrder}
-            </button>
-            {user ? (
-              <button className="header-account-btn" onClick={handleAccountClick}>
-                {t.nav.myAccount}
-              </button>
-            ) : (
-              <button className="header-account-btn" onClick={handleAccountClick}>
-                {t.nav.signIn}
-              </button>
-            )}
             <button className="header-cta" onClick={openAdmin}>Inquiry Dashboard</button>
           </div>
         </div>
@@ -496,7 +496,12 @@ function App() {
                 onClick={() => openProductDetail(product.id)}
               >
                 <div className="product-image">
-                  <img src={product.image} alt={product.name} className="product-img" />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className={`product-img ${product.id >= 101 ? 'product-img-contain' : ''}`}
+                    onError={(e) => console.error(`Image load failed: ${product.image}`)}
+                  />
                   {product.medical && (
                     <span className="overlay-licensed">{t.products.licensedBadge}</span>
                   )}

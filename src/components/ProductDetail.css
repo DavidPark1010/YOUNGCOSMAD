@@ -216,6 +216,57 @@
   line-height: 1.5;
 }
 
+/* Image Note - Subtle footnote style */
+.product-image-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: #a0a0a0;
+  line-height: 1.5;
+  margin-top: 40px;
+  max-width: 440px;
+  letter-spacing: 0;
+}
+
+.app[lang="ko"] .product-image-note {
+  font-family: var(--font-korean);
+}
+
+/* Real Product Photos Section */
+.real-photos-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+.real-photos-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+.app[lang="ko"] .real-photos-title {
+  font-family: var(--font-korean);
+}
+
+.real-photos-placeholder {
+  background: #FAFAFA;
+  padding: 32px;
+  text-align: center;
+}
+
+.real-photos-coming {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: #999;
+  letter-spacing: 0;
+}
+
 /* ========================================
    Responsive
 ======================================== */
@@ -287,5 +338,27 @@
     font-size: 11px;
     text-align: center;
     width: 100%;
+  }
+
+  .product-image-note {
+    font-size: 11px;
+    margin-top: 32px;
+    line-height: 1.5;
+  }
+
+  .real-photos-section {
+    margin-top: 24px;
+  }
+
+  .real-photos-title {
+    font-size: 12px;
+  }
+
+  .real-photos-placeholder {
+    padding: 24px;
+  }
+
+  .real-photos-coming {
+    font-size: 12px;
   }
 }

@@ -74,61 +74,110 @@ const productDetails = {
       certTags: ['CPNP', 'FDA'],
       moq: '500 units'
     },
-    7: {
-      name: 'Hyaluronic Filler 1ml',
+    // New Filler Products
+    101: {
+      name: 'REVOLAX SUB-Q',
       category: 'Dermal Fillers',
-      tagline: 'Cross-linked HA filler for facial contouring and wrinkle correction.',
+      tagline: 'High-viscosity HA filler for deep tissue volumizing and facial contouring.',
       sellingPoints: [
         'Premium cross-linked hyaluronic acid',
-        'Contains lidocaine for comfort',
+        'Long-lasting results up to 12-18 months',
+        'Contains lidocaine for patient comfort'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax sub-q.png'
+    },
+    102: {
+      name: 'REVOLAX FINE',
+      category: 'Dermal Fillers',
+      tagline: 'Light HA filler for superficial lines and delicate areas.',
+      sellingPoints: [
+        'Fine particle size for precise injection',
+        'Ideal for lips and periorbital area',
+        'Natural-looking results'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax fine.png'
+    },
+    103: {
+      name: 'REVOLAX DEEP',
+      category: 'Dermal Fillers',
+      tagline: 'Medium-viscosity HA filler for moderate wrinkles and lip augmentation.',
+      sellingPoints: [
+        'Balanced viscosity for versatile use',
+        'Smooth injection experience',
         'CE and KFDA certified'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
-      moq: '100 units',
-      medical: true,
-      licenseRequired: true
+      moq: '10 boxes',
+      image: '/revolax deep.png'
     },
-    8: {
-      name: 'Deep Volume Filler 2ml',
+    104: {
+      name: 'ELASTY G PLUS',
       category: 'Dermal Fillers',
-      tagline: 'High-viscosity HA filler for deep tissue augmentation.',
+      tagline: 'Advanced HA filler with enhanced elasticity for natural facial contouring.',
       sellingPoints: [
-        'High concentration for volume restoration',
-        'Long-lasting results',
-        'Smooth injection experience'
+        'E.C.T technology for superior elasticity',
+        'High purity hyaluronic acid',
+        'Long-lasting volumizing effect'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
-      moq: '100 units',
-      medical: true,
-      licenseRequired: true
+      moq: '10 boxes',
+      image: '/elasty g.png'
     },
-    9: {
-      name: 'Botulinum Type A 100U',
-      category: 'Botulinum Toxin',
-      tagline: 'Purified botulinum toxin type A for aesthetic procedures.',
+    105: {
+      name: 'ELASTY F',
+      category: 'Dermal Fillers',
+      tagline: 'Fine HA filler for superficial wrinkles and skin rejuvenation.',
       sellingPoints: [
-        'High purity formulation',
-        'Consistent clinical results',
-        'Multi-national certifications'
+        'Ultra-fine particles for delicate areas',
+        'Skin boosting and hydration effect',
+        'Minimal swelling post-injection'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50 units',
-      medical: true,
-      licenseRequired: true
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty f2..png'
     },
-    10: {
-      name: 'Premium Botox 200U',
-      category: 'Botulinum Toxin',
-      tagline: 'High-purity botulinum toxin for professional aesthetic applications.',
+    106: {
+      name: 'ELASTY D',
+      category: 'Dermal Fillers',
+      tagline: 'Deep volumizing HA filler for facial sculpting and augmentation.',
       sellingPoints: [
-        'Premium grade formulation',
-        'Extended shelf life (frozen)',
-        'Globally recognized certifications'
+        'High-viscosity formula for deep injection',
+        'Excellent lifting capacity',
+        'Maintains natural facial expressions'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50 units',
-      medical: true,
-      licenseRequired: true
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty d.png'
+    },
+    107: {
+      name: 'REGENOVUE',
+      category: 'Dermal Fillers',
+      tagline: 'Premium Korean HA filler line for versatile aesthetic treatments.',
+      sellingPoints: [
+        'High-purity cross-linked hyaluronic acid',
+        'Available in multiple viscosities',
+        'CE and KFDA certified quality'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/regenovue.png'
+    },
+    108: {
+      name: 'REJEUNESSE',
+      category: 'Dermal Fillers',
+      tagline: 'Advanced HA filler series for comprehensive facial rejuvenation.',
+      sellingPoints: [
+        'Innovative SHAPE technology',
+        'Long-lasting natural results',
+        'Globally trusted Korean brand'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/rejeunesse.png'
     }
   },
   ko: {
@@ -204,61 +253,110 @@ const productDetails = {
       certTags: ['CPNP', 'FDA'],
       moq: '500개'
     },
-    7: {
-      name: '히알루론 필러 1ml',
+    // New Filler Products
+    101: {
+      name: 'REVOLAX SUB-Q',
       category: '더말 필러',
-      tagline: '얼굴 윤곽 및 주름 개선을 위한 가교 HA 필러.',
+      tagline: '깊은 조직 볼륨화 및 얼굴 윤곽을 위한 고점도 HA 필러.',
       sellingPoints: [
         '프리미엄 가교 히알루론산',
-        '편안함을 위한 리도카인 함유',
+        '12-18개월 지속되는 효과',
+        '환자 편안함을 위한 리도카인 함유'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax sub-q.png'
+    },
+    102: {
+      name: 'REVOLAX FINE',
+      category: '더말 필러',
+      tagline: '표면 주름 및 섬세한 부위를 위한 경량 HA 필러.',
+      sellingPoints: [
+        '정밀 주입을 위한 미세 입자',
+        '입술 및 눈가 부위에 이상적',
+        '자연스러운 결과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax fine.png'
+    },
+    103: {
+      name: 'REVOLAX DEEP',
+      category: '더말 필러',
+      tagline: '중등도 주름 및 입술 볼륨을 위한 중점도 HA 필러.',
+      sellingPoints: [
+        '다용도 사용을 위한 균형 잡힌 점도',
+        '부드러운 주입 경험',
         'CE 및 KFDA 인증'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
-      moq: '100개',
-      medical: true,
-      licenseRequired: true
+      moq: '10 boxes',
+      image: '/revolax deep.png'
     },
-    8: {
-      name: '딥 볼륨 필러 2ml',
+    104: {
+      name: 'ELASTY G PLUS',
       category: '더말 필러',
-      tagline: '깊은 조직 증강을 위한 고점도 HA 필러.',
+      tagline: '자연스러운 얼굴 윤곽을 위한 향상된 탄력의 HA 필러.',
       sellingPoints: [
-        '볼륨 복원을 위한 고농도 포뮬러',
-        '오래 지속되는 결과',
-        '부드러운 주입 경험'
+        '우수한 탄력을 위한 E.C.T 기술',
+        '고순도 히알루론산',
+        '오래 지속되는 볼륨 효과'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
-      moq: '100개',
-      medical: true,
-      licenseRequired: true
+      moq: '10 boxes',
+      image: '/elasty g.png'
     },
-    9: {
-      name: '보툴리눔 타입A 100U',
-      category: '보툴리눔 톡신',
-      tagline: '미용 시술을 위한 정제된 보툴리눔 독소 타입 A.',
+    105: {
+      name: 'ELASTY F',
+      category: '더말 필러',
+      tagline: '표면 주름 및 피부 재생을 위한 미세 HA 필러.',
       sellingPoints: [
-        '고순도 포뮬레이션',
-        '일관된 임상 결과',
-        '다국적 인증 보유'
+        '섬세한 부위를 위한 초미세 입자',
+        '스킨 부스팅 및 수분 공급 효과',
+        '시술 후 최소한의 붓기'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50개',
-      medical: true,
-      licenseRequired: true
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty f2..png'
     },
-    10: {
-      name: '프리미엄 보톡스 200U',
-      category: '보툴리눔 톡신',
-      tagline: '전문 미용 시술을 위한 고순도 보툴리눔 독소.',
+    106: {
+      name: 'ELASTY D',
+      category: '더말 필러',
+      tagline: '얼굴 조각 및 볼륨 증대를 위한 깊은 볼륨 HA 필러.',
       sellingPoints: [
-        '프리미엄 등급 포뮬레이션',
-        '연장된 유통기한 (냉동)',
-        '글로벌 인증 보유'
+        '깊은 주입을 위한 고점도 포뮬러',
+        '우수한 리프팅 효과',
+        '자연스러운 표정 유지'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50개',
-      medical: true,
-      licenseRequired: true
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty d.png'
+    },
+    107: {
+      name: 'REGENOVUE',
+      category: '더말 필러',
+      tagline: '다양한 미용 시술을 위한 프리미엄 한국산 HA 필러 라인.',
+      sellingPoints: [
+        '고순도 가교 히알루론산',
+        '다양한 점도 옵션 제공',
+        'CE 및 KFDA 인증 품질'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/regenovue.png'
+    },
+    108: {
+      name: 'REJEUNESSE',
+      category: '더말 필러',
+      tagline: '종합적인 얼굴 회춘을 위한 고급 HA 필러 시리즈.',
+      sellingPoints: [
+        '혁신적인 SHAPE 기술',
+        '오래 지속되는 자연스러운 결과',
+        '글로벌 신뢰 한국 브랜드'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/rejeunesse.png'
     }
   }
 }
@@ -268,13 +366,17 @@ const uiText = {
     askButton: 'Discuss Wholesale Terms',
     askHint: 'Ask about pricing, MOQ, certifications and global shipping.',
     licenseNote: 'License required for purchase.',
-    back: 'Back'
+    back: 'Back',
+    realPhotosTitle: 'Real Product Photos',
+    imageNote: 'Note: Some images on this page are AI-generated concept visuals to help buyers understand the product. Actual product photos are provided in the "Real Product Photos" section below.'
   },
   ko: {
     askButton: '도매 조건 상담',
     askHint: '가격, MOQ, 인증, 글로벌 배송에 대해 문의하세요.',
     licenseNote: '구매 시 라이선스 필요.',
-    back: '돌아가기'
+    back: '돌아가기',
+    realPhotosTitle: '실제 제품 사진 (Real Product Photos)',
+    imageNote: '안내: 본 페이지의 일부 이미지는 바이어 이해를 돕기 위한 AI 제작 컨셉 이미지입니다. 실제 제품 사진은 하단의 "실제 제품 사진(Real Product Photos)" 섹션에서 확인하실 수 있습니다.'
   }
 }
 
@@ -282,7 +384,8 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
   const product = productDetails[lang][productId]
   const productEn = productDetails['en'][productId] // For initial message (always English)
   const text = uiText[lang]
-  const imageUrl = `/product${productId}.png`
+  // Use custom image path if defined, otherwise fallback to default pattern
+  const imageUrl = product?.image || `/product${productId}.png`
 
   const handleInquiry = () => {
     if (onInquiry) {
@@ -356,6 +459,17 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
                 <span className="ask-btn-arrow">→</span>
               </button>
               <span className="product-cta-hint">{text.askHint}</span>
+            </div>
+
+            {/* Image Note */}
+            <p className="product-image-note">{text.imageNote}</p>
+
+            {/* Real Product Photos Section */}
+            <div className="real-photos-section">
+              <h3 className="real-photos-title">{text.realPhotosTitle}</h3>
+              <div className="real-photos-placeholder">
+                <span className="real-photos-coming">{lang === 'en' ? 'Photos available upon inquiry' : '문의 시 제공'}</span>
+              </div>
             </div>
           </div>
         </div>
