@@ -1,0 +1,70 @@
+/* ========================================
+   Products - 상품 목록
+   import 순서: 8번째
+======================================== */
+.products-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.products-header-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 26px 32px;
+  background: #FFFFFF;
+  border: 3px solid #D0D0D0;
+  border-radius: 16px;
+}
+
+.products-helper-text {
+  font-size: 20px;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+}
+
+.add-product-btn {
+  background: #1A1A1A;
+  border: none;
+  padding: 18px 36px;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-product-btn:hover {
+  background: #333;
+}
+
+.add-product-btn-large {
+  background: #1A1A1A;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-product-btn-large:hover {
+  background: #333333;
+}
+
+/* Product ID Cell in Table */
+.product-id-cell {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  color: #555555;
+  background: #F5F5F5;
+  padding: 10px 16px;
+  border-radius: 8px;
+}

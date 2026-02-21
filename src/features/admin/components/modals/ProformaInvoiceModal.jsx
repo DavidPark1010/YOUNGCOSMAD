@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import generatePDF from '../../../utils/generatePdf'
-import { formatInvoiceDate } from '../../../utils/formatDate'
+import generatePDF from '../../../../utils/generatePdf'
+import { formatInvoiceDate } from '../../../../utils/formatDate'
 
 function ProformaInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo, onClose }) {
   const invoiceRef = useRef(null)

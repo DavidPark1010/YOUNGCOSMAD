@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import generatePDF from '../../../utils/generatePdf'
-import { formatInvoiceDate } from '../../../utils/formatDate'
+import generatePDF from '../../../../utils/generatePdf'
+import { formatInvoiceDate } from '../../../../utils/formatDate'
 
 function CommercialInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo, onClose }) {
   const ciRef = useRef(null)

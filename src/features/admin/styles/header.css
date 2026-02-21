@@ -1,0 +1,97 @@
+/* ========================================
+   Header - 상단 바
+   import 순서: 3번째
+======================================== */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 56px;
+  border-bottom: 3px solid #E8E8E8;
+  background: #FFFFFF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.admin-page-title {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.admin-lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-lang-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #9A9A9D;
+  cursor: pointer;
+  padding: 4px 4px;
+  transition: color 0.2s ease;
+}
+
+.admin-lang-btn:hover {
+  color: #6A6A6D;
+}
+
+.admin-lang-btn.active {
+  color: #1A1A1A;
+}
+
+.admin-lang-divider {
+  color: #D1D3D6;
+  font-size: 16px;
+}
+
+.admin-lang-notice {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #9FA7A0;
+  padding: 6px 12px;
+  background: rgba(159, 167, 160, 0.1);
+  border-radius: 4px;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-user-name {
+  font-size: 17px;
+  font-weight: 500;
+  color: #1A1A1A;
+}
+
+.admin-logout {
+  background: transparent;
+  border: 1px solid #D1D3D6;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6A6A6D;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-logout:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}

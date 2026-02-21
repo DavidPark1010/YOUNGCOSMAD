@@ -1,0 +1,1112 @@
+/* ========================================
+   Orders - 주문 목록 & 상세
+   import 순서: 7번째
+======================================== */
+
+/* Order Status Badges */
+.status-badge.order-pending {
+  background: #FFF4E5;
+  color: #8B6B0B;
+}
+
+.status-badge.order-paid {
+  background: #E8F5EC;
+  color: #156E2E;
+}
+
+.status-badge.order-preparing {
+  background: #F0F7FF;
+  color: #2255AA;
+}
+
+.status-badge.order-shipped {
+  background: #EDF5F0;
+  color: #3A6C4C;
+}
+
+.status-badge.order-delivered {
+  background: #F0F2F4;
+  color: #555555;
+}
+
+/* Order Filter Bar */
+.order-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 0 20px 0;
+}
+
+.order-filter-chip {
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid #E0E0E0;
+  background: #FFFFFF;
+  color: #777777;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.order-filter-chip:hover {
+  border-color: #AAAAAA;
+  color: #444444;
+}
+
+.order-filter-chip.active {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+}
+
+/* Order Table Cells */
+.order-id-cell {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.customer-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customer-name {
+  font-size: 21px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.customer-company {
+  font-size: 19px;
+  color: #777777;
+}
+
+.total-cell {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* Action Buttons (Orders/Products 공통) */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn.view {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  color: #555555;
+}
+
+.action-btn.view:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+.action-btn.edit {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  color: #555555;
+}
+
+.action-btn.edit:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+.action-btn.delete {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  color: #D45454;
+}
+
+.action-btn.delete:hover {
+  background: #FDF4F4;
+  border-color: #D45454;
+}
+
+/* Order Delete Button */
+.order-delete-btn {
+  background: none;
+  border: none;
+  color: #999999;
+  font-size: 22px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.order-delete-btn:hover {
+  color: #E74C3C;
+  transform: scale(1.1);
+}
+
+/* ========================================
+   Order Detail
+======================================== */
+.order-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+.detail-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  font-size: 21px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  padding: 12px 0;
+  margin-bottom: 36px;
+  transition: color 0.2s ease;
+}
+
+.detail-back-btn:hover {
+  color: #1A1A1A;
+}
+
+.order-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+}
+
+.order-detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Order Info Card */
+.order-info-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.order-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.order-info-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 10px;
+}
+
+.order-info-date {
+  font-size: 19px;
+  color: #777777;
+}
+
+.order-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.order-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-info-label {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+.order-info-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.order-info-value.total {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Order Detail Header */
+.order-detail-id {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-right: 16px;
+}
+
+.order-detail-date {
+  font-size: 20px;
+  color: #777777;
+}
+
+/* Order Customer / Shipping / Items Info */
+.order-customer-info,
+.order-shipping-info,
+.order-items-info {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.order-customer-info h4,
+.order-shipping-info h4,
+.order-items-info h4 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 18px;
+}
+
+.customer-detail-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 10px 0;
+}
+
+.customer-detail-company {
+  font-size: 20px;
+  color: #555555;
+  margin: 0 0 8px 0;
+}
+
+.customer-detail-email {
+  font-size: 20px;
+  color: #777777;
+  margin: 0;
+}
+
+.customer-detail-phone {
+  font-size: 19px;
+  color: #555555;
+  margin: 0;
+}
+
+.order-shipping-info p {
+  font-size: 20px;
+  color: #444444;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Order Info Card - last section no border */
+.order-info-card .order-items-info {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Order Items List in Detail */
+.order-item-row {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.order-item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  font-size: 21px;
+  color: #1A1A1A;
+}
+
+.item-qty {
+  font-size: 20px;
+  color: #777777;
+  margin-right: 32px;
+}
+
+.item-price {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.order-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  margin-top: 12px;
+  border-top: 3px solid #1A1A1A;
+}
+
+.order-total-row span:first-child {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.total-value {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* Delivery Fee Row */
+.delivery-fee-row {
+  background: #FFF8E7;
+  border-top: 2px dashed #E6D085;
+}
+
+.delivery-fee-row .item-name {
+  font-style: italic;
+  color: #8B7355;
+}
+
+/* Order Items Card */
+.order-items-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.order-items-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 24px;
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  background: #FAFBFC;
+  border-radius: 14px;
+}
+
+.order-item-image {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #F0F2F4;
+}
+
+.order-item-info {
+  flex: 1;
+}
+
+.order-item-name {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 8px;
+}
+
+.order-item-qty {
+  font-size: 19px;
+  color: #777777;
+}
+
+.order-item-price {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* Order Status Card */
+.order-status-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.order-status-card h4 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 28px 0;
+}
+
+/* Status Flow */
+.status-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.status-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.status-flow-btn {
+  padding: 20px 22px;
+  background: #FAFBFC;
+  border: 2px solid #D0D0D0;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.status-flow-btn:hover:not(:disabled) {
+  border-color: #999999;
+  background: #F5F5F5;
+}
+
+.status-flow-item.active .status-flow-btn,
+.status-flow-btn.active {
+  background: #D8CFC4;
+  border-color: #D8CFC4;
+  color: #4A3F33;
+  font-weight: 700;
+}
+
+.status-flow-item.past .status-flow-btn {
+  background: #F0F2F4;
+  border-color: #E0E0E0;
+  color: #888888;
+}
+
+.status-flow-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status-flow-line {
+  width: 3px;
+  height: 16px;
+  background: #E0E0E0;
+  margin: 0 auto;
+}
+
+.status-flow-line.active {
+  background: #D8CFC4;
+}
+
+/* Tracking Input Section */
+.tracking-input-section {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 2px solid #EEEEEE;
+}
+
+.tracking-input-section label {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+.tracking-input-section input {
+  width: 100%;
+  padding: 18px 22px;
+  background: #FAFBFC;
+  border: 3px solid #CCCCCC;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+}
+
+.tracking-input-section input:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+/* Order Timeline Card */
+.order-timeline-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.order-timeline-card h4 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+}
+
+.order-timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-event {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.timeline-event:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-event:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 34px;
+  bottom: 0;
+  width: 3px;
+  background: #E0E0E0;
+}
+
+.timeline-event-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F0F2F4;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-event:first-child .timeline-event-dot {
+  background: #D8CFC4;
+}
+
+.timeline-event-dot.pending { background: #FFF4E5; }
+.timeline-event-dot.paid { background: #E8F5EC; }
+.timeline-event-dot.preparing { background: #F0F7FF; }
+.timeline-event-dot.shipped { background: #EDF5F0; }
+.timeline-event-dot.delivered { background: #F0F2F4; }
+
+.timeline-event-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline-event-status {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.timeline-event-message {
+  font-size: 19px;
+  color: #555555;
+}
+
+.timeline-event-date {
+  font-size: 18px;
+  color: #777777;
+}
+
+/* ========================================
+   Order Checklist Card
+======================================== */
+.order-checklist-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.order-checklist-card h4 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  background: #FAFBFC;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checklist-item:hover {
+  border-color: #CCCCCC;
+  background: #F5F5F5;
+}
+
+.checklist-item input[type="checkbox"] {
+  width: 26px;
+  height: 26px;
+  accent-color: #9FA7A0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-item input[type="checkbox"]:checked + .checklist-label {
+  color: #6B7A6F;
+  text-decoration: line-through;
+}
+
+.checklist-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* ========================================
+   Invoice / CI Card
+======================================== */
+.invoice-ci-card {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.invoice-ci-card h4 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 12px 0;
+}
+
+.invoice-ci-desc {
+  font-size: 18px;
+  color: #666666;
+  margin: 0 0 28px 0;
+  line-height: 1.6;
+}
+
+.invoice-ci-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.invoice-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  background: #FFFFFF;
+  border: 3px solid #D0D0D0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.invoice-btn:hover {
+  border-color: #1A1A1A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-btn.proforma {
+  background: linear-gradient(135deg, #D8CFC4 0%, #C9BFB4 100%);
+  border-color: #9FA7A0;
+}
+
+.invoice-btn.proforma:hover {
+  border-color: #6B7A6F;
+}
+
+.invoice-btn.commercial {
+  background: linear-gradient(135deg, #D8CFC4 0%, #C9BFB4 100%);
+  border-color: #9FA7A0;
+}
+
+.invoice-btn.commercial:hover {
+  border-color: #6B7A6F;
+}
+
+.invoice-btn .btn-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.invoice-btn .btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.invoice-btn .btn-text strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.invoice-btn .btn-text small {
+  font-size: 16px;
+  color: #666666;
+}
+
+/* ========================================
+   Convert to Order
+======================================== */
+.convert-to-order-section {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 2px solid #E0E0E0;
+}
+
+.convert-to-order-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 22px 28px;
+  background: linear-gradient(135deg, #0F0F10 0%, #2A2A2B 100%);
+  border: none;
+  border-radius: 14px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(15, 15, 16, 0.2);
+}
+
+.convert-to-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(15, 15, 16, 0.3);
+  background: linear-gradient(135deg, #1A1A1B 0%, #3A3A3B 100%);
+}
+
+.convert-to-order-btn:active {
+  transform: translateY(0);
+}
+
+.convert-hint {
+  font-size: 16px;
+  color: #777777;
+  text-align: center;
+  margin: 14px 0 0 0;
+  line-height: 1.6;
+}
+
+/* ========================================
+   Editable Fields (Order Detail)
+======================================== */
+.editable-field {
+  margin-bottom: 14px;
+}
+
+.editable-field label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666666;
+  margin-bottom: 6px;
+}
+
+.editable-field input,
+.editable-field textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: var(--font-body);
+  color: #1A1A1A;
+  transition: border-color 0.2s ease;
+  background: #FAFBFC;
+}
+
+.editable-field input:focus,
+.editable-field textarea:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+.editable-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Editable Order Item Row */
+.order-item-row.editable {
+  display: grid;
+  grid-template-columns: 2fr 100px 120px 100px 40px;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.item-name-edit input,
+.item-qty-edit input,
+.item-price-edit input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 17px;
+  font-family: var(--font-body);
+  color: #1A1A1A;
+  transition: border-color 0.2s ease;
+  background: #FAFBFC;
+}
+
+.item-name-edit input:focus,
+.item-qty-edit input:focus,
+.item-price-edit input:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+.item-qty-edit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-qty-edit input {
+  width: 70px;
+  text-align: center;
+}
+
+.qty-label {
+  font-size: 16px;
+  color: #777777;
+}
+
+.item-price-edit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-price-edit input {
+  width: 80px;
+  text-align: right;
+}
+
+.price-prefix {
+  font-size: 17px;
+  font-weight: 600;
+  color: #555555;
+}
+
+.item-subtotal {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1A1A;
+  text-align: right;
+}
+
+.item-remove-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #999999;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.item-remove-btn:hover {
+  background: #FFEBEB;
+  border-color: #E74C3C;
+  color: #E74C3C;
+}
+
+.add-item-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin: 16px 0;
+  background: #F5F5F5;
+  border: 2px dashed #CCCCCC;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.add-item-btn:hover {
+  background: #EEEEEE;
+  border-color: #999999;
+  color: #333333;
+}
+
+.delivery-fee-row.editable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF8E7;
+  padding: 16px 18px;
+  border-radius: 10px;
+  margin-top: 16px;
+  border: 1px solid #E6D085;
+}
+
+.delivery-fee-row.editable .item-name {
+  font-weight: 600;
+  color: #8B7355;
+}
+
+.delivery-fee-edit {
+  width: 140px;
+}
+
+.delivery-fee-edit input {
+  width: 100px;
+  padding: 10px 14px;
+  text-align: right;
+}
+
+/* ========================================
+   Responsive - Orders
+======================================== */
+@media (max-width: 1200px) {
+  .order-detail-content {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+@media (max-width: 992px) {
+  .order-detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .order-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-ci-buttons {
+    flex-direction: column;
+  }
+
+  .order-item-row.editable {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .item-name-edit,
+  .item-qty-edit,
+  .item-price-edit {
+    width: 100%;
+  }
+
+  .item-qty-edit input,
+  .item-price-edit input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-info-card,
+  .order-items-card,
+  .order-status-card,
+  .order-timeline-card {
+    padding: 20px;
+  }
+
+  .tracking-input-row {
+    flex-direction: column;
+  }
+
+  .tracking-save-btn {
+    width: 100%;
+  }
+
+  .order-detail-main {
+    gap: 16px;
+  }
+
+  .order-customer-info,
+  .order-shipping-info,
+  .order-items-info {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+
+  .editable-field input,
+  .editable-field textarea {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+}

@@ -1,23 +1,47 @@
+import { useState } from 'react'
+
 function OrdersList({ orders, orderStats, t, lang, onSelectOrder, onDeleteOrder, formatDateShort }) {
+  const [activeFilter, setActiveFilter] = useState(null)
+
+  const filterStatuses = ['pending', 'paid', 'preparing', 'delivered']
+
+  const filteredOrders = activeFilter
+    ? orders.filter(o => o.status === activeFilter)
+    : orders
+
   return (
     <>
       <div className="admin-summary orders-summary">
         <div className="summary-card">
-          <span className="summary-label">{t.orders.total}</span>
-          <span className="summary-value">{orderStats.total}</span>
-        </div>
-        <div className="summary-card highlight">
-          <span className="summary-label">{t.orders.pending}</span>
+          <span className="summary-label">{t.orders.statuses.pending}</span>
           <span className="summary-value">{orderStats.pending}</span>
         </div>
-        <div className="summary-card">
-          <span className="summary-label">{t.orders.processing}</span>
-          <span className="summary-value">{orderStats.processing}</span>
+        <div className="summary-card highlight">
+          <span className="summary-label">{t.orders.statuses.paid}</span>
+          <span className="summary-value">{orderStats.paid}</span>
         </div>
         <div className="summary-card">
-          <span className="summary-label">{t.orders.shipped}</span>
-          <span className="summary-value">{orderStats.shipped}</span>
+          <span className="summary-label">{t.orders.statuses.delivered}</span>
+          <span className="summary-value">{orderStats.delivered}</span>
         </div>
+      </div>
+
+      <div className="order-filter-bar">
+        <button
+          className={`order-filter-chip ${!activeFilter ? 'active' : ''}`}
+          onClick={() => setActiveFilter(null)}
+        >
+          {t.orders.total}
+        </button>
+        {filterStatuses.map(status => (
+          <button
+            key={status}
+            className={`order-filter-chip ${activeFilter === status ? 'active' : ''}`}
+            onClick={() => setActiveFilter(activeFilter === status ? null : status)}
+          >
+            {t.orders.statuses[status]}
+          </button>
+        ))}
       </div>
 
       <div className="admin-table-wrap">
@@ -34,7 +58,7 @@ function OrdersList({ orders, orderStats, t, lang, onSelectOrder, onDeleteOrder,
             </tr>
           </thead>
           <tbody>
-            {orders.map(order => (
+            {filteredOrders.map(order => (
               <tr key={order.id} className="table-row">
                 <td>
                   <span className={`status-badge order-${order.status}`}>

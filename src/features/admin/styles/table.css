@@ -1,0 +1,210 @@
+/* ========================================
+   Table & Filters - 50대 접근성 최적화
+   import 순서: 5번째
+======================================== */
+
+/* Filters */
+.admin-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.filter-btn {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  padding: 16px 28px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+}
+
+.filter-btn:hover {
+  border-color: #999999;
+  color: #1A1A1A;
+}
+
+.filter-btn.active {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Table */
+.admin-table-wrap {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 22px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #555555;
+  background: #F5F5F5;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.admin-table td {
+  padding: 24px 24px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.table-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.table-row:hover {
+  background: #F8F9FA;
+}
+
+.table-row:last-child td {
+  border-bottom: none;
+}
+
+.table-row.new {
+  background: #FFFDFB;
+}
+
+.table-row.new:hover {
+  background: #FBF9F7;
+}
+
+/* Status Badge - 공통 */
+.status-badge {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+.status-badge.new {
+  background: #F5F0EB;
+  color: #6B5335;
+}
+
+.status-badge.reviewed {
+  background: #F0F2F4;
+  color: #5A5A5D;
+}
+
+.status-badge.responded {
+  background: #EDF5F0;
+  color: #3A6C4C;
+}
+
+.status-badge.active {
+  background: #EDF5F0;
+  color: #3A6C4C;
+}
+
+.status-badge.inactive {
+  background: #F0F2F4;
+  color: #777777;
+}
+
+.status-badge.draft {
+  background: #FFF4E5;
+  color: #8B6B0B;
+}
+
+/* Contact Badge */
+.contact-badge {
+  display: inline-block;
+  padding: 12px 18px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+.contact-badge.whatsapp {
+  background: #E8F5EC;
+  color: #156E2E;
+}
+
+.contact-badge.email {
+  background: #F0F2F4;
+  color: #555555;
+}
+
+/* Table Cell Variants */
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.product-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #F0F2F4;
+}
+
+.product-name-cell {
+  display: block;
+  font-weight: 700;
+  color: #1A1A1A;
+  font-size: 21px;
+}
+
+.product-category-cell {
+  display: block;
+  font-size: 18px;
+  color: #777777;
+  margin-top: 6px;
+}
+
+.contact-info-cell {
+  font-size: 20px;
+  color: #555555;
+}
+
+.date-cell {
+  font-size: 19px;
+  color: #666666;
+}
+
+.preview-cell {
+  font-size: 19px;
+  color: #666666;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Responsive - Table
+======================================== */
+@media (max-width: 768px) {
+  .admin-table-wrap {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 800px;
+  }
+}

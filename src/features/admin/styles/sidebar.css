@@ -1,0 +1,151 @@
+/* ========================================
+   Sidebar - 50대 접근성 대형 메뉴
+   import 순서: 2번째
+======================================== */
+.admin-sidebar {
+  width: 400px;
+  background: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.admin-logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  padding: 0 36px;
+  margin-bottom: 56px;
+}
+
+.admin-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 24px;
+  overflow-y: auto;
+}
+
+.admin-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 100px;
+  padding: 24px 28px;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  color: #CCCCCC;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  position: relative;
+}
+
+.admin-nav-item .nav-desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: #AAAAAA;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.admin-nav-item.active {
+  background: #FFFFFF;
+  color: #1A1A1A;
+}
+
+.admin-nav-item.active .nav-desc {
+  color: #555555;
+}
+
+.nav-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #E74C3C;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 16px;
+  min-width: 32px;
+  text-align: center;
+}
+
+.admin-back-btn {
+  margin: 24px;
+  padding: 20px 28px;
+  background: transparent;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  color: #CCCCCC;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-back-btn:hover {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   Responsive - Sidebar
+======================================== */
+@media (max-width: 1200px) {
+  .admin-sidebar {
+    width: 360px;
+  }
+
+  .admin-nav-item {
+    min-height: 90px;
+    padding: 20px 24px;
+    font-size: 22px;
+  }
+
+  .admin-nav-item .nav-desc {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .admin-sidebar {
+    width: 320px;
+  }
+
+  .admin-nav-item {
+    min-height: 80px;
+    padding: 18px 20px;
+    font-size: 20px;
+  }
+
+  .admin-nav-item .nav-desc {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    display: none;
+  }
+}

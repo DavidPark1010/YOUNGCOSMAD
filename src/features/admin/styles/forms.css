@@ -1,0 +1,422 @@
+/* ========================================
+   Forms - 공통 폼 스타일
+   import 순서: 6번째
+======================================== */
+.product-form,
+.settings-page {
+  animation: fadeIn 0.3s ease;
+  padding-bottom: 80px;
+}
+
+.form-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  font-size: 21px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  padding: 12px 0;
+  margin-bottom: 28px;
+  transition: color 0.2s ease;
+}
+
+.form-back-btn:hover {
+  color: #1A1A1A;
+}
+
+.form-page-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 28px;
+}
+
+/* Chatbot Integration Note */
+.form-chatbot-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #F0F7FF;
+  border: 2px solid #C0D8FF;
+  border-radius: 14px;
+  padding: 22px 28px;
+  margin-bottom: 32px;
+  font-size: 20px;
+  color: #2255AA;
+}
+
+.chatbot-icon {
+  font-size: 26px;
+}
+
+/* Form Section */
+.form-section,
+.settings-section {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 28px;
+}
+
+.form-section-header {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #EEEEEE;
+}
+
+.form-section-title,
+.settings-section-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 12px;
+}
+
+.form-section-desc {
+  font-size: 19px;
+  color: #666666;
+  margin: 0;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 21px;
+  font-weight: 600;
+  color: #444444;
+}
+
+.form-group label .required {
+  color: #D45454;
+  margin-left: 4px;
+}
+
+.form-help {
+  font-size: 18px;
+  color: #777777;
+  margin-top: 8px;
+}
+
+.form-help.error {
+  color: #D45454;
+}
+
+.form-help.warning {
+  color: #B8860B;
+}
+
+.form-group input.input-error {
+  border-color: #D45454;
+  background: #FDF4F4;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 18px 22px;
+  background: #FAFBFC;
+  border: 3px solid #CCCCCC;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+/* Radio Group (Product Form용) */
+.radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 26px;
+  background: #FAFBFC;
+  border: 2px solid #D0D0D0;
+  border-radius: 14px;
+  font-size: 20px;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-option input {
+  display: none;
+}
+
+.radio-option.active {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  color: #333333;
+  cursor: pointer;
+}
+
+.checkbox-option input[type="checkbox"] {
+  width: 26px;
+  height: 26px;
+  accent-color: #1A1A1A;
+  cursor: pointer;
+}
+
+/* Price Policy Badge */
+.price-policy-fixed {
+  padding: 18px 24px;
+  background: #FAFBFC;
+  border: 2px solid #D0D0D0;
+  border-radius: 14px;
+}
+
+.policy-badge {
+  font-size: 20px;
+  color: #555555;
+}
+
+/* Media Upload Area */
+.media-upload-area {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.media-dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 28px;
+  background: #FAFBFC;
+  border: 3px dashed #CCCCCC;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.media-dropzone:hover {
+  border-color: #999999;
+  background: #F5F5F5;
+}
+
+.dropzone-icon {
+  font-size: 36px;
+  opacity: 0.6;
+}
+
+.dropzone-text {
+  font-size: 19px;
+  color: #777777;
+}
+
+.media-url-input {
+  width: 100%;
+  max-width: 360px;
+  padding: 16px 22px;
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  border-radius: 12px;
+  font-size: 19px;
+  text-align: center;
+}
+
+.media-url-input:focus {
+  outline: none;
+  border-color: #1A1A1A;
+}
+
+.media-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #F0F2F4;
+  flex-shrink: 0;
+}
+
+.media-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.form-cancel-btn {
+  padding: 18px 36px;
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-cancel-btn:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+.form-save-btn {
+  padding: 18px 44px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-save-btn:hover {
+  background: #333;
+}
+
+.form-save-btn:disabled {
+  background: #C1C3C6;
+  cursor: not-allowed;
+}
+
+/* Settings Actions */
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.settings-save-btn {
+  padding: 20px 48px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-save-btn:hover {
+  background: #333;
+}
+
+/* Form Hint */
+.form-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9A9A9D;
+}
+
+/* ========================================
+   Responsive - Forms
+======================================== */
+@media (max-width: 1200px) {
+  .form-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-section,
+  .settings-section {
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-cancel-btn,
+  .form-save-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .media-upload-area {
+    flex-direction: column;
+  }
+
+  .media-preview {
+    width: 100%;
+    height: 200px;
+  }
+
+  .form-chatbot-note {
+    font-size: 12px;
+    padding: 12px 14px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

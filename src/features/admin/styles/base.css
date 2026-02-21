@@ -1,0 +1,112 @@
+/* ========================================
+   Base - 공통 컨테이너, 메인 레이아웃, 애니메이션
+   import 순서: 1번째 (최우선)
+======================================== */
+.admin-page {
+  display: flex;
+  height: 100vh;
+  background: #FFFFFF;
+  color: #222222;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  overflow: hidden;
+  zoom: 0.7;
+}
+
+/* Main Content */
+.admin-main {
+  flex: 1;
+  margin-left: 400px;
+  display: flex;
+  flex-direction: column;
+  background: #F8F8F8;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Content Area */
+.admin-content {
+  flex: 1;
+  padding: 48px 60px 160px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #F8F8F8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Coming Soon (공통) */
+.coming-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  font-size: 24px;
+  color: #777777;
+}
+
+/* Notification Toast */
+.notification-toast {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  padding: 24px 36px;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-radius: 14px;
+  font-size: 21px;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: toastSlideIn 0.3s ease;
+  z-index: 1000;
+}
+
+/* ========================================
+   Responsive - Base
+======================================== */
+@media (max-width: 1200px) {
+  .admin-main {
+    margin-left: 360px;
+  }
+}
+
+@media (max-width: 992px) {
+  .admin-main {
+    margin-left: 320px;
+  }
+
+  .admin-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-main {
+    margin-left: 0;
+  }
+
+  .notification-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
