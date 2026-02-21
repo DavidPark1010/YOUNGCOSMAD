@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import generatePDF from '../../../../utils/generatePdf'
 import { formatInvoiceDate } from '../../../../utils/formatDate'
 
-function ProformaInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo, onClose }) {
+function ProformaInvoiceModal({ editingInvoice, companyInfo, onClose }) {
   const invoiceRef = useRef(null)
 
   return (
@@ -22,76 +22,6 @@ function ProformaInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo, 
         </div>
 
         <div className="invoice-modal-body">
-          {/* 수정 가능한 필드들 */}
-          <div className="invoice-edit-section">
-            <h3>인보이스 정보 수정</h3>
-            <div className="invoice-edit-grid">
-              <div className="invoice-edit-field">
-                <label>Ref. No.</label>
-                <input
-                  type="text"
-                  value={editingInvoice.refNo || ''}
-                  onChange={e => setEditingInvoice({ ...editingInvoice, refNo: e.target.value })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Payment Term</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.paymentTerm || 'T/T in Advance'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, paymentTerm: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Shipment</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.shipment || 'Forwarder'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, shipment: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Validity</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.validity || '1 WEEK'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, validity: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Warranty</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.warranty || '1 YEAR'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, warranty: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Delivery Fee ($)</label>
-                <input
-                  type="number"
-                  value={editingInvoice.deliveryFee || 0}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    deliveryFee: parseFloat(e.target.value) || 0
-                  })}
-                />
-              </div>
-            </div>
-          </div>
-
           {/* 인보이스 미리보기 */}
           <div className="invoice-preview-wrapper">
             <div ref={invoiceRef} className="invoice-container">

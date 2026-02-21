@@ -1198,112 +1198,49 @@
 }
 
 /* ========================================
-   Invoice / CI Card
+   Invoice / CI Card (legacy - kept for modal compatibility)
 ======================================== */
-.invoice-ci-card {
-  background: #FFFFFF;
-  border: 2px solid #EEEAE5;
-  border-radius: 20px;
-  padding: 36px 40px;
-}
 
-.invoice-ci-card h4 {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 700;
-  color: #1A1A1A;
-  margin: 0;
-}
-
-.invoice-ci-desc {
-  font-size: 19px;
-  color: #999999;
-  margin: 0 0 28px 0;
-  line-height: 1.6;
-}
-
-.invoice-ci-buttons {
+/* Document Open Buttons */
+.doc-buttons-row {
   display: flex;
-  gap: 18px;
+  gap: 14px;
 }
 
-.invoice-btn {
+.doc-open-btn {
   flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 26px 28px;
-  background: #FFFFFF;
-  border: 2px solid #E0E0E0;
-  border-radius: 16px;
+  padding: 22px 28px;
+  border-radius: 14px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: all 0.2s ease;
-  text-align: left;
+  border: 2px solid;
+  text-align: center;
 }
 
-.invoice-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.invoice-btn.proforma {
-  background: linear-gradient(135deg, #FAF6F0 0%, #F2ECE2 100%);
-  border-color: #D8CFC4;
-}
-
-.invoice-btn.proforma:hover {
-  border-color: #B0A48E;
-}
-
-.invoice-btn.commercial {
-  background: linear-gradient(135deg, #F3F6F3 0%, #E8EDE9 100%);
-  border-color: #BCC5BD;
-}
-
-.invoice-btn.commercial:hover {
-  border-color: #8A9A8D;
-}
-
-.invoice-btn .btn-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  font-size: 19px;
-  font-weight: 800;
-  flex-shrink: 0;
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-}
-
-.invoice-btn.proforma .btn-icon {
-  background: #D8CFC4;
-  color: #5A4D3F;
-}
-
-.invoice-btn.commercial .btn-icon {
-  background: #9FA7A0;
+.doc-open-btn.pi {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
   color: #FFFFFF;
 }
 
-.invoice-btn .btn-text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.doc-open-btn.pi:hover {
+  background: #333333;
+  border-color: #333333;
 }
 
-.invoice-btn .btn-text strong {
-  font-size: 19px;
-  font-weight: 700;
+.doc-open-btn.ci {
+  background: #FFFFFF;
+  border-color: #D8CFC4;
   color: #1A1A1A;
-  letter-spacing: 0.02em;
 }
 
-.invoice-btn .btn-text small {
-  font-size: 16px;
-  color: #999999;
+.doc-open-btn.ci:hover {
+  border-color: #1A1A1A;
+  background: #FAF8F4;
 }
 
 /* ========================================
@@ -1426,7 +1363,7 @@
     grid-template-columns: 1fr;
   }
 
-  .invoice-ci-buttons {
+  .doc-buttons-row {
     flex-direction: column;
   }
 

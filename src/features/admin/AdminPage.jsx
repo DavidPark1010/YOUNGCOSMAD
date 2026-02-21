@@ -153,7 +153,6 @@ function AdminPage({ onClose }) {
       {showInvoiceModal && editingInvoice && (
         <ProformaInvoiceModal
           editingInvoice={editingInvoice}
-          setEditingInvoice={setEditingInvoice}
           companyInfo={companyInfo}
           onClose={closeInvoice}
         />
@@ -163,7 +162,6 @@ function AdminPage({ onClose }) {
       {showCIModal && editingInvoice && (
         <CommercialInvoiceModal
           editingInvoice={editingInvoice}
-          setEditingInvoice={setEditingInvoice}
           companyInfo={companyInfo}
           onClose={closeCI}
         />

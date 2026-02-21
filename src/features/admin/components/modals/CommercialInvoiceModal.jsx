@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import generatePDF from '../../../../utils/generatePdf'
 import { formatInvoiceDate } from '../../../../utils/formatDate'
 
-function CommercialInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo, onClose }) {
+function CommercialInvoiceModal({ editingInvoice, companyInfo, onClose }) {
   const ciRef = useRef(null)
 
   return (
@@ -22,100 +22,6 @@ function CommercialInvoiceModal({ editingInvoice, setEditingInvoice, companyInfo
         </div>
 
         <div className="invoice-modal-body">
-          {/* 수정 가능한 필드들 */}
-          <div className="invoice-edit-section">
-            <h3>CI 정보 수정</h3>
-            <div className="invoice-edit-grid">
-              <div className="invoice-edit-field">
-                <label>NO. & Date of Invoice</label>
-                <input
-                  type="text"
-                  value={editingInvoice.refNo || formatInvoiceDate(new Date())}
-                  onChange={e => setEditingInvoice({ ...editingInvoice, refNo: e.target.value })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Terms of Payment</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.paymentTerm || 'T/T ADVANCE'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, paymentTerm: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>INCOTERMS</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.incoterms || 'ExWork'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, incoterms: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Port of Loading</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.portOfLoading || 'KOREA'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, portOfLoading: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Final Destination</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.finalDestination || editingInvoice.customerCountry || 'USA'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, finalDestination: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Customs Code</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.customsCode || '3304-99-9000'}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, customsCode: e.target.value }
-                  })}
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Vessel</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.vessel || ''}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, vessel: e.target.value }
-                  })}
-                  placeholder="선박/항공편명"
-                />
-              </div>
-              <div className="invoice-edit-field">
-                <label>Sailing on or about</label>
-                <input
-                  type="text"
-                  value={editingInvoice.invoiceData?.sailingDate || ''}
-                  onChange={e => setEditingInvoice({
-                    ...editingInvoice,
-                    invoiceData: { ...editingInvoice.invoiceData, sailingDate: e.target.value }
-                  })}
-                  placeholder="출항일"
-                />
-              </div>
-            </div>
-          </div>
-
           {/* CI 미리보기 */}
           <div className="invoice-preview-wrapper">
             <div ref={ciRef} className="ci-container">

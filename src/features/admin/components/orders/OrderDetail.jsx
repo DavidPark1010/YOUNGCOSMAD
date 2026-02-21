@@ -220,39 +220,14 @@ function OrderDetail({
             </div>
           </div>
 
-          {/* 인보이스 / CI 생성 버튼 */}
-          <div className="invoice-ci-card">
-            <div className="order-section-header">
-              <div className="section-icon-wrap invoice">
-                <span className="section-icon-text">D</span>
-              </div>
-              <h4>서류 생성</h4>
-            </div>
-            <p className="invoice-ci-desc">
-              주문 정보를 기반으로 PROFORMA INVOICE 또는 COMMERCIAL INVOICE를 생성합니다.
-            </p>
-            <div className="invoice-ci-buttons">
-              <button
-                className="invoice-btn proforma"
-                onClick={() => onOpenInvoice(selectedOrder)}
-              >
-                <span className="btn-icon">PI</span>
-                <span className="btn-text">
-                  <strong>PROFORMA INVOICE</strong>
-                  <small>견적 인보이스 생성</small>
-                </span>
-              </button>
-              <button
-                className="invoice-btn commercial"
-                onClick={() => onOpenCI(selectedOrder)}
-              >
-                <span className="btn-icon">CI</span>
-                <span className="btn-text">
-                  <strong>COMMERCIAL INVOICE</strong>
-                  <small>상업 인보이스 (CI) 생성</small>
-                </span>
-              </button>
-            </div>
+          {/* 서류 확인 */}
+          <div className="doc-buttons-row">
+            <button className="doc-open-btn pi" onClick={() => onOpenInvoice(selectedOrder)}>
+              INVOICE 확인
+            </button>
+            <button className="doc-open-btn ci" onClick={() => onOpenCI(selectedOrder)}>
+              CI 확인
+            </button>
           </div>
         </div>
 
