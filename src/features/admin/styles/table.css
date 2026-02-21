@@ -91,8 +91,8 @@
 /* Status Badge - 공통 */
 .status-badge {
   display: inline-block;
-  padding: 12px 20px;
-  font-size: 18px;
+  padding: 14px 24px;
+  font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.02em;
   border-radius: 10px;
