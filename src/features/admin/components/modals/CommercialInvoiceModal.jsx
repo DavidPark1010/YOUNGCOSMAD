@@ -43,9 +43,11 @@ function CommercialInvoiceModal({ editingInvoice, companyInfo, onClose }) {
                   <tr>
                     <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }} rowSpan="2">
                       <strong>2. Buyer/Consignee</strong><br />
-                      {editingInvoice.customerName}<br />
+                      {editingInvoice.customerCompany && <>{editingInvoice.customerCompany}<br /></>}
+                      {editingInvoice.customerName && <>{editingInvoice.customerName}<br /></>}
                       {editingInvoice.shippingAddress}<br /><br />
-                      Tel: {editingInvoice.customerPhone || editingInvoice.customerEmail}
+                      {editingInvoice.customerPhone && <>Tel: {editingInvoice.customerPhone}<br /></>}
+                      {editingInvoice.customerEmail && <>Email: {editingInvoice.customerEmail}</>}
                     </td>
                     <td style={{ border: '1px solid #333', padding: '10px', verticalAlign: 'top' }}>
                       <strong>9. Terms of Payment</strong><br />

@@ -45,8 +45,9 @@ function ProformaInvoiceModal({ editingInvoice, companyInfo, onClose }) {
                   <tr>
                     <td>
                       <strong>To</strong><br />
+                      {editingInvoice.customerCompany && <>{editingInvoice.customerCompany}<br /></>}
+                      {editingInvoice.customerName && <>{editingInvoice.customerName}<br /></>}
                       {editingInvoice.shippingAddress}<br />
-                      {editingInvoice.customerName}<br />
                       {editingInvoice.customerCountry || ''}<br />
                       <strong>Contact</strong> {editingInvoice.customerPhone || editingInvoice.customerEmail}
                     </td>

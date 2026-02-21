@@ -12,7 +12,7 @@ export function useOrders(lang) {
       id: co.orderId,
       refNo: co.orderId.replace('ORD-', 'EY'),
       customerEmail: co.customer.email,
-      customerName: co.customer.contactPerson,
+      customerName: co.customer.contactPerson || co.customer.name,
       customerCompany: co.customer.companyName,
       customerPhone: co.customer.phone,
       customerAddress: co.customer.address + ', ' + co.customer.city + ' ' + (co.customer.postalCode || ''),
