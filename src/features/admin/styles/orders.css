@@ -77,21 +77,18 @@
   color: #1A1A1A;
 }
 
-.customer-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
 .customer-name {
+  display: block;
   font-size: 21px;
   font-weight: 600;
   color: #1A1A1A;
 }
 
 .customer-company {
+  display: block;
   font-size: 19px;
   color: #777777;
+  margin-top: 6px;
 }
 
 .total-cell {
@@ -447,6 +444,11 @@
   border-bottom: none;
 }
 
+/* 홀수 개일 때: 마지막 행 위 even 아이템의 border-bottom 복원 */
+.customer-info-grid .info-display-field:nth-last-child(2):nth-child(even):not(.full-width) {
+  border-bottom: 1.5px solid #F5F2ED;
+}
+
 .customer-info-grid .info-display-field:nth-child(odd) {
   padding-right: 28px;
   border-right: 1.5px solid #F5F2ED;
@@ -454,6 +456,11 @@
 
 .customer-info-grid .info-display-field:nth-child(even) {
   padding-left: 28px;
+}
+
+/* 홀수 개일 때: 마지막 아이템이 혼자 있으면 border-right 제거 */
+.customer-info-grid .info-display-field:nth-child(odd):last-child:not(.full-width) {
+  border-right: none;
 }
 
 .info-display-field.full-width {
