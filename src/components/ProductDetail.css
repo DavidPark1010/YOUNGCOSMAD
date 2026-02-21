@@ -174,8 +174,8 @@
   margin-top: 16px;
 }
 
-/* Ask Button - B2B Optimized */
-.ask-product-btn {
+/* Order Button - Primary CTA */
+.order-product-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -191,14 +191,47 @@
   transition: all 0.2s ease;
 }
 
-.ask-btn-arrow {
+.order-btn-arrow {
   transition: transform 0.2s ease;
   font-size: 15px;
   opacity: 0.8;
 }
 
-.ask-product-btn:hover {
+.order-product-btn:hover {
   background: #1a1a1b;
+}
+
+.order-product-btn:hover .order-btn-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Ask Button - Secondary CTA */
+.ask-product-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--deep-charcoal);
+  border: 1px solid #E0E0E0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ask-btn-arrow {
+  transition: transform 0.2s ease;
+  font-size: 15px;
+  opacity: 0.6;
+}
+
+.ask-product-btn:hover {
+  background: #F5F5F5;
+  border-color: #D0D0D0;
 }
 
 .ask-product-btn:hover .ask-btn-arrow {
@@ -277,6 +310,7 @@
     width: 100%;
   }
 
+  .order-product-btn,
   .ask-product-btn {
     width: 100%;
     justify-content: center;

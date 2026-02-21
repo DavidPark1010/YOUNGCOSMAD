@@ -6,6 +6,8 @@ import BuyerDashboard from './components/BuyerDashboard'
 import ChatRoom from './components/ChatRoom'
 import OrderLookup from './components/OrderLookup'
 import ProductDetail from './components/ProductDetail'
+import CustomerOrderFlow from './components/CustomerOrderFlow'
+import OrderStatusPage from './components/OrderStatusPage'
 
 // 다국어 콘텐츠 - 각 언어를 원문처럼 설계
 const content = {
@@ -182,6 +184,10 @@ function App() {
   const [selectedProductId, setSelectedProductId] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [user, setUser] = useState(null)
+  const [isOrderFlowOpen, setIsOrderFlowOpen] = useState(false)
+  const [orderFlowProduct, setOrderFlowProduct] = useState(null)
+  const [isOrderStatusOpen, setIsOrderStatusOpen] = useState(false)
+  const [currentOrderId, setCurrentOrderId] = useState(null)
   const t = content[lang]
 
   // Load user from localStorage on mount
@@ -376,6 +382,42 @@ function App() {
     return <ChatRoom lang={lang} onClose={closeChat} initialProduct={chatInitialProduct} onNavigateToProducts={() => { closeChat(); navigateToProducts(); }} />
   }
 
+  // 주문 플로우 핸들러
+  const openOrderFlow = (product) => {
+    setOrderFlowProduct(product)
+    setIsOrderFlowOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeOrderFlow = () => {
+    setIsOrderFlowOpen(false)
+    setOrderFlowProduct(null)
+    document.body.style.overflow = ''
+  }
+
+  const handleOrderComplete = (orderData) => {
+    // 주문 완료 후 주문 상태 페이지로 이동
+    closeOrderFlow()
+    setCurrentOrderId(orderData.orderId)
+    setIsOrderStatusOpen(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeOrderStatus = () => {
+    setIsOrderStatusOpen(false)
+    setCurrentOrderId(null)
+    document.body.style.overflow = ''
+  }
+
+  // 제품 상세에서 주문하기 클릭 시
+  const handleProductOrder = (productId, productInfo) => {
+    // 상세 페이지 닫기
+    setSelectedProductId(null)
+    document.body.style.overflow = ''
+    // 주문 플로우 열기
+    openOrderFlow({ id: productId, ...productInfo })
+  }
+
   // 제품 상세에서 문의하기 클릭 시
   const handleProductInquiry = (productId, productInfo) => {
     // 상세 페이지 닫기
@@ -383,6 +425,29 @@ function App() {
     document.body.style.overflow = ''
     // 채팅창 열기 (제품 정보와 함께)
     openChat({ id: productId, ...productInfo })
+  }
+
+  // OrderFlow가 열려있으면 OrderFlow만 렌더링
+  if (isOrderFlowOpen && orderFlowProduct) {
+    return (
+      <CustomerOrderFlow
+        product={orderFlowProduct}
+        lang={lang}
+        onClose={closeOrderFlow}
+        onOrderComplete={handleOrderComplete}
+      />
+    )
+  }
+
+  // OrderStatus가 열려있으면 OrderStatus만 렌더링
+  if (isOrderStatusOpen && currentOrderId) {
+    return (
+      <OrderStatusPage
+        orderId={currentOrderId}
+        lang={lang}
+        onClose={closeOrderStatus}
+      />
+    )
   }
 
   // ProductDetail이 열려있으면 ProductDetail만 렌더링
@@ -394,6 +459,7 @@ function App() {
         onClose={closeProductDetail}
         onNavigateToProducts={closeProductDetail}
         onInquiry={handleProductInquiry}
+        onOrder={handleProductOrder}
       />
     )
   }
