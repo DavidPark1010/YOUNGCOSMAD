@@ -46,16 +46,22 @@ export const ko = {
       { key: 'botox', label: '보툴리눔 톡신' }
     ],
     items: [
+      // 필러 제품 (최상단)
+      { id: 101, name: 'REVOLAX SUB-Q', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax sub-q.png' },
+      { id: 102, name: 'REVOLAX FINE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax fine.png' },
+      { id: 103, name: 'REVOLAX DEEP', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax deep.png' },
+      { id: 104, name: 'ELASTY G PLUS', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty g.png' },
+      { id: 105, name: 'ELASTY F', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty f2..png' },
+      { id: 106, name: 'ELASTY D', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty d.png' },
+      { id: 107, name: 'REGENOVUE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/regenovue.png' },
+      { id: 108, name: 'REJEUNESSE', category: '더말 필러', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/rejeunesse.png' },
+      // 스킨케어 & 메이크업
       { id: 1, name: '하이드라 글로우 세럼', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'EU, US, ASIA', image: '/product1.png' },
       { id: 2, name: '벨벳 매트 립틴트', category: '메이크업', categoryKey: 'makeup', moq: '300개', region: 'Global', image: '/product2.png' },
       { id: 3, name: '시카 리페어 크림', category: '스킨케어', categoryKey: 'skincare', moq: '400개', region: 'EU, ASIA', image: '/product3.png' },
       { id: 4, name: '더블 클렌징 오일', category: '스킨케어', categoryKey: 'skincare', moq: '600개', region: 'Global', image: '/product4.png' },
       { id: 5, name: '펩타이드 아이 컨투어', category: '스킨케어', categoryKey: 'skincare', moq: '350개', region: 'US, EU', image: '/product5.png' },
       { id: 6, name: '톤업 선쉴드', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'Global', image: '/product6.png' },
-      { id: 7, name: '히알루론 필러 1ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product7.png', medical: true },
-      { id: 8, name: '딥 볼륨 필러 2ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product8.png', medical: true },
-      { id: 9, name: '보툴리눔 타입A 100U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product9.png', medical: true },
-      { id: 10, name: '프리미엄 보톡스 200U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product10.png', medical: true },
     ]
   },
   cta: {

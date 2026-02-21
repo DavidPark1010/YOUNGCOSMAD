@@ -620,7 +620,7 @@ body {
 ======================================== */
 .products-section {
   padding: var(--section-padding) 0;
-  background: #F5F0E8;
+  background: var(--white);
 }
 
 .products-section-hero {
@@ -807,6 +807,12 @@ body {
 
 .product-card:hover .product-img {
   transform: scale(1.04);
+}
+
+/* Filler product images - cover to fill card area */
+.product-img-contain {
+  object-fit: cover;
+  object-position: center;
 }
 
 .product-info {

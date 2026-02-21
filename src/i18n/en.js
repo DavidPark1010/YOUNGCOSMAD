@@ -46,16 +46,22 @@ export const en = {
       { key: 'botox', label: 'Botulinum Toxin' }
     ],
     items: [
+      // Filler Products (Top Priority)
+      { id: 101, name: 'REVOLAX SUB-Q', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax sub-q.png' },
+      { id: 102, name: 'REVOLAX FINE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax fine.png' },
+      { id: 103, name: 'REVOLAX DEEP', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/revolax deep.png' },
+      { id: 104, name: 'ELASTY G PLUS', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty g.png' },
+      { id: 105, name: 'ELASTY F', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty f2..png' },
+      { id: 106, name: 'ELASTY D', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/elasty d.png' },
+      { id: 107, name: 'REGENOVUE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/regenovue.png' },
+      { id: 108, name: 'REJEUNESSE', category: 'Dermal Fillers', categoryKey: 'filler', moq: '10 boxes', region: 'Global', image: '/rejeunesse.png' },
+      // Skincare & Makeup
       { id: 1, name: 'Hydra Glow Serum', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'EU, US, ASIA', image: '/product1.png' },
       { id: 2, name: 'Velvet Matte Lip Tint', category: 'Makeup', categoryKey: 'makeup', moq: '300 units', region: 'Global', image: '/product2.png' },
       { id: 3, name: 'Cica Repair Cream', category: 'Skincare', categoryKey: 'skincare', moq: '400 units', region: 'EU, ASIA', image: '/product3.png' },
       { id: 4, name: 'Double Cleansing Oil', category: 'Skincare', categoryKey: 'skincare', moq: '600 units', region: 'Global', image: '/product4.png' },
       { id: 5, name: 'Peptide Eye Contour', category: 'Skincare', categoryKey: 'skincare', moq: '350 units', region: 'US, EU', image: '/product5.png' },
       { id: 6, name: 'Tone-Up Sun Shield', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'Global', image: '/product6.png' },
-      { id: 7, name: 'Hyaluronic Filler 1ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product7.png', medical: true },
-      { id: 8, name: 'Deep Volume Filler 2ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product8.png', medical: true },
-      { id: 9, name: 'Botulinum Type A 100U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product9.png', medical: true },
-      { id: 10, name: 'Premium Botox 200U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product10.png', medical: true },
     ]
   },
   cta: {

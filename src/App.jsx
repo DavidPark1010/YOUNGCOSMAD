@@ -425,7 +425,12 @@ function App() {
                 onClick={() => openProductDetail(product.id)}
               >
                 <div className="product-image">
-                  <img src={product.image} alt={product.name} className="product-img" />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className={`product-img ${product.id >= 101 ? 'product-img-contain' : ''}`}
+                    onError={(e) => console.error(`Image load failed: ${product.image}`)}
+                  />
                   {product.medical && (
                     <span className="overlay-licensed">{t.products.licensedBadge}</span>
                   )}
