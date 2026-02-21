@@ -620,7 +620,7 @@ body {
 ======================================== */
 .products-section {
   padding: var(--section-padding) 0;
-  background: var(--white);
+  background: #F5F0E8;
 }
 
 .products-section-hero {
