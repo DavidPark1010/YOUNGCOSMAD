@@ -183,10 +183,10 @@
   color: var(--white);
   border: none;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  padding: 16px 32px;
+  padding: 20px 40px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -210,15 +210,15 @@
 .ask-product-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: transparent;
   color: var(--deep-charcoal);
   border: 1px solid #E0E0E0;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.02em;
-  padding: 16px 32px;
+  padding: 12px 24px;
   cursor: pointer;
   transition: all 0.2s ease;
 }

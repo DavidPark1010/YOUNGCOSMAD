@@ -254,23 +254,35 @@ const OrderStatusPage = ({ orderId, lang, onClose }) => {
 
                 <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Invoice No:</span>
-                    <span>{order.orderId}</span>
+                    <span className="info-label">From:</span>
+                    <span>69, Seongsui-ro, Seongdong-gu, Republic of Korea</span>
                   </div>
                   <div className="info-row">
-                    <span className="info-label">Date:</span>
-                    <span>{formatDate(order.date)}</span>
+                    <span className="info-label"></span>
+                    <span>eun young Kwak</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="info-label"></span>
+                    <span>South Korea</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="info-label">Contact:</span>
+                    <span>+8210 63010851</span>
                   </div>
                 </div>
 
                 <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Seller:</span>
+                    <span className="info-label">Date:</span>
+                    <span>{formatDate(order.date)}</span>
                   </div>
-                  <div style={{ marginLeft: '20px' }}>
-                    <div>Young Cosmed Co., Ltd.</div>
-                    <div>Seoul, South Korea</div>
-                    <div>wholesale@youngcosmed.com</div>
+                  <div className="info-row">
+                    <span className="info-label">Ref No:</span>
+                    <span>{order.orderId}</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="info-label"></span>
+                    <span>{order.country}</span>
                   </div>
                 </div>
 
@@ -320,15 +332,26 @@ const OrderStatusPage = ({ orderId, lang, onClose }) => {
                 </table>
 
                 <div className="section" style={{ marginTop: '30px' }}>
-                  <div><strong>Payment Terms:</strong> 30 days from invoice date</div>
-                  <div><strong>Incoterms:</strong> FOB Seoul, South Korea</div>
-                  <div><strong>Estimated Delivery:</strong> 7-14 business days</div>
+                  <div><strong>Payment Term:</strong> T/T in Advance</div>
+                  <div><strong>Estimated Delivery:</strong> After receipt of payment</div>
+                  <div><strong>Shipment:</strong> Forwarder</div>
+                  <div><strong>Validity:</strong> 1 WEEK</div>
+                  <div><strong>Warranty:</strong> 1 YEAR</div>
+                </div>
+
+                <div className="section" style={{ marginTop: '20px', borderTop: '1px solid #ddd', paddingTop: '15px' }}>
+                  <div><strong>Bank Name:</strong> KOOKMIN BANK</div>
+                  <div><strong>Bank Address:</strong> 26, Gukjegeumyung-ro 8-gil, Yeongdeungpo-gu, Seoul, Korea</div>
+                  <div><strong>A/C Name:</strong> Kwak Eunyoung</div>
+                  <div><strong>A/C No.:</strong> 093868-11-025748(영 코스메드)</div>
+                  <div><strong>Swift code:</strong> CZNBKRSEXXX</div>
                 </div>
 
                 <div className="signature-area">
-                  <div>_________________________</div>
-                  <div>Authorized Signature</div>
-                  <div>Young Cosmed Co., Ltd.</div>
+                  <div style={{ marginTop: '40px' }}>Accepted By</div>
+                  <div style={{ marginTop: '10px' }}>_________________________</div>
+                  <div><strong>Name:</strong> Kwak Eunyoung</div>
+                  <div><strong>Title:</strong> CEO</div>
                 </div>
               </div>
             </div>
@@ -348,62 +371,85 @@ const OrderStatusPage = ({ orderId, lang, onClose }) => {
 
                 <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Invoice No:</span>
+                    <span className="info-label">1. Shipper/Exporter:</span>
+                  </div>
+                  <div style={{ marginLeft: '20px' }}>
+                    <div>eun young Kwak</div>
+                    <div>69, Seongsui-ro, Seongdong-gu, Republic of Korea</div>
+                  </div>
+                </div>
+
+                <div className="section">
+                  <div className="info-row">
+                    <span className="info-label">2. Buyer/Consignee:</span>
+                  </div>
+                  <div style={{ marginLeft: '20px' }}>
+                    <div><strong>{order.customer.contactPerson}</strong></div>
+                    <div>{order.customer.companyName}</div>
+                    <div>{order.customer.address}, {order.customer.city} {order.customer.postalCode}</div>
+                    <div>{order.country}</div>
+                    <div>Tel: {order.customer.phone}</div>
+                  </div>
+                </div>
+
+                <div className="section">
+                  <div className="info-row">
+                    <span className="info-label">3. Notify Party:</span>
+                  </div>
+                  <div style={{ marginLeft: '20px' }}>
+                    <div>SAME AS ABOVE</div>
+                  </div>
+                </div>
+
+                <div className="section">
+                  <div className="info-row">
+                    <span className="info-label">8. NO. & Date of Invoice:</span>
                     <span>{order.orderId}</span>
                   </div>
                   <div className="info-row">
-                    <span className="info-label">Date:</span>
+                    <span className="info-label"></span>
                     <span>{formatDate(order.date)}</span>
                   </div>
-                </div>
-
-                <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Exporter:</span>
+                    <span className="info-label">9. Terms of Payment:</span>
                   </div>
                   <div style={{ marginLeft: '20px' }}>
-                    <div><strong>Young Cosmed Co., Ltd.</strong></div>
-                    <div>Seoul, South Korea</div>
-                    <div>Tel: +82-2-XXXX-XXXX</div>
-                    <div>Email: wholesale@youngcosmed.com</div>
+                    <div>T/T ADVANCE</div>
+                    <div>INCOTERMS: EXWork</div>
+                  </div>
+                  <div className="info-row">
+                    <span className="info-label">10. Remark:</span>
                   </div>
                 </div>
 
                 <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Consignee:</span>
+                    <span className="info-label">11. Other Reference:</span>
                   </div>
                   <div style={{ marginLeft: '20px' }}>
-                    <div><strong>{order.customer.companyName}</strong></div>
-                    <div>{order.customer.contactPerson}</div>
-                    <div>{order.customer.address}</div>
-                    <div>{order.customer.city} {order.customer.postalCode}</div>
-                    <div>{order.country}</div>
-                    <div>Tel: {order.customer.phone}</div>
-                    <div>Email: {order.customer.email}</div>
+                    <div>Customs Code: 3304-99-9000</div>
                   </div>
                 </div>
 
                 <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Country of Origin:</span>
-                    <span>South Korea</span>
+                    <span className="info-label">4. Port of Loading:</span>
+                    <span>KOREA</span>
                   </div>
                   <div className="info-row">
-                    <span className="info-label">Port of Loading:</span>
-                    <span>Incheon, South Korea</span>
-                  </div>
-                  <div className="info-row">
-                    <span className="info-label">Final Destination:</span>
+                    <span className="info-label">5. Final Destination:</span>
                     <span>{order.country}</span>
                   </div>
+                </div>
+
+                <div className="section">
                   <div className="info-row">
-                    <span className="info-label">Terms of Delivery:</span>
-                    <span>FOB Incheon</span>
+                    <span className="info-label">6. Vessel:</span>
+                    <span></span>
                   </div>
                   <div className="info-row">
-                    <span className="info-label">Terms of Payment:</span>
-                    <span>T/T 30 days</span>
+                    <span className="info-label">7. Sailing on or about:</span>
+                    <span></span>
                   </div>
                 </div>
 

@@ -267,7 +267,7 @@ const uiText = {
   en: {
     orderButton: 'Place Order',
     orderHint: 'Get instant pricing and submit your order directly.',
-    askButton: 'Discuss Wholesale Terms',
+    askButton: 'INQUIRY',
     askHint: 'Ask about pricing, MOQ, certifications and global shipping.',
     licenseNote: 'License required for purchase.',
     back: 'Back'
@@ -275,7 +275,7 @@ const uiText = {
   ko: {
     orderButton: '주문하기',
     orderHint: '실시간 가격을 확인하고 바로 주문하세요.',
-    askButton: '도매 조건 상담',
+    askButton: 'INQUIRY',
     askHint: '가격, MOQ, 인증, 글로벌 배송에 대해 문의하세요.',
     licenseNote: '구매 시 라이선스 필요.',
     back: '돌아가기'
