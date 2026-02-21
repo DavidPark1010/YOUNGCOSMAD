@@ -129,6 +129,110 @@ const productDetails = {
       moq: '50 units',
       medical: true,
       licenseRequired: true
+    },
+    101: {
+      name: 'REVOLAX SUB-Q',
+      category: 'Dermal Fillers',
+      tagline: 'High-viscosity HA filler for deep facial contouring and volume augmentation.',
+      sellingPoints: [
+        'Dense cross-linked hyaluronic acid',
+        'Ideal for chin, cheeks, and nose augmentation',
+        'Contains lidocaine for patient comfort'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax sub-q.png'
+    },
+    102: {
+      name: 'REVOLAX FINE',
+      category: 'Dermal Fillers',
+      tagline: 'Lightweight HA filler for superficial wrinkles and fine lines.',
+      sellingPoints: [
+        'Low-viscosity for delicate areas',
+        'Smooth injection with fine needle',
+        'Natural-looking results'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax fine.png'
+    },
+    103: {
+      name: 'REVOLAX DEEP',
+      category: 'Dermal Fillers',
+      tagline: 'Medium-viscosity HA filler for deep wrinkles and lip augmentation.',
+      sellingPoints: [
+        'Balanced viscosity for versatile use',
+        'Long-lasting volume effect',
+        'Contains lidocaine for comfort'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax deep.png'
+    },
+    104: {
+      name: 'ELASTY G PLUS',
+      category: 'Dermal Fillers',
+      tagline: 'Premium HA filler with advanced cross-linking for natural volume restoration.',
+      sellingPoints: [
+        'EL cross-linking technology',
+        'Superior elasticity and cohesion',
+        'Long duration of effect'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty g.png'
+    },
+    105: {
+      name: 'ELASTY F',
+      category: 'Dermal Fillers',
+      tagline: 'Fine HA filler for superficial dermis and delicate facial areas.',
+      sellingPoints: [
+        'Ultra-fine texture for precision',
+        'Ideal for periorbital and lip lines',
+        'Smooth and even distribution'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty f2..png'
+    },
+    106: {
+      name: 'ELASTY D',
+      category: 'Dermal Fillers',
+      tagline: 'Deep-layer HA filler for facial contouring and volume enhancement.',
+      sellingPoints: [
+        'High cohesion for structural support',
+        'Excellent lifting capacity',
+        'Minimal swelling post-injection'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty d.png'
+    },
+    107: {
+      name: 'REGENOVUE',
+      category: 'Dermal Fillers',
+      tagline: 'Next-generation HA filler with optimized cross-linking for natural results.',
+      sellingPoints: [
+        'Patented S-cross linking technology',
+        'Reduced inflammatory response',
+        'Versatile application range'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/regenovue.png'
+    },
+    108: {
+      name: 'REJEUNESSE',
+      category: 'Dermal Fillers',
+      tagline: 'Monophasic HA filler for smooth, natural-looking aesthetic enhancement.',
+      sellingPoints: [
+        'Monophasic formulation for even results',
+        'High purity hyaluronic acid',
+        'Proven clinical safety profile'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/rejeunesse.png'
     }
   },
   ko: {
@@ -259,6 +363,110 @@ const productDetails = {
       moq: '50개',
       medical: true,
       licenseRequired: true
+    },
+    101: {
+      name: 'REVOLAX SUB-Q',
+      category: '더말 필러',
+      tagline: '깊은 얼굴 윤곽 및 볼륨 증강을 위한 고점도 HA 필러.',
+      sellingPoints: [
+        '고밀도 가교 히알루론산',
+        '턱, 볼, 코 성형에 이상적',
+        '리도카인 함유로 편안한 시술'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax sub-q.png'
+    },
+    102: {
+      name: 'REVOLAX FINE',
+      category: '더말 필러',
+      tagline: '표면 주름 및 잔주름을 위한 경량 HA 필러.',
+      sellingPoints: [
+        '섬세한 부위를 위한 저점도',
+        '가는 니들로 부드러운 주입',
+        '자연스러운 결과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax fine.png'
+    },
+    103: {
+      name: 'REVOLAX DEEP',
+      category: '더말 필러',
+      tagline: '깊은 주름 및 입술 증강을 위한 중점도 HA 필러.',
+      sellingPoints: [
+        '다양한 용도에 적합한 점도',
+        '오래 지속되는 볼륨 효과',
+        '리도카인 함유로 편안한 시술'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/revolax deep.png'
+    },
+    104: {
+      name: 'ELASTY G PLUS',
+      category: '더말 필러',
+      tagline: '자연스러운 볼륨 복원을 위한 고급 가교 HA 필러.',
+      sellingPoints: [
+        'EL 가교 기술 적용',
+        '우수한 탄성과 응집력',
+        '오래 지속되는 효과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty g.png'
+    },
+    105: {
+      name: 'ELASTY F',
+      category: '더말 필러',
+      tagline: '표면 진피 및 섬세한 얼굴 부위를 위한 파인 HA 필러.',
+      sellingPoints: [
+        '정밀 시술을 위한 초미세 텍스처',
+        '눈가 및 입술 주름에 이상적',
+        '균일하고 부드러운 분포'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty f2..png'
+    },
+    106: {
+      name: 'ELASTY D',
+      category: '더말 필러',
+      tagline: '얼굴 윤곽 및 볼륨 강화를 위한 딥레이어 HA 필러.',
+      sellingPoints: [
+        '구조적 지지를 위한 높은 응집력',
+        '우수한 리프팅 효과',
+        '시술 후 최소한의 부종'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/elasty d.png'
+    },
+    107: {
+      name: 'REGENOVUE',
+      category: '더말 필러',
+      tagline: '자연스러운 결과를 위한 최적화된 가교 기술의 차세대 HA 필러.',
+      sellingPoints: [
+        '특허 S-가교 기술',
+        '염증 반응 최소화',
+        '다양한 적용 범위'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/regenovue.png'
+    },
+    108: {
+      name: 'REJEUNESSE',
+      category: '더말 필러',
+      tagline: '부드럽고 자연스러운 미용 개선을 위한 모노페이직 HA 필러.',
+      sellingPoints: [
+        '균일한 결과를 위한 모노페이직 제형',
+        '고순도 히알루론산',
+        '검증된 임상 안전성'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '10 boxes',
+      image: '/rejeunesse.png'
     }
   }
 }
@@ -283,10 +491,23 @@ const uiText = {
 }
 
 function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInquiry, onOrder }) {
-  const product = productDetails[lang][productId]
-  const productEn = productDetails['en'][productId] // For initial message (always English)
+  const product = productDetails[lang]?.[productId]
+  const productEn = productDetails['en']?.[productId]
   const text = uiText[lang]
-  const imageUrl = `/product${productId}.png`
+  const imageUrl = product?.image || `/product${productId}.png`
+
+  if (!product) {
+    return (
+      <div className="product-detail-overlay">
+        <div className="product-detail-container">
+          <button className="back-button" onClick={onClose}>
+            <span className="back-arrow">←</span> {text.back}
+          </button>
+          <p style={{ padding: '40px', textAlign: 'center' }}>Product not found.</p>
+        </div>
+      </div>
+    )
+  }
 
   const handleInquiry = () => {
     if (onInquiry) {
