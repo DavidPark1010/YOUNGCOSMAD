@@ -800,7 +800,7 @@ const uiText = {
 
 function AdminPage({ onClose }) {
   const [lang] = useState('ko') // 한국인 관리자 전용 - 한글 고정
-  const [activeMenu, setActiveMenu] = useState('dashboard')
+  const [activeMenu, setActiveMenu] = useState('orders')
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [selectedOrder, setSelectedOrder] = useState(null)
   const [filter, setFilter] = useState('all')
@@ -1152,6 +1152,15 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
     setTimeout(() => setNotificationSent(false), 3000)
   }
 
+  const deleteOrder = (orderId) => {
+    if (window.confirm(lang === 'ko' ? '정말 이 주문을 삭제하시겠습니까?' : 'Are you sure you want to delete this order?')) {
+      setOrders(prev => prev.filter(order => order.id !== orderId))
+      if (selectedOrder?.id === orderId) {
+        setSelectedOrder(null)
+      }
+    }
+  }
+
   const orderStats = {
     total: orders.length,
     pending: orders.filter(o => o.status === 'pending').length,
@@ -1257,26 +1266,10 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
         <div className="admin-logo">관리자</div>
         <nav className="admin-nav">
           <button
-            className={`admin-nav-item ${activeMenu === 'dashboard' ? 'active' : ''}`}
-            onClick={() => { setActiveMenu('dashboard'); setSelectedInquiry(null); }}
-          >
-            <span>홈</span>
-            <span className="nav-desc">전체 현황을 한눈에 봅니다</span>
-          </button>
-          <button
-            className={`admin-nav-item ${activeMenu === 'inquiries' ? 'active' : ''}`}
-            onClick={() => { setActiveMenu('inquiries'); setSelectedInquiry(null); }}
-          >
-            <span>가격 문의 확인</span>
-            <span className="nav-desc">바이어 문의 내역을 확인합니다</span>
-            {stats.new > 0 && <span className="nav-badge">{stats.new}</span>}
-          </button>
-          <button
             className={`admin-nav-item ${activeMenu === 'orders' ? 'active' : ''}`}
             onClick={() => { setActiveMenu('orders'); setSelectedOrder(null); }}
           >
             <span>주문 확인</span>
-            <span className="nav-desc">주문 상태를 확인하고 변경합니다</span>
             {orderStats.pending > 0 && <span className="nav-badge">{orderStats.pending}</span>}
           </button>
           <button
@@ -1284,14 +1277,12 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
             onClick={() => { setActiveMenu('products'); setShowProductForm(false); }}
           >
             <span>제품 등록/수정</span>
-            <span className="nav-desc">제품을 새로 등록하거나 수정합니다</span>
           </button>
           <button
             className={`admin-nav-item ${activeMenu === 'settings' ? 'active' : ''}`}
             onClick={() => setActiveMenu('settings')}
           >
             <span>공통 응답 설정</span>
-            <span className="nav-desc">바이어에게 답변하는 방식을 설정합니다</span>
           </button>
         </nav>
         <button className="admin-back-btn" onClick={onClose}>
@@ -1304,8 +1295,6 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
         {/* Top Bar - 현재 위치 명확히 표시 */}
         <header className="admin-header">
           <h1 className="admin-page-title">
-            {activeMenu === 'dashboard' && '홈'}
-            {activeMenu === 'inquiries' && '가격 문의 확인'}
             {activeMenu === 'orders' && '주문 확인'}
             {activeMenu === 'products' && '제품 등록/수정'}
             {activeMenu === 'settings' && '공통 응답 설정'}
@@ -1452,82 +1441,6 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
             </>
           )}
 
-          {/* Inquiry Detail */}
-          {activeMenu === 'inquiries' && selectedInquiry && (
-            <div className="inquiry-detail">
-              <button className="detail-back-btn" onClick={() => setSelectedInquiry(null)}>
-                ← {t.detail.back}
-              </button>
-              <div className="detail-content">
-                <div className="detail-product">
-                  <img src={selectedInquiry.productImage} alt={selectedInquiry.productName} className="detail-product-image" />
-                  <h3 className="detail-product-name">{selectedInquiry.productName}</h3>
-                  <span className="detail-product-category">{selectedInquiry.productCategory}</span>
-                  <div className="detail-status-section">
-                    <span className="detail-label">{t.detail.markAs}</span>
-                    <div className="status-buttons">
-                      {['new', 'reviewed', 'responded'].map(status => (
-                        <button
-                          key={status}
-                          className={`status-btn ${selectedInquiry.status === status ? 'active' : ''}`}
-                          onClick={() => updateInquiryStatus(selectedInquiry.id, status)}
-                        >
-                          {t.status[status]}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 주문으로 전환 버튼 */}
-                  <div className="convert-to-order-section">
-                    <button
-                      className="convert-to-order-btn"
-                      onClick={() => convertInquiryToOrder(selectedInquiry)}
-                    >
-                      📦 주문 확인으로 전환
-                    </button>
-                    <p className="convert-hint">
-                      이 문의를 주문으로 전환하여 인보이스/CI 생성 및 진행 관리가 가능합니다.
-                    </p>
-                  </div>
-                  <div className="detail-contact-section">
-                    <span className="detail-label">{t.detail.contactInfo}</span>
-                    <div className="contact-box">
-                      <span className={`contact-method ${selectedInquiry.contactMethod}`}>
-                        {selectedInquiry.contactMethod === 'whatsapp' ? 'WhatsApp' : 'Email'}
-                      </span>
-                      <span className="contact-value">{selectedInquiry.contactValue}</span>
-                      <button className="copy-btn" onClick={() => handleCopy(selectedInquiry.contactValue)}>
-                        {copied ? t.detail.copied : t.detail.copy}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="detail-conversation">
-                  <h3 className="conversation-title">{t.detail.conversation}</h3>
-                  <div className="conversation-timeline">
-                    {selectedInquiry.conversation.map((msg, idx) => {
-                      const isPriceMsg = msg.content.toLowerCase().includes('price') ||
-                                        msg.content.toLowerCase().includes('cost') ||
-                                        msg.content.includes('가격') ||
-                                        msg.content.includes('얼마')
-                      return (
-                        <div key={idx} className={`timeline-item ${msg.type} ${isPriceMsg && msg.type === 'user' ? 'price-highlight' : ''}`}>
-                          <span className="timeline-time">{msg.time}</span>
-                          <div className="timeline-content">
-                            {isPriceMsg && msg.type === 'user' && (
-                              <span className="price-tag">{t.detail.priceInquiry}</span>
-                            )}
-                            <p>{msg.content}</p>
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* ========== ORDERS ========== */}
           {activeMenu === 'orders' && !selectedOrder && (
@@ -1577,21 +1490,33 @@ MOQ 및 거래 조건 확인 후 가격을 안내합니다.
                         </td>
                         <td className="customer-cell">
                           <span className="customer-name">{order.customerName}</span>
-                          <span className="customer-company">{order.customerCompany}</span>
+                          <span className="customer-company">{order.customerPhone || order.customerEmail}</span>
                         </td>
                         <td>{order.items.length}{lang === 'ko' ? t.orders.itemsCount : ` ${t.orders.itemsCount}`}</td>
                         <td className="total-cell">${order.total.toLocaleString()}</td>
                         <td className="date-cell">{formatDateShort(order.createdAt)}</td>
                         <td>
-                          <button
-                            className="action-btn view"
-                            onClick={() => {
-                              setSelectedOrder(order)
-                              setTrackingInput(order.trackingNumber || '')
-                            }}
-                          >
-                            {t.orders.viewDetails}
-                          </button>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'space-between' }}>
+                            <button
+                              className="action-btn view"
+                              onClick={() => {
+                                setSelectedOrder(order)
+                                setTrackingInput(order.trackingNumber || '')
+                              }}
+                            >
+                              {t.orders.viewDetails}
+                            </button>
+                            <button
+                              className="order-delete-btn"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                deleteOrder(order.id)
+                              }}
+                              title="삭제"
+                            >
+                              ✕
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
