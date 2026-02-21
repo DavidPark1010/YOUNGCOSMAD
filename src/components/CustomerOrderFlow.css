@@ -190,9 +190,9 @@
 .form-group label {
   display: block;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #0F0F10;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   letter-spacing: -0.01em;
 }
 
@@ -207,8 +207,28 @@
   font-family: 'Pretendard', 'Inter', sans-serif;
   color: #0F0F10;
   background: white;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
   box-sizing: border-box;
+}
+
+.form-group select {
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: white;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230F0F10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  padding-right: 50px;
+}
+
+.form-group select:hover {
+  border-color: #0F0F10;
+  background-color: #FAFAFA;
 }
 
 .form-group input:focus,
@@ -216,6 +236,7 @@
 .form-group textarea:focus {
   outline: none;
   border-color: #0F0F10;
+  box-shadow: 0 0 0 3px rgba(15, 15, 16, 0.1);
 }
 
 .form-group textarea {
