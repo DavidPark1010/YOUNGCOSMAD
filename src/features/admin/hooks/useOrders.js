@@ -31,16 +31,6 @@ export function useOrders(lang) {
       shippingAddress: co.customer.address + ', ' + co.customer.city + ' ' + (co.customer.postalCode || '') + ', ' + co.country,
       createdAt: co.date,
       updatedAt: co.date,
-      checklist: {
-        contactConfirmed: true,
-        priceAgreed: true,
-        invoiceSent: false,
-        paymentConfirmed: false,
-        productPrepared: false,
-        ciCreated: false,
-        shipped: false,
-        delivered: false
-      },
       invoiceData: {
         paymentTerm: 'T/T in Advance',
         estimatedDelivery: 'After receipt of payment',
@@ -68,36 +58,8 @@ export function useOrders(lang) {
     total: orders.length,
     pending: orders.filter(o => o.status === 'pending').length,
     paid: orders.filter(o => o.status === 'paid').length,
-    preparing: orders.filter(o => o.status === 'preparing').length,
     shipped: orders.filter(o => o.status === 'shipped').length,
     delivered: orders.filter(o => o.status === 'delivered').length
-  }
-
-  const autoUpdateChecklist = (checklist, newStatus) => {
-    const updated = { ...checklist }
-    if (newStatus === 'paid') {
-      updated.paymentConfirmed = true
-      updated.ciCreated = true
-    }
-    if (newStatus === 'preparing') {
-      updated.paymentConfirmed = true
-      updated.ciCreated = true
-      updated.productPrepared = true
-    }
-    if (newStatus === 'shipped') {
-      updated.paymentConfirmed = true
-      updated.ciCreated = true
-      updated.productPrepared = true
-      updated.shipped = true
-    }
-    if (newStatus === 'delivered') {
-      updated.paymentConfirmed = true
-      updated.ciCreated = true
-      updated.productPrepared = true
-      updated.shipped = true
-      updated.delivered = true
-    }
-    return updated
   }
 
   const syncToLocalStorage = (orderId, newStatus, message, now) => {
@@ -127,8 +89,7 @@ export function useOrders(lang) {
         status: newStatus,
         updatedAt: now,
         trackingNumber: trackingNumber || o.trackingNumber,
-        timeline: [...o.timeline, { status: newStatus, date: now, message }],
-        checklist: autoUpdateChecklist(o.checklist, newStatus)
+        timeline: [...o.timeline, { status: newStatus, date: now, message }]
       }
     }))
 
@@ -139,8 +100,7 @@ export function useOrders(lang) {
         status: newStatus,
         updatedAt: now,
         trackingNumber: trackingNumber || prev.trackingNumber,
-        timeline: [...prev.timeline, { status: newStatus, date: now, message }],
-        checklist: autoUpdateChecklist(prev.checklist, newStatus)
+        timeline: [...prev.timeline, { status: newStatus, date: now, message }]
       }
     })
 

@@ -20,16 +20,6 @@ export const initialOrders = [
     shippingAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
     createdAt: '2024-01-15T09:00:00Z',
     updatedAt: '2024-01-19T16:00:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: true,
-      invoiceSent: true,
-      paymentConfirmed: true,
-      productPrepared: true,
-      ciCreated: true,
-      shipped: true,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',
@@ -46,7 +36,6 @@ export const initialOrders = [
     timeline: [
       { status: 'pending', date: '2024-01-15T09:00:00Z', message: 'Order received' },
       { status: 'paid', date: '2024-01-15T14:30:00Z', message: 'Payment confirmed' },
-      { status: 'preparing', date: '2024-01-17T10:00:00Z', message: 'Preparing shipment' },
       { status: 'shipped', date: '2024-01-19T16:00:00Z', message: 'Shipped - KR1234567890' }
     ]
   },
@@ -59,7 +48,7 @@ export const initialOrders = [
     customerPhone: '+1 555-0456',
     customerAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
     customerCountry: 'USA',
-    status: 'preparing',
+    status: 'paid',
     trackingNumber: null,
     items: [
       { name: 'Velvet Matte Lip Tint', nameKr: '벨벳 매트 립틴트', quantity: 300, price: 2.90 },
@@ -70,16 +59,6 @@ export const initialOrders = [
     shippingAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
     createdAt: '2024-01-28T11:00:00Z',
     updatedAt: '2024-01-30T09:00:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: true,
-      invoiceSent: true,
-      paymentConfirmed: true,
-      productPrepared: false,
-      ciCreated: false,
-      shipped: false,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',
@@ -95,8 +74,7 @@ export const initialOrders = [
     },
     timeline: [
       { status: 'pending', date: '2024-01-28T11:00:00Z', message: 'Order received' },
-      { status: 'paid', date: '2024-01-28T15:00:00Z', message: 'Payment confirmed' },
-      { status: 'preparing', date: '2024-01-30T09:00:00Z', message: 'Preparing shipment' }
+      { status: 'paid', date: '2024-01-28T15:00:00Z', message: 'Payment confirmed' }
     ]
   },
   {
@@ -118,16 +96,6 @@ export const initialOrders = [
     shippingAddress: '789 Trade Blvd, Amsterdam, Netherlands',
     createdAt: '2024-02-01T08:00:00Z',
     updatedAt: '2024-02-01T08:00:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: false,
-      invoiceSent: false,
-      paymentConfirmed: false,
-      productPrepared: false,
-      ciCreated: false,
-      shipped: false,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',
@@ -165,16 +133,6 @@ export const initialOrders = [
     shippingAddress: '2-3-1 Shibuya, Shibuya-ku, Tokyo 150-0002, Japan',
     createdAt: '2024-02-03T10:30:00Z',
     updatedAt: '2024-02-04T09:00:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: true,
-      invoiceSent: true,
-      paymentConfirmed: true,
-      productPrepared: false,
-      ciCreated: false,
-      shipped: false,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',
@@ -214,16 +172,6 @@ export const initialOrders = [
     shippingAddress: 'Av. Reforma 222, Col. Juárez, CDMX 06600, Mexico',
     createdAt: '2024-02-05T14:00:00Z',
     updatedAt: '2024-02-06T11:30:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: true,
-      invoiceSent: true,
-      paymentConfirmed: true,
-      productPrepared: false,
-      ciCreated: false,
-      shipped: false,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',
@@ -262,16 +210,6 @@ export const initialOrders = [
     shippingAddress: '50 Raffles Place, #12-01, Singapore 048623',
     createdAt: '2024-02-07T08:45:00Z',
     updatedAt: '2024-02-07T16:20:00Z',
-    checklist: {
-      contactConfirmed: true,
-      priceAgreed: true,
-      invoiceSent: true,
-      paymentConfirmed: true,
-      productPrepared: false,
-      ciCreated: false,
-      shipped: false,
-      delivered: false
-    },
     invoiceData: {
       paymentTerm: 'T/T in Advance',
       estimatedDelivery: 'After receipt of payment',

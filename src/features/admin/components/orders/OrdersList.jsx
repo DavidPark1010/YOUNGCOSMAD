@@ -3,7 +3,7 @@ import { useState } from 'react'
 function OrdersList({ orders, orderStats, t, lang, onSelectOrder, onDeleteOrder, formatDateShort }) {
   const [activeFilter, setActiveFilter] = useState(null)
 
-  const filterStatuses = ['pending', 'paid', 'preparing', 'delivered']
+  const filterStatuses = ['pending', 'paid', 'shipped', 'delivered']
 
   const filteredOrders = activeFilter
     ? orders.filter(o => o.status === activeFilter)

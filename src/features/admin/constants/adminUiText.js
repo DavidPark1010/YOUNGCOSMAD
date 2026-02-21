@@ -30,14 +30,12 @@ export const uiText = {
       statuses: {
         pending: 'Pending Payment',
         paid: 'Paid',
-        preparing: 'Preparing',
         shipped: 'Shipped',
         delivered: 'Delivered'
       },
       statusMessages: {
         pending: 'Your order has been received. Please complete the payment to proceed.',
         paid: 'Payment confirmed! We are now preparing your order.',
-        preparing: 'Your order is being prepared for shipment.',
         shipped: 'Your order has been shipped! Tracking number: {tracking}',
         delivered: 'Your order has been delivered. Thank you for your business!'
       },
@@ -168,14 +166,12 @@ export const uiText = {
       statuses: {
         pending: '결제 대기',
         paid: '결제 완료',
-        preparing: '준비 중',
         shipped: '배송 중',
         delivered: '배송 완료'
       },
       statusMessages: {
         pending: '주문이 접수되었습니다. 결제를 완료해주세요.',
         paid: '결제가 확인되었습니다! 주문을 준비하고 있습니다.',
-        preparing: '주문 상품을 배송 준비 중입니다.',
         shipped: '주문이 발송되었습니다! 운송장 번호: {tracking}',
         delivered: '배송이 완료되었습니다. 이용해 주셔서 감사합니다!'
       },

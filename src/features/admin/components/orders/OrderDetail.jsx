@@ -12,36 +12,46 @@ const STATUS_ACTIONS = {
     label: '입금 확인 완료',
     nextStatus: 'paid',
     message: '입금 확인 완료',
-    hint: '입금 확인 시 상태가 \'Paid\'로 변경됩니다.',
-    style: 'green'
+    hint: '입금 확인 시 다음 단계로 진행됩니다.',
   },
   paid: {
-    label: '상품 준비 시작',
-    nextStatus: 'preparing',
-    message: '상품 준비 시작',
-    hint: '상품 준비가 시작되면 바이어에게 알림됩니다.',
-    style: 'blue'
-  },
-  preparing: {
     label: '배송 시작',
     nextStatus: 'shipped',
     message: '배송 시작',
-    hint: '운송장 번호를 먼저 입력해주세요.',
-    requiresTracking: true,
-    style: 'teal'
+    hint: '배송이 시작되면 바이어에게 알림됩니다.',
   },
   shipped: {
     label: '배송 완료 처리',
     nextStatus: 'delivered',
     message: '배송 완료',
     hint: '배송 완료 처리 시 주문이 최종 완료됩니다.',
-    style: 'gray'
   }
+}
+
+const STEPPER_STEPS = [
+  { key: 'pending', label: '결제대기', desc: '주문이 접수되었습니다' },
+  { key: 'paid', label: '입금확인완료', desc: '입금 확인 시 다음 단계로' },
+  { key: 'shipped', label: '배송중', desc: '배송이 시작되면 바이어에게 알림됩니다' },
+  { key: 'delivered', label: '배송완료', desc: '최종 배송 완료 처리' },
+]
+
+function getStepState(stepKey, currentStatus) {
+  const order = ['pending', 'paid', 'shipped', 'delivered']
+  const stepIdx = order.indexOf(stepKey)
+  const currentIdx = order.indexOf(currentStatus)
+  if (stepIdx < currentIdx) return 'completed'
+  if (stepIdx === currentIdx) return 'active'
+  return 'pending'
+}
+
+function getStepDate(stepKey, timeline) {
+  const event = timeline.find(e => e.status === stepKey)
+  return event ? event.date : null
 }
 
 function OrderDetail({
   selectedOrder, setSelectedOrder, orders, setOrders,
-  t, trackingInput, setTrackingInput, notificationSent,
+  t, notificationSent,
   formatDate, onBack, onOpenInvoice, onOpenCI,
   updateOrderStatus
 }) {
@@ -200,111 +210,6 @@ function OrderDetail({
             </div>
           </div>
 
-          {/* 진행사항 체크리스트 */}
-          <div className="order-checklist-card">
-            <div className="order-section-header">
-              <div className="section-icon-wrap checklist">
-                <span className="section-icon-text">&#x2713;</span>
-              </div>
-              <h4>진행사항 체크리스트</h4>
-            </div>
-
-            {/* Status Action Bar */}
-            {selectedOrder.status === 'delivered' ? (
-              <div className="status-action-bar completed">
-                <span className="status-action-complete-icon">&#x2713;</span>
-                <div className="status-action-complete-text">
-                  <strong>주문 처리 완료</strong>
-                  <span>모든 단계가 정상적으로 완료되었습니다.</span>
-                </div>
-              </div>
-            ) : STATUS_ACTIONS[selectedOrder.status] && (
-              <div className={`status-action-bar ${STATUS_ACTIONS[selectedOrder.status].style}`}>
-                <div className="status-action-current">
-                  현재: {t.orders.statuses[selectedOrder.status]}
-                  {['paid', 'preparing', 'shipped'].includes(selectedOrder.status) && ' \u2713'}
-                </div>
-                <button
-                  className={`status-action-btn ${STATUS_ACTIONS[selectedOrder.status].style}`}
-                  onClick={() => {
-                    const action = STATUS_ACTIONS[selectedOrder.status]
-                    if (action.requiresTracking && !trackingInput.trim()) {
-                      alert('운송장 번호를 먼저 입력해주세요.')
-                      return
-                    }
-                    const confirmMsg = `주문 상태를 '${action.label}'(으)로 변경하시겠습니까?`
-                    if (!window.confirm(confirmMsg)) return
-                    const message = action.requiresTracking
-                      ? `${action.message} - ${trackingInput.trim()}`
-                      : action.message
-                    updateOrderStatus(
-                      selectedOrder.id,
-                      action.nextStatus,
-                      message,
-                      action.requiresTracking ? trackingInput.trim() : undefined
-                    )
-                  }}
-                >
-                  {STATUS_ACTIONS[selectedOrder.status].label}
-                </button>
-                <span className="status-action-hint">
-                  {STATUS_ACTIONS[selectedOrder.status].requiresTracking && !trackingInput.trim()
-                    ? '\u26A0 ' + STATUS_ACTIONS[selectedOrder.status].hint
-                    : STATUS_ACTIONS[selectedOrder.status].hint
-                  }
-                </span>
-              </div>
-            )}
-
-            <div className="checklist-grid">
-              {[
-                { key: 'contactConfirmed', label: '연락처 확인됨' },
-                { key: 'priceAgreed', label: '가격 협의 완료' },
-                { key: 'invoiceSent', label: '인보이스 발송' },
-                { key: 'paymentConfirmed', label: '입금 확인' },
-                { key: 'productPrepared', label: '상품 준비 완료' },
-                { key: 'ciCreated', label: 'CI 작성 완료' },
-                { key: 'shipped', label: '배송 시작' },
-                { key: 'delivered', label: '배송 완료' }
-              ].map(item => (
-                <label key={item.key} className="checklist-item">
-                  <input
-                    type="checkbox"
-                    checked={selectedOrder.checklist?.[item.key] || false}
-                    onChange={(e) => {
-                      const newChecklist = {
-                        ...selectedOrder.checklist,
-                        [item.key]: e.target.checked
-                      }
-                      // Auto-check ciCreated when paymentConfirmed is checked
-                      if (item.key === 'paymentConfirmed' && e.target.checked) {
-                        newChecklist.ciCreated = true
-                      }
-                      setOrders(prev => prev.map(o =>
-                        o.id === selectedOrder.id
-                          ? { ...o, checklist: newChecklist }
-                          : o
-                      ))
-                      setSelectedOrder(prev => ({ ...prev, checklist: newChecklist }))
-                    }}
-                  />
-                  <span className="checklist-label">{item.label}</span>
-                </label>
-              ))}
-            </div>
-
-            {/* 운송장 번호 입력 */}
-            <div className="tracking-input-section">
-              <label>{t.orders.trackingNumber}</label>
-              <input
-                type="text"
-                value={trackingInput}
-                onChange={e => setTrackingInput(e.target.value)}
-                placeholder={t.orders.trackingPlaceholder}
-              />
-            </div>
-          </div>
-
           {/* 서류 확인 */}
           <div className="doc-buttons-row">
             <button className="doc-open-btn pi" onClick={() => onOpenInvoice(selectedOrder)}>
@@ -316,26 +221,76 @@ function OrderDetail({
           </div>
         </div>
 
-        {/* Timeline */}
-        <div className="order-timeline-card">
+        {/* 주문 진행 스텝퍼 */}
+        <div className="order-stepper-card">
           <div className="order-section-header">
             <div className="section-icon-wrap timeline">
               <span className="section-icon-text">T</span>
             </div>
-            <h4>{t.orders.orderTimeline}</h4>
+            <h4>주문 진행 상태</h4>
           </div>
-          <div className="order-timeline-list">
-            {selectedOrder.timeline.map((event, idx) => (
-              <div key={idx} className={`timeline-event ${idx === 0 ? 'latest' : ''}`}>
-                <div className={`timeline-event-dot ${event.status}`} />
-                <div className="timeline-event-content">
-                  <span className="timeline-event-status">{t.orders.statuses[event.status]}</span>
-                  <span className="timeline-event-message">{event.message}</span>
-                  <span className="timeline-event-date">{formatDate(event.date)}</span>
+
+          <div className="stepper-steps">
+            {STEPPER_STEPS.map((step, idx) => {
+              const state = getStepState(step.key, selectedOrder.status)
+              const stepDate = getStepDate(step.key, selectedOrder.timeline)
+              const isLast = idx === STEPPER_STEPS.length - 1
+              const action = STATUS_ACTIONS[selectedOrder.status]
+              const isCurrentStep = state === 'active'
+              const canAct = isCurrentStep && action
+
+              return (
+                <div key={step.key} className={`stepper-step ${state}`}>
+                  <div className="stepper-rail">
+                    <div className={`stepper-dot ${state}`}>
+                      {state === 'completed' && <span className="stepper-check">&#x2713;</span>}
+                    </div>
+                    {!isLast && <div className={`stepper-line ${state === 'completed' ? 'completed' : ''}`} />}
+                  </div>
+                  <div className="stepper-content">
+                    <span className={`stepper-label ${state}`}>{step.label}</span>
+                    {state === 'completed' && stepDate && (
+                      <span className="stepper-date">{formatDate(stepDate)}</span>
+                    )}
+                    {state === 'active' && (
+                      <span className="stepper-hint">{step.desc}</span>
+                    )}
+                    {state === 'pending' && (
+                      <span className="stepper-desc">{step.desc}</span>
+                    )}
+                    {canAct && (
+                      <button
+                        className="stepper-action-btn"
+                        onClick={() => {
+                          const confirmMsg = `주문 상태를 '${action.label}'(으)로 변경하시겠습니까?`
+                          if (!window.confirm(confirmMsg)) return
+                          updateOrderStatus(
+                            selectedOrder.id,
+                            action.nextStatus,
+                            action.message
+                          )
+                        }}
+                      >
+                        {action.label} →
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
+
+          {/* 모든 단계 완료 배너 */}
+          {selectedOrder.status === 'delivered' && (
+            <div className="stepper-complete-banner">
+              <span className="stepper-complete-icon">&#x2713;</span>
+              <div className="stepper-complete-text">
+                <strong>주문 처리 완료</strong>
+                <span>모든 단계가 정상적으로 완료되었습니다.</span>
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     </div>
