@@ -56,7 +56,7 @@ const PaymentInstructionsPage = ({ orderData, lang, onClose, onTrackOrder }) => 
         step2: '송금 시 주문번호를 메모에 포함해주세요',
         step3: '1-2 영업일 내 입금 확인',
         step4: '확인 후 상품 준비 및 배송',
-        downloadPI: 'Download Proforma Invoice',
+        downloadPI: 'Download Payment Invoice',
         trackOrder: 'Track Your Order',
         support: '도움이 필요하시면',
         contactSupport: '고객지원'
@@ -89,7 +89,7 @@ const PaymentInstructionsPage = ({ orderData, lang, onClose, onTrackOrder }) => 
         step2: 'Include the order number in the transfer memo',
         step3: 'Payment confirmed within 1-2 business days',
         step4: 'Order prepared and shipped after confirmation',
-        downloadPI: 'Download Proforma Invoice',
+        downloadPI: 'Download Payment Invoice',
         trackOrder: 'Track Your Order',
         support: 'Need help?',
         contactSupport: 'Contact Support'
