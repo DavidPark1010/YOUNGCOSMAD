@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './CustomerOrderFlow.css'
 
-// 국가별 배송비 및 관세율
-const COUNTRIES = {
+// 폴백용 기본 데이터 (product.pricing이 없는 경우)
+const FALLBACK_COUNTRIES = {
   'USA': { shipping: 150, tariff: 0.025 },
   'UK': { shipping: 140, tariff: 0.02 },
   'Germany': { shipping: 140, tariff: 0.02 },
@@ -16,16 +16,39 @@ const COUNTRIES = {
   'UAE': { shipping: 160, tariff: 0.05 }
 }
 
-// MOQ 할인율
-const getMOQDiscount = (quantity) => {
-  if (quantity >= 10000) return 0.15
-  if (quantity >= 5000) return 0.10
-  if (quantity >= 1000) return 0.05
-  return 0
+const FALLBACK_BASE_PRICE = 15
+
+// product.pricing에서 MOQ 할인율 계산
+const getMOQDiscount = (quantity, tiers) => {
+  if (!tiers || tiers.length === 0) {
+    // 폴백: 기존 하드코딩 로직
+    if (quantity >= 10000) return 0.15
+    if (quantity >= 5000) return 0.10
+    if (quantity >= 1000) return 0.05
+    return 0
+  }
+  let discount = 0
+  for (const tier of tiers) {
+    if (quantity >= tier.minQty) discount = tier.discount
+  }
+  return discount
 }
 
 const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
   const [currentStep, setCurrentStep] = useState(1)
+
+  // product.pricing에서 읽기 (하위호환 유지)
+  const productPricing = product.pricing || null
+  const basePrice = productPricing?.basePrice || FALLBACK_BASE_PRICE
+
+  // 사용 가능한 국가 목록 결정
+  const availableCountries = productPricing
+    ? Object.fromEntries(
+        Object.entries(productPricing.countryPricing)
+          .filter(([_, c]) => c.enabled)
+          .map(([name, data]) => [name, { shipping: data.shipping, tariff: data.tariff }])
+      )
+    : FALLBACK_COUNTRIES
 
   // Step 1: 국가 & 수량 선택
   const [selectedCountry, setSelectedCountry] = useState('')
@@ -43,12 +66,23 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
   })
 
   // 가격 계산
-  const basePrice = 15 // USD per unit (예시)
-  const discount = getMOQDiscount(quantity)
-  const discountedPrice = basePrice * (1 - discount)
+  const discount = getMOQDiscount(quantity, productPricing?.moqDiscountTiers)
+
+  // 국가별 단가 (countryPricing에 개별 단가가 있으면 사용)
+  const getUnitPrice = () => {
+    if (productPricing && selectedCountry) {
+      const countryData = productPricing.countryPricing[selectedCountry]
+      if (countryData?.unitPrice) return countryData.unitPrice
+    }
+    return basePrice
+  }
+
+  const unitPrice = getUnitPrice()
+  const discountedPrice = unitPrice * (1 - discount)
   const subtotal = discountedPrice * quantity
-  const shipping = selectedCountry ? COUNTRIES[selectedCountry].shipping : 0
-  const tariff = selectedCountry ? subtotal * COUNTRIES[selectedCountry].tariff : 0
+  const shipping = selectedCountry && availableCountries[selectedCountry] ? availableCountries[selectedCountry].shipping : 0
+  const tariffRate = selectedCountry && availableCountries[selectedCountry] ? availableCountries[selectedCountry].tariff : 0
+  const tariff = subtotal * tariffRate
   const total = subtotal + shipping + tariff
 
   const steps = [
@@ -64,7 +98,6 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
         return
       }
     } else if (currentStep === 2) {
-      // 필수 필드 검증
       const required = ['name', 'email', 'phone', 'address', 'city']
       const missing = required.filter(field => !customerInfo[field])
       if (missing.length > 0) {
@@ -87,7 +120,7 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
       country: selectedCountry,
       quantity: quantity,
       pricing: {
-        basePrice,
+        basePrice: unitPrice,
         discount,
         discountedPrice,
         subtotal,
@@ -146,7 +179,7 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
                 <label>{lang === 'ko' ? '배송 국가' : 'Destination Country'} *</label>
                 <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)}>
                   <option value="">{lang === 'ko' ? '국가를 선택하세요' : 'Select a country'}</option>
-                  {Object.keys(COUNTRIES).map(country => (
+                  {Object.keys(availableCountries).map(country => (
                     <option key={country} value={country}>{country}</option>
                   ))}
                 </select>
@@ -169,12 +202,12 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
                   <h4>{lang === 'ko' ? '견적 요약' : 'Price Summary'}</h4>
                   <div className="price-row">
                     <span>{lang === 'ko' ? '단가' : 'Unit Price'}:</span>
-                    <span>${basePrice.toFixed(2)}</span>
+                    <span>${unitPrice.toFixed(2)}</span>
                   </div>
                   {discount > 0 && (
                     <div className="price-row discount">
                       <span>{lang === 'ko' ? 'MOQ 할인' : 'MOQ Discount'} ({(discount * 100).toFixed(0)}%):</span>
-                      <span>-${(basePrice * discount * quantity).toFixed(2)}</span>
+                      <span>-${(unitPrice * discount * quantity).toFixed(2)}</span>
                     </div>
                   )}
                   <div className="price-row">
@@ -186,7 +219,7 @@ const CustomerOrderFlow = ({ product, lang, onClose, onOrderComplete }) => {
                     <span>${shipping.toFixed(2)}</span>
                   </div>
                   <div className="price-row">
-                    <span>{lang === 'ko' ? '관세' : 'Tariff'} ({(COUNTRIES[selectedCountry].tariff * 100).toFixed(1)}%):</span>
+                    <span>{lang === 'ko' ? '관세' : 'Tariff'} ({(tariffRate * 100).toFixed(1)}%):</span>
                     <span>${tariff.toFixed(2)}</span>
                   </div>
                   <div className="price-row total">
