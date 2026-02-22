@@ -8,6 +8,7 @@ export function useOrders(lang) {
 
   const [orders, setOrders] = useState(() => {
     const customerOrders = JSON.parse(localStorage.getItem('customer_orders') || '[]')
+    const deletedOrderIds = JSON.parse(localStorage.getItem('deleted_order_ids') || '[]')
     const convertedOrders = customerOrders.map(co => ({
       id: co.orderId,
       refNo: co.orderId.replace('ORD-', 'EY'),
@@ -51,7 +52,8 @@ export function useOrders(lang) {
       memos: [],
       customerNotes: co.customer.notes || ''
     }))
-    return [...convertedOrders, ...initialOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    const allOrders = [...convertedOrders, ...initialOrders]
+    return allOrders.filter(o => !deletedOrderIds.includes(o.id)).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   })
 
   const orderStats = {
@@ -115,6 +117,17 @@ export function useOrders(lang) {
       setOrders(prev => prev.filter(order => order.id !== orderId))
       if (selectedOrder?.id === orderId) {
         setSelectedOrder(null)
+      }
+      try {
+        const customerOrders = JSON.parse(localStorage.getItem('customer_orders') || '[]')
+        localStorage.setItem('customer_orders', JSON.stringify(customerOrders.filter(co => co.orderId !== orderId)))
+        const deletedIds = JSON.parse(localStorage.getItem('deleted_order_ids') || '[]')
+        if (!deletedIds.includes(orderId)) {
+          deletedIds.push(orderId)
+          localStorage.setItem('deleted_order_ids', JSON.stringify(deletedIds))
+        }
+      } catch (e) {
+        console.error('Failed to persist order deletion:', e)
       }
     }
   }
