@@ -754,7 +754,7 @@
 
 .pr-pricing-title {
   font-family: 'Pretendard', sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: #1A1A1A;
   margin: 0 0 20px 0;
@@ -764,7 +764,7 @@
 .pr-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .pr-table th {
@@ -773,7 +773,7 @@
   font-weight: 600;
   color: #555;
   border-bottom: 2px solid #E0E0E0;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .pr-table td {
@@ -783,8 +783,8 @@
 
 .pr-table-input {
   font-family: 'Pretendard', sans-serif;
-  font-size: 17px;
-  padding: 10px 12px;
+  font-size: 19px;
+  padding: 12px 14px;
   border: 1px solid #E0E0E0;
   border-radius: 6px;
   background: #FAFAFA;
@@ -809,15 +809,15 @@
 }
 
 .pr-table-remove {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: 1px solid #E0E0E0;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 20px;
   color: #999;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -835,7 +835,7 @@
   border: 2px dashed #CCC;
   border-radius: 8px;
   font-family: 'Pretendard', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   color: #888;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -861,7 +861,7 @@
   position: static;
   margin-right: -24px;
   z-index: 1;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .pr-input-with-unit.compact .pr-input-prefix ~ input {
@@ -871,7 +871,7 @@
 .pr-input-with-unit.compact .pr-input-unit {
   position: static;
   margin-left: -24px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* 빠른 선택 */
@@ -884,19 +884,19 @@
 }
 
 .pr-quick-label {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #666;
   margin-right: 4px;
 }
 
 .pr-quick-btn {
-  padding: 8px 16px;
+  padding: 10px 18px;
   background: #F5F5F5;
   border: 1px solid #E0E0E0;
   border-radius: 20px;
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   color: #555;
   cursor: pointer;
@@ -928,20 +928,20 @@
 .pr-country-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .pr-country-table th {
   text-align: left;
-  padding: 10px 8px;
+  padding: 12px 8px;
   font-weight: 600;
   color: #666;
-  font-size: 14px;
+  font-size: 17px;
   border-bottom: 1px solid #F0F0F0;
 }
 
 .pr-country-table td {
-  padding: 8px;
+  padding: 10px 8px;
   border-bottom: 1px solid #F5F5F5;
   vertical-align: middle;
 }
@@ -951,8 +951,8 @@
 }
 
 .pr-country-check {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   accent-color: #0F0F10;
   cursor: pointer;
 }
@@ -973,12 +973,12 @@
 }
 
 .pr-region-tab {
-  padding: 12px 20px;
+  padding: 14px 22px;
   background: transparent;
   border: none;
   border-bottom: 3px solid transparent;
   font-family: 'Pretendard', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #888;
   cursor: pointer;
@@ -1011,7 +1011,7 @@
 
 .pr-bulk-label {
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: #555;
   white-space: nowrap;
@@ -1037,11 +1037,11 @@
 
 .pr-bulk-field input {
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   border: none;
   outline: none;
-  padding: 8px 4px;
-  width: 80px;
+  padding: 10px 6px;
+  width: 90px;
   background: transparent;
 }
 
@@ -1051,18 +1051,18 @@
 
 .pr-bulk-prefix,
 .pr-bulk-suffix {
-  font-size: 14px;
+  font-size: 16px;
   color: #888;
   pointer-events: none;
 }
 
 .pr-bulk-apply-btn {
-  padding: 8px 18px;
+  padding: 10px 20px;
   background: #1A1A1A;
   border: none;
   border-radius: 6px;
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: #FFFFFF;
   cursor: pointer;
@@ -1089,7 +1089,7 @@
   text-align: center;
   padding: 40px 20px;
   color: #999;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* 국가 추가 인라인 폼 */
@@ -1104,8 +1104,8 @@
 
 .pr-add-country-row select {
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
-  padding: 8px 12px;
+  font-size: 17px;
+  padding: 10px 14px;
   border: 1px solid #D0D0D0;
   border-radius: 6px;
   background: #FAFAFA;
@@ -1130,11 +1130,11 @@
 
 .pr-add-country-field input {
   font-family: 'Pretendard', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   border: none;
   outline: none;
-  padding: 8px 4px;
-  width: 80px;
+  padding: 10px 6px;
+  width: 90px;
   background: transparent;
 }
 
@@ -1143,7 +1143,7 @@
 }
 
 .pr-add-country-field span {
-  font-size: 14px;
+  font-size: 16px;
   color: #888;
 }
 
@@ -1159,13 +1159,13 @@
 }
 
 .pr-preview-controls .pr-field label {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .pr-preview-controls .pr-field input,
 .pr-preview-controls .pr-field select {
-  font-size: 17px;
-  padding: 12px 16px;
+  font-size: 19px;
+  padding: 14px 16px;
 }
 
 .pr-buyer-preview {
@@ -1178,7 +1178,7 @@
 .pr-buyer-preview.empty {
   text-align: center;
   color: #999;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .pr-buyer-preview.empty p {
@@ -1189,8 +1189,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  font-size: 18px;
+  padding: 10px 0;
+  font-size: 20px;
   color: #333;
 }
 
@@ -1203,7 +1203,7 @@
 }
 
 .pr-preview-row.total {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: #1A1A1A;
 }

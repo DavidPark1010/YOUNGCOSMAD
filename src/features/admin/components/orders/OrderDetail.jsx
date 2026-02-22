@@ -125,8 +125,8 @@ function OrderDetail({
                 <p>{selectedOrder.customerName || '-'}</p>
               </div>
               <div className="info-display-field">
-                <label>회사명</label>
-                <p>{selectedOrder.customerCompany || '-'}</p>
+                <label>국가</label>
+                <p>{selectedOrder.customerCountry || '-'}</p>
               </div>
               <div className="info-display-field">
                 <label>이메일</label>
@@ -135,10 +135,6 @@ function OrderDetail({
               <div className="info-display-field">
                 <label>전화번호</label>
                 <p>{selectedOrder.customerPhone || '-'}</p>
-              </div>
-              <div className="info-display-field">
-                <label>국가</label>
-                <p>{selectedOrder.customerCountry || '-'}</p>
               </div>
               {selectedOrder.customerNotes && (
                 <div className="info-display-field full-width">
