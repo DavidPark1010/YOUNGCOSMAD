@@ -1,4 +1,4 @@
-function AdminSidebar({ activeMenu, setActiveMenu, orderStats, onClose, onResetSelection }) {
+function AdminSidebar({ activeMenu, setActiveMenu, orderStats, inquiryStats, onClose, onResetSelection }) {
   return (
     <aside className="admin-sidebar">
       <div className="admin-logo">관리자</div>
@@ -17,10 +17,13 @@ function AdminSidebar({ activeMenu, setActiveMenu, orderStats, onClose, onResetS
           <span>제품 등록/수정</span>
         </button>
         <button
-          className={`admin-nav-item ${activeMenu === 'settings' ? 'active' : ''}`}
-          onClick={() => setActiveMenu('settings')}
+          className={`admin-nav-item ${activeMenu === 'cs' ? 'active' : ''}`}
+          onClick={() => { setActiveMenu('cs'); onResetSelection('cs'); }}
         >
-          <span>공통 응답 설정</span>
+          <span>CS 관리</span>
+          {inquiryStats && inquiryStats.new > 0 && (
+            <span className="nav-badge">{inquiryStats.new}</span>
+          )}
         </button>
       </nav>
       <button className="admin-back-btn" onClick={onClose}>

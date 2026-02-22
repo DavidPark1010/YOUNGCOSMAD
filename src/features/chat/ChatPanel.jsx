@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { saveInquiry } from '../../utils/inquiryStorage'
 import './ChatPanel.css'
 
 const uiText = {
@@ -194,16 +195,15 @@ function ChatPanel({ product, productId, lang, onClose, onNavigateToProducts }) 
 
     setIsSubmitting(true)
 
-    // 콘솔에 문의 데이터 로그 (실제로는 백엔드로 전송)
-    const inquiryData = {
+    // localStorage에 문의 저장
+    saveInquiry({
       productId,
       productName: product.name,
       conversationLog: messages,
       contactMethod,
       contactValue: contactValue.trim(),
-      timestamp: new Date().toISOString()
-    }
-    console.log('Inquiry submitted:', inquiryData)
+      source: 'chatPanel'
+    })
 
     // 제출 시뮬레이션 (실제 API 호출 시 await fetch(...) 사용)
     await new Promise(resolve => setTimeout(resolve, 1500))

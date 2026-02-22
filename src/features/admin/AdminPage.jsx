@@ -8,12 +8,14 @@ import { useOrders } from './hooks/useOrders'
 import { useProducts } from './hooks/useProducts'
 import { useSettings } from './hooks/useSettings'
 import { useInvoice } from './hooks/useInvoice'
+import { useInquiries } from './hooks/useInquiries'
+import { useSellerInfo } from './hooks/useSellerInfo'
 import AdminSidebar from './components/layout/AdminSidebar'
 import AdminHeader from './components/layout/AdminHeader'
 import OrdersList from './components/orders/OrdersList'
 import OrderDetail from './components/orders/OrderDetail'
 import ProductsList from './components/products/ProductsList'
-import SettingsPage from './components/settings/SettingsPage'
+import CSManagementPage from './components/cs/CSManagementPage'
 import ProformaInvoiceModal from './components/modals/ProformaInvoiceModal'
 import CommercialInvoiceModal from './components/modals/CommercialInvoiceModal'
 import DeleteConfirmModal from './components/modals/DeleteConfirmModal'
@@ -58,9 +60,26 @@ function AdminPage({ onClose }) {
     closeInvoice, closeCI
   } = useInvoice()
 
+  const {
+    inquiries,
+    selectedInquiry, setSelectedInquiry,
+    inquiryStats,
+    updateInquiryStatus,
+    updateMemo,
+    removeInquiry,
+    refresh: refreshInquiries
+  } = useInquiries()
+
+  const {
+    sellerInfo, setSellerInfo,
+    saved: sellerInfoSaved,
+    saveSellerInfo
+  } = useSellerInfo()
+
   const handleResetSelection = (menu) => {
     if (menu === 'orders') setSelectedOrder(null)
     if (menu === 'products') setShowProductForm(false)
+    if (menu === 'cs') setSelectedInquiry(null)
   }
 
   return (
@@ -69,6 +88,7 @@ function AdminPage({ onClose }) {
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
         orderStats={orderStats}
+        inquiryStats={inquiryStats}
         onClose={onClose}
         onResetSelection={handleResetSelection}
       />
@@ -128,15 +148,28 @@ function AdminPage({ onClose }) {
             />
           )}
 
-          {/* Settings */}
-          {activeMenu === 'settings' && (
-            <SettingsPage
+          {/* CS Management */}
+          {activeMenu === 'cs' && (
+            <CSManagementPage
+              inquiries={inquiries}
+              inquiryStats={inquiryStats}
+              selectedInquiry={selectedInquiry}
+              setSelectedInquiry={setSelectedInquiry}
+              updateInquiryStatus={updateInquiryStatus}
+              updateMemo={updateMemo}
+              removeInquiry={removeInquiry}
+              refreshInquiries={refreshInquiries}
               settings={settings}
               setSettings={setSettings}
               aiPolicy={aiPolicy}
               setAiPolicy={setAiPolicy}
-              onSave={saveSettings}
+              onSaveSettings={saveSettings}
               settingsSaved={settingsSaved}
+              sellerInfo={sellerInfo}
+              setSellerInfo={setSellerInfo}
+              onSaveSellerInfo={saveSellerInfo}
+              sellerInfoSaved={sellerInfoSaved}
+              formatDateShort={(ts) => formatDateShort(ts, lang)}
             />
           )}
         </div>

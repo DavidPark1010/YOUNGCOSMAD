@@ -1,0 +1,624 @@
+/* ========================================
+   CS Management - 문의 관리 전용 스타일
+   import 순서: settings.css 이후, modals.css 이전
+======================================== */
+
+/* ========================================
+   Sub Tabs
+======================================== */
+.cs-management {
+  animation: fadeIn 0.3s ease;
+}
+
+.cs-sub-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  border-bottom: 3px solid #E0E0E0;
+  padding-bottom: 0;
+}
+
+.cs-sub-tab {
+  position: relative;
+  padding: 16px 32px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #888888;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-sub-tab:hover {
+  color: #444444;
+}
+
+.cs-sub-tab.active {
+  color: #1A1A1A;
+  border-bottom-color: #1A1A1A;
+  font-weight: 700;
+}
+
+.cs-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  background: #E74C3C;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+/* ========================================
+   Summary Cards Override
+======================================== */
+.cs-summary {
+  margin-bottom: 24px;
+}
+
+/* ========================================
+   Inquiry Status Badges
+======================================== */
+.status-badge.cs-new {
+  background: #FFF0E0;
+  color: #B8700A;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.status-badge.cs-reviewed {
+  background: #E0EDFF;
+  color: #1A5BBF;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.status-badge.cs-responded {
+  background: #E5F8EC;
+  color: #157A2E;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.status-badge.cs-closed {
+  background: #F0F2F4;
+  color: #666666;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Inquiry Table Cells
+======================================== */
+.cs-product-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.cs-contact-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-method-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.cs-method-badge.whatsapp {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.cs-method-badge.email {
+  background: #E3F2FD;
+  color: #1565C0;
+}
+
+.cs-method-badge.large {
+  font-size: 18px;
+  padding: 8px 18px;
+  border-radius: 10px;
+}
+
+.cs-contact-value {
+  font-size: 17px;
+  color: #555555;
+  word-break: break-all;
+}
+
+.cs-preview {
+  font-size: 18px;
+  color: #777777;
+  line-height: 1.5;
+}
+
+/* ========================================
+   Empty State
+======================================== */
+.cs-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.cs-empty-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.cs-empty-state h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 12px 0;
+}
+
+.cs-empty-state p {
+  font-size: 20px;
+  color: #888888;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ========================================
+   Inquiry Detail
+======================================== */
+.cs-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+.cs-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+}
+
+.cs-detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cs-detail-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Detail Header Card */
+.cs-detail-header-card {
+  background: linear-gradient(135deg, #F8F5F0 0%, #F0EBE3 100%);
+  border: 2px solid #E4DDD3;
+  border-radius: 20px;
+  padding: 32px 36px;
+}
+
+.cs-detail-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cs-detail-id {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.cs-detail-date {
+  font-size: 18px;
+  color: #999999;
+}
+
+.cs-detail-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1.5px solid #E4DDD3;
+}
+
+.cs-detail-product-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #B0A898;
+}
+
+.cs-detail-product-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.cs-detail-product-id {
+  font-size: 17px;
+  color: #999999;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+/* ========================================
+   Conversation Log
+======================================== */
+.cs-conversation-card {
+  background: #FFFFFF;
+  border: 2px solid #EEEAE5;
+  border-radius: 20px;
+  padding: 32px 36px;
+}
+
+.cs-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 24px 0;
+}
+
+.cs-conversation-log {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.cs-no-conversation {
+  font-size: 18px;
+  color: #999999;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.cs-chat-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-chat-msg.user {
+  align-items: flex-end;
+}
+
+.cs-chat-msg.assistant {
+  align-items: flex-start;
+}
+
+.cs-chat-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #999999;
+  padding: 0 4px;
+}
+
+.cs-chat-bubble {
+  max-width: 80%;
+  padding: 16px 20px;
+  border-radius: 16px;
+  font-size: 18px;
+  line-height: 1.7;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.cs-chat-msg.user .cs-chat-bubble {
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border-bottom-right-radius: 4px;
+}
+
+.cs-chat-msg.assistant .cs-chat-bubble {
+  background: #F5F3F0;
+  color: #333333;
+  border-bottom-left-radius: 4px;
+}
+
+/* ========================================
+   Contact Card
+======================================== */
+.cs-contact-card,
+.cs-status-card,
+.cs-memo-card {
+  background: #FFFFFF;
+  border: 2px solid #EEEAE5;
+  border-radius: 20px;
+  padding: 28px 32px;
+}
+
+.cs-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cs-contact-value-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cs-contact-value-large {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+  word-break: break-all;
+  flex: 1;
+}
+
+.cs-copy-btn {
+  padding: 10px 20px;
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cs-copy-btn:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+.cs-source-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1.5px solid #F0EDE8;
+}
+
+.cs-source-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #B0A898;
+}
+
+.cs-source-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: #555555;
+}
+
+/* ========================================
+   Status Flow
+======================================== */
+.cs-status-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.cs-status-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cs-status-line {
+  width: 3px;
+  height: 16px;
+  background: #E0E0E0;
+}
+
+.cs-status-line.active {
+  background: #D8CFC4;
+}
+
+.cs-status-step {
+  width: 100%;
+  padding: 14px 20px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.cs-status-step.current {
+  background: #1A1A1A;
+  color: #FFFFFF;
+}
+
+.cs-status-step.past {
+  background: #F0EDE8;
+  color: #888888;
+}
+
+.cs-status-step.future {
+  background: #FAFAFA;
+  color: #CCCCCC;
+  border: 2px solid #E0E0E0;
+}
+
+.cs-advance-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-advance-btn:hover {
+  background: #333333;
+}
+
+.cs-status-done {
+  font-size: 18px;
+  color: #999999;
+  text-align: center;
+  margin: 0;
+}
+
+/* ========================================
+   Memo
+======================================== */
+.cs-memo-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 18px 20px;
+  font-size: 18px;
+  font-family: var(--font-body);
+  line-height: 1.7;
+  border: 2px solid #D0D0D0;
+  border-radius: 14px;
+  background: #FAFAFA;
+  color: #222222;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.cs-memo-textarea:focus {
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+.cs-memo-save-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1A1A;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-memo-save-btn:hover {
+  background: #1A1A1A;
+  color: #FFFFFF;
+}
+
+/* ========================================
+   Sidebar Badge (신규 문의)
+======================================== */
+.cs-nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  background: #E74C3C;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 12px;
+  margin-left: 8px;
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 1200px) {
+  .cs-detail-layout {
+    grid-template-columns: 1fr 340px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cs-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-sub-tab {
+    padding: 14px 24px;
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-sub-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-sub-tab {
+    padding: 12px 18px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .cs-detail-header-card,
+  .cs-conversation-card,
+  .cs-contact-card,
+  .cs-status-card,
+  .cs-memo-card {
+    padding: 20px 24px;
+    border-radius: 16px;
+  }
+
+  .cs-chat-bubble {
+    max-width: 90%;
+    font-size: 16px;
+  }
+
+  .cs-section-title {
+    font-size: 20px;
+  }
+
+  .cs-empty-state {
+    padding: 40px 20px;
+  }
+
+  .cs-empty-icon {
+    font-size: 48px;
+  }
+
+  .cs-empty-state h3 {
+    font-size: 20px;
+  }
+
+  .cs-empty-state p {
+    font-size: 16px;
+  }
+}

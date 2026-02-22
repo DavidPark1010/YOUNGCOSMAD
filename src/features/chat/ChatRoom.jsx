@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { saveInquiry } from '../../utils/inquiryStorage'
 import './ChatRoom.css'
 
 // 제품 데이터베이스
@@ -417,15 +418,15 @@ function ChatRoom({ lang, onClose, initialProduct, onNavigateToProducts }) {
 
     setIsSubmitting(true)
 
-    const inquiryData = {
+    // localStorage에 문의 저장
+    saveInquiry({
       productId: selectedProduct?.productId,
       productName: selectedProduct ? (lang === 'en' ? selectedProduct.nameEn : selectedProduct.nameKr) : 'General Inquiry',
       conversationLog: messages,
       contactMethod,
       contactValue: contactValue.trim(),
-      timestamp: new Date().toISOString()
-    }
-    console.log('Inquiry submitted:', inquiryData)
+      source: 'chatRoom'
+    })
 
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))

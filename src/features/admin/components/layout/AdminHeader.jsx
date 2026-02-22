@@ -4,7 +4,7 @@ function AdminHeader({ activeMenu }) {
       <h1 className="admin-page-title">
         {activeMenu === 'orders' && '주문 확인'}
         {activeMenu === 'products' && '제품 등록/수정'}
-        {activeMenu === 'settings' && '공통 응답 설정'}
+        {activeMenu === 'cs' && 'CS 관리'}
       </h1>
       <div className="admin-header-right">
         <div className="admin-user">
