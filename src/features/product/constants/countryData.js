@@ -51,6 +51,26 @@ export const DEFAULT_COUNTRY_DATA = {
   'Egypt': { shipping: 165, tariff: 0.05 }
 }
 
+// 전체 국가 목록 (커스텀 국가 추가 드롭다운용)
+export const ALL_COUNTRIES = [
+  // Asia
+  'Japan', 'South Korea', 'China', 'Singapore', 'Thailand', 'Vietnam',
+  'Indonesia', 'Malaysia', 'Philippines', 'India', 'Taiwan',
+  'Hong Kong', 'Myanmar', 'Cambodia', 'Laos', 'Bangladesh', 'Sri Lanka', 'Pakistan',
+  // Europe
+  'UK', 'Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Poland', 'Sweden',
+  'Switzerland', 'Belgium', 'Austria', 'Denmark', 'Norway', 'Finland',
+  'Portugal', 'Czech Republic', 'Romania', 'Hungary', 'Greece', 'Ireland',
+  // Americas
+  'USA', 'Canada', 'Brazil', 'Mexico', 'Argentina', 'Colombia', 'Chile', 'Peru',
+  // Middle East
+  'UAE', 'Saudi Arabia', 'Turkey', 'Israel', 'Qatar', 'Kuwait', 'Bahrain', 'Oman',
+  // Oceania
+  'Australia', 'New Zealand', 'Fiji', 'Papua New Guinea',
+  // Africa
+  'South Africa', 'Nigeria', 'Egypt', 'Kenya', 'Morocco', 'Ghana', 'Ethiopia', 'Tanzania'
+]
+
 // 기본 MOQ 할인 티어
 export const DEFAULT_MOQ_TIERS = [
   { minQty: 1000, discount: 0.05 },

@@ -963,6 +963,190 @@
   white-space: nowrap;
 }
 
+/* 대륙 탭 바 */
+.pr-region-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.pr-region-tab {
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -2px;
+}
+
+.pr-region-tab:hover {
+  color: #333;
+  background: #F8F8F8;
+}
+
+.pr-region-tab.active {
+  color: #1A1A1A;
+  border-bottom-color: #1A1A1A;
+}
+
+/* 대륙 공통 설정 바 */
+.pr-bulk-apply {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #F5F7FA;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.pr-bulk-label {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
+}
+
+.pr-bulk-fields {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.pr-bulk-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  border-radius: 6px;
+  padding: 0 8px;
+}
+
+.pr-bulk-field input {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  padding: 8px 4px;
+  width: 80px;
+  background: transparent;
+}
+
+.pr-bulk-field input::placeholder {
+  color: #AAA;
+}
+
+.pr-bulk-prefix,
+.pr-bulk-suffix {
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+}
+
+.pr-bulk-apply-btn {
+  padding: 8px 18px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pr-bulk-apply-btn:hover {
+  background: #333;
+}
+
+.pr-bulk-apply-btn:disabled {
+  background: #CCC;
+  cursor: not-allowed;
+}
+
+/* 지역 전체 토글 */
+.pr-region-toggle-all {
+  margin-bottom: 8px;
+}
+
+/* 국가 없음 메시지 */
+.pr-country-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+}
+
+/* 국가 추가 인라인 폼 */
+.pr-add-country-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.pr-add-country-row select {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  padding: 8px 12px;
+  border: 1px solid #D0D0D0;
+  border-radius: 6px;
+  background: #FAFAFA;
+  min-width: 160px;
+}
+
+.pr-add-country-row select:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFF;
+}
+
+.pr-add-country-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  border-radius: 6px;
+  padding: 0 8px;
+}
+
+.pr-add-country-field input {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  padding: 8px 4px;
+  width: 80px;
+  background: transparent;
+}
+
+.pr-add-country-field input::placeholder {
+  color: #AAA;
+}
+
+.pr-add-country-field span {
+  font-size: 14px;
+  color: #888;
+}
+
 /* 바이어 미리보기 */
 .pr-preview-controls {
   display: flex;
