@@ -19,7 +19,7 @@
   background: #FFFFFF;
   border: 2px solid #E0E0E0;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   color: #666666;
   cursor: pointer;
@@ -43,7 +43,7 @@
 }
 
 .inv-section-title {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   color: #1A1A1A;
   margin: 0 0 14px 0;
@@ -69,14 +69,14 @@
 }
 
 .inv-field label {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 600;
   color: #777777;
 }
 
 .inv-field input {
-  font-size: 18px;
-  padding: 12px 14px;
+  font-size: 20px;
+  padding: 14px 16px;
   border: 2px solid #E0E0E0;
   border-radius: 8px;
   background: #FAFAFA;
@@ -109,9 +109,9 @@
 }
 
 .inv-table th {
-  padding: 12px 14px;
+  padding: 14px 16px;
   background: #F5F5F5;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   color: #555555;
   text-align: left;
@@ -133,13 +133,13 @@
 
 .inv-td-no {
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   color: #999999;
   font-weight: 600;
 }
 
 .inv-td-subtotal {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
   color: #333333;
   text-align: right;
@@ -148,8 +148,8 @@
 
 .inv-table-input {
   width: 100%;
-  font-size: 16px;
-  padding: 8px 10px;
+  font-size: 19px;
+  padding: 10px 12px;
   border: 1px solid #E8E8E8;
   border-radius: 6px;
   background: #FAFAFA;
@@ -171,7 +171,7 @@
   padding: 4px 10px;
   background: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 19px;
   color: #CCCCCC;
   cursor: pointer;
 }
@@ -186,7 +186,7 @@
   background: transparent;
   border: 2px dashed #CCCCCC;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
   color: #888888;
   cursor: pointer;
@@ -218,13 +218,13 @@
 }
 
 .inv-total-label {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #FFFFFF;
 }
 
 .inv-total-amount {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
   color: #FFFFFF;
 }
@@ -246,11 +246,11 @@
 }
 
 .inv-generate-btn {
-  padding: 18px 60px;
+  padding: 20px 64px;
   background: #1A1A1A;
   border: none;
   border-radius: 10px;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
