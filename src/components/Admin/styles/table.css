@@ -1,0 +1,100 @@
+/* ========================================
+   Admin - Table & Filters
+   InquiryList, OrderList, ProductList 공통
+======================================== */
+
+/* Filters */
+.admin-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.filter-btn {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  padding: 16px 28px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+}
+
+.filter-btn:hover {
+  border-color: #999999;
+  color: #1A1A1A;
+}
+
+.filter-btn.active {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Table */
+.admin-table-wrap {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 22px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #555555;
+  background: #F5F5F5;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.admin-table td {
+  padding: 24px 24px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.table-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.table-row:hover {
+  background: #F8F9FA;
+}
+
+.table-row:last-child td {
+  border-bottom: none;
+}
+
+.table-row.new {
+  background: #FFFDFB;
+}
+
+.table-row.new:hover {
+  background: #FBF9F7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-table-wrap {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 800px;
+  }
+}

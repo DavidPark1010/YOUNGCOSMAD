@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import './AdminPage.css'
+import './styles/layout.css'
+import './styles/cards.css'
+import './styles/table.css'
+import './styles/shared.css'
 import { initialInquiries, initialOrders, initialProducts } from './data/adminData'
 import uiText from './data/adminI18n'
-import Dashboard from './Dashboard'
+import Dashboard from './dashboard/Dashboard'
 import InquiryList from './inquiry/InquiryList'
 import InquiryDetail from './inquiry/InquiryDetail'
 import OrderList from './order/OrderList'
@@ -10,7 +13,7 @@ import OrderDetail from './order/OrderDetail'
 import ProductList from './product/ProductList'
 import ProductRegistration from './product/ProductRegistration'
 import Settings from './settings/Settings'
-import DeleteModal from './DeleteModal'
+import DeleteModal from './common/DeleteModal'
 
 function AdminPage({ onClose }) {
   const [lang] = useState('ko')

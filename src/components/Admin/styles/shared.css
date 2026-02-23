@@ -1,0 +1,111 @@
+/* ========================================
+   Admin - Shared Components
+   여러 컴포넌트에서 공통 사용
+======================================== */
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Status Badge (base) */
+.status-badge {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+/* Product Cell */
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.product-thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #F0F2F4;
+}
+
+.product-name-cell {
+  display: block;
+  font-weight: 700;
+  color: #1A1A1A;
+  font-size: 21px;
+}
+
+.product-category-cell {
+  display: block;
+  font-size: 18px;
+  color: #777777;
+  margin-top: 6px;
+}
+
+.date-cell {
+  font-size: 19px;
+  color: #666666;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn.edit {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  color: #555555;
+}
+
+.action-btn.edit:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+.action-btn.delete {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  color: #D45454;
+}
+
+.action-btn.delete:hover {
+  background: #FDF4F4;
+  border-color: #D45454;
+}
+
+/* Back Button */
+.detail-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  font-size: 21px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  padding: 12px 0;
+  margin-bottom: 36px;
+  transition: color 0.2s ease;
+}
+
+.detail-back-btn:hover {
+  color: #1A1A1A;
+}
