@@ -1,5 +1,5 @@
 /* ========================================
-   Products Section - Card Layout
+   Products Section - Admin Table
 ======================================== */
 .products-header-simple {
   display: flex;
@@ -21,65 +21,6 @@
 
 .add-product-btn-large:hover {
   background: #333333;
-}
-
-/* Product Card List */
-.product-card-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.product-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 28px;
-  background: #FFFFFF;
-  border: 2px solid #E8E8E8;
-  border-radius: 12px;
-  transition: border-color 0.2s ease;
-}
-
-.product-card:hover {
-  border-color: #CCCCCC;
-}
-
-.product-card-info {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 1;
-}
-
-.product-card-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1A1A1A;
-}
-
-.product-card-category {
-  font-size: 15px;
-  font-weight: 500;
-  color: #888888;
-  padding: 4px 12px;
-  background: #F0F0F0;
-  border-radius: 6px;
-}
-
-.product-card-meta {
-  flex: 0 0 auto;
-  margin: 0 32px;
-}
-
-.product-card-models {
-  font-size: 16px;
-  color: #777777;
-}
-
-.product-card-actions {
-  display: flex;
-  gap: 8px;
 }
 
 .action-btn {
