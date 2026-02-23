@@ -147,8 +147,10 @@ export const initialProducts = [
     productId: 'YC-FL-001',
     nameEn: 'Revolax',
     nameKr: '레볼락스',
+    brandName: 'Revolax',
     category: 'Fillers',
     image: '/revolax1.png',
+    brandImage: '/revolax1.png',
     status: 'active',
     description: 'Premium hyaluronic acid dermal filler for facial contouring and wrinkle correction.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -160,15 +162,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/revolax1.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-10T09:00:00Z'
+    updatedAt: '2024-02-10T09:00:00Z',
+    models: [{ name: 'Revolax Fine', description: 'Fine wrinkle correction' }, { name: 'Revolax Deep', description: 'Deep facial contouring' }]
   },
   {
     id: 2,
     productId: 'YC-FL-002',
     nameEn: 'Elasty',
     nameKr: '엘라스티',
+    brandName: 'Elasty',
     category: 'Fillers',
     image: '/ELASTY1.png',
+    brandImage: '/ELASTY1.png',
     status: 'active',
     description: 'High-quality HA filler with excellent elasticity for natural-looking results.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -180,15 +185,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/ELASTY1.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-09T15:00:00Z'
+    updatedAt: '2024-02-09T15:00:00Z',
+    models: [{ name: 'Elasty F', description: 'Fine lines and superficial wrinkles' }, { name: 'Elasty G', description: 'General facial volumizing' }]
   },
   {
     id: 3,
     productId: 'YC-FL-003',
     nameEn: 'Rejeunesse',
     nameKr: '리쥬네스',
+    brandName: 'Rejeunesse',
     category: 'Fillers',
     image: '/REJEUNESSE.png',
+    brandImage: '/REJEUNESSE.png',
     status: 'active',
     description: 'Advanced HA filler with SHAPE technology for long-lasting volume restoration.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -200,15 +208,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/REJEUNESSE.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-08T10:00:00Z'
+    updatedAt: '2024-02-08T10:00:00Z',
+    models: [{ name: 'Rejeunesse Fine', description: 'Fine wrinkle treatment' }, { name: 'Rejeunesse Shape', description: 'Facial contouring and volume' }]
   },
   {
     id: 4,
     productId: 'YC-FL-004',
     nameEn: 'Neuramis',
     nameKr: '뉴라미스',
+    brandName: 'Neuramis',
     category: 'Fillers',
     image: '/NEURAMIS.png',
+    brandImage: '/NEURAMIS.png',
     status: 'active',
     description: 'Premium Korean HA filler known for its purity and natural results.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -220,15 +231,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/NEURAMIS.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-07T14:00:00Z'
+    updatedAt: '2024-02-07T14:00:00Z',
+    models: [{ name: 'Neuramis Volume Lidocaine', description: '1.1ml, Deep layer filler with lidocaine' }, { name: 'Neuramis Deep', description: 'Mid-to-deep dermal filler' }]
   },
   {
     id: 5,
     productId: 'YC-FL-005',
     nameEn: 'Regenovue',
     nameKr: '레제노뷰',
+    brandName: 'Regenovue',
     category: 'Fillers',
     image: '/REGENOVUE.png',
+    brandImage: '/REGENOVUE.png',
     status: 'active',
     description: 'Next-generation HA filler with optimal viscoelasticity for smooth injection.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -240,15 +254,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/REGENOVUE.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-06T11:00:00Z'
+    updatedAt: '2024-02-06T11:00:00Z',
+    models: [{ name: 'Regenovue Fine', description: 'Fine lines correction' }, { name: 'Regenovue Sub-Q', description: 'Volume restoration' }]
   },
   {
     id: 6,
     productId: 'YC-FL-006',
     nameEn: 'Dermalax',
     nameKr: '더말락스',
+    brandName: 'Dermalax',
     category: 'Fillers',
     image: '/DERMALAX.png',
+    brandImage: '/DERMALAX.png',
     status: 'active',
     description: 'High-concentration HA filler for effective facial contouring and volume.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -260,15 +277,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/DERMALAX.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-05T09:00:00Z'
+    updatedAt: '2024-02-05T09:00:00Z',
+    models: [{ name: 'Dermalax Deep Plus', description: 'Deep tissue volumizing' }, { name: 'Dermalax Implant Plus', description: 'Facial contouring' }]
   },
   {
     id: 7,
     productId: 'YC-FL-007',
     nameEn: 'E.P.T.Q',
     nameKr: 'E.P.T.Q',
+    brandName: 'E.P.T.Q',
     category: 'Fillers',
     image: '/E.P.T.Q.png',
+    brandImage: '/E.P.T.Q.png',
     status: 'active',
     description: 'Premium European-quality HA filler with advanced cross-linking technology.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -280,15 +300,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/E.P.T.Q.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-04T09:00:00Z'
+    updatedAt: '2024-02-04T09:00:00Z',
+    models: [{ name: 'E.P.T.Q S100', description: 'Fine lines and superficial wrinkles' }, { name: 'E.P.T.Q S300', description: 'Mid-dermal volume' }]
   },
   {
     id: 8,
     productId: 'YC-SB-001',
     nameEn: 'Sosum',
     nameKr: '소섬',
+    brandName: 'Sosum',
     category: 'Skin Boosters',
     image: '/SOSUM.png',
+    brandImage: '/SOSUM.png',
     status: 'active',
     description: 'Advanced skin booster for deep hydration and skin rejuvenation.',
     ingredients: 'Non-cross-linked Hyaluronic Acid, Peptides',
@@ -300,15 +323,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/SOSUM.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-03T09:00:00Z'
+    updatedAt: '2024-02-03T09:00:00Z',
+    models: [{ name: 'Sosum', description: 'Deep hydration skin booster' }]
   },
   {
     id: 9,
     productId: 'YC-FL-008',
     nameEn: 'Starfill',
     nameKr: '스타필',
+    brandName: 'Starfill',
     category: 'Fillers',
     image: '/STARFILL.png',
+    brandImage: '/STARFILL.png',
     status: 'active',
     description: 'Versatile HA filler for various facial enhancement applications.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -320,15 +346,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/STARFILL.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-02T09:00:00Z'
+    updatedAt: '2024-02-02T09:00:00Z',
+    models: [{ name: 'Starfill Deep', description: 'Deep wrinkle correction' }, { name: 'Starfill Implant', description: 'Facial contouring' }]
   },
   {
     id: 10,
     productId: 'YC-FL-009',
     nameEn: 'Line Fill',
     nameKr: '라인필',
+    brandName: 'Line Fill',
     category: 'Fillers',
     image: '/LINE FILL.png',
+    brandImage: '/LINE FILL.png',
     status: 'active',
     description: 'Precision HA filler designed for fine lines and delicate areas.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -340,15 +369,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/LINE FILL.png'],
     mediaVideo: '',
-    updatedAt: '2024-02-01T09:00:00Z'
+    updatedAt: '2024-02-01T09:00:00Z',
+    models: [{ name: 'Line Fill', description: 'Fine lines and delicate areas' }]
   },
   {
     id: 11,
     productId: 'YC-SB-002',
     nameEn: 'Priere',
     nameKr: '프리에르',
+    brandName: 'Priere',
     category: 'Skin Boosters',
     image: '/PRIERE.png',
+    brandImage: '/PRIERE.png',
     status: 'active',
     description: 'Premium skin booster for enhanced skin quality and radiance.',
     ingredients: 'Non-cross-linked Hyaluronic Acid, Vitamins, Amino Acids',
@@ -360,15 +392,18 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/PRIERE.png'],
     mediaVideo: '',
-    updatedAt: '2024-01-31T09:00:00Z'
+    updatedAt: '2024-01-31T09:00:00Z',
+    models: [{ name: 'Priere', description: 'Skin quality and radiance booster' }]
   },
   {
     id: 12,
     productId: 'YC-FL-010',
     nameEn: 'Lip Star',
     nameKr: '립스타',
+    brandName: 'Lip Star',
     category: 'Fillers',
     image: '/LIP STAR.png',
+    brandImage: '/LIP STAR.png',
     status: 'active',
     description: 'Specialized HA filler designed for lip augmentation and contouring.',
     ingredients: 'Cross-linked Hyaluronic Acid, Lidocaine',
@@ -380,6 +415,7 @@ export const initialProducts = [
     priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
     mediaImages: ['/LIP STAR.png'],
     mediaVideo: '',
-    updatedAt: '2024-01-30T09:00:00Z'
+    updatedAt: '2024-01-30T09:00:00Z',
+    models: [{ name: 'Lip Star', description: 'Lip augmentation and contouring' }]
   },
 ]
