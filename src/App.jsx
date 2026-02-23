@@ -13,11 +13,7 @@ const content = {
     nav: {
       products: 'Products',
       about: 'About',
-      contact: 'Contact',
-      cta: 'Wholesale Inquiry',
-      signIn: 'Sign In',
-      myAccount: 'My Account',
-      trackOrder: 'Track Order'
+      contact: 'Contact'
     },
     why: {
       title: 'Why Young Cosmed',
@@ -36,37 +32,36 @@ const content = {
         },
         {
           title: 'Curated Selection',
-          desc: 'Only verified Korean beauty products from trusted manufacturers.'
+          desc: 'Only verified Korean medical aesthetic products from trusted manufacturers.'
         }
       ]
     },
     products: {
-      title: 'Young Cosmed Products',
+      title: 'Products',
       inquiryBtn: 'Request Bulk Pricing',
-      inquiryHint: 'MOQ, pricing and shipping details instantly.',
       viewDetails: 'View Details',
       startInquiry: 'Start Inquiry',
       btnCatalog: 'View Full Catalog',
-      medicalNotice: 'Medical aesthetic products are available for licensed buyers only.',
+      medicalNotice: 'All products are available for licensed medical professionals and authorized distributors only.',
       licensedBadge: 'Licensed buyers only',
       categories: [
         { key: 'all', label: 'All' },
-        { key: 'skincare', label: 'Skincare' },
-        { key: 'makeup', label: 'Makeup' },
-        { key: 'filler', label: 'Dermal Fillers' },
-        { key: 'botox', label: 'Botulinum Toxin' }
+        { key: 'filler', label: 'Fillers' },
+        { key: 'botox', label: 'Botox' },
+        { key: 'skinbooster', label: 'Skin Boosters' },
+        { key: 'lipolytic', label: 'Lipolytics' }
       ],
       items: [
-        { id: 1, name: 'Hydra Glow Serum', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'EU, US, ASIA', image: '/product1.png' },
-        { id: 2, name: 'Velvet Matte Lip Tint', category: 'Makeup', categoryKey: 'makeup', moq: '300 units', region: 'Global', image: '/product2.png' },
-        { id: 3, name: 'Cica Repair Cream', category: 'Skincare', categoryKey: 'skincare', moq: '400 units', region: 'EU, ASIA', image: '/product3.png' },
-        { id: 4, name: 'Double Cleansing Oil', category: 'Skincare', categoryKey: 'skincare', moq: '600 units', region: 'Global', image: '/product4.png' },
-        { id: 5, name: 'Peptide Eye Contour', category: 'Skincare', categoryKey: 'skincare', moq: '350 units', region: 'US, EU', image: '/product5.png' },
-        { id: 6, name: 'Tone-Up Sun Shield', category: 'Skincare', categoryKey: 'skincare', moq: '500 units', region: 'Global', image: '/product6.png' },
-        { id: 7, name: 'Hyaluronic Filler 1ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: 'Deep Volume Filler 2ml', category: 'Dermal Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: 'Botulinum Type A 100U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: 'Premium Botox 200U', category: 'Botulinum Toxin', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product10.png', medical: true },
+        { id: 1, name: 'Hyaluronic Filler 1ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product1.png', medical: true },
+        { id: 2, name: 'Deep Volume Filler 2ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product2.png', medical: true },
+        { id: 3, name: 'Fine Line Filler 1ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product3.png', medical: true },
+        { id: 4, name: 'Botulinum Type A 100U', category: 'Botox', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product4.png', medical: true },
+        { id: 5, name: 'Botulinum Type A 200U', category: 'Botox', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product5.png', medical: true },
+        { id: 6, name: 'Rejuran Healer 2ml', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/product6.png', medical: true },
+        { id: 7, name: 'PDRN Skin Booster', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/product7.png', medical: true },
+        { id: 8, name: 'Exosome Skin Booster', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '80 units', region: 'Licensed Only', image: '/product8.png', medical: true },
+        { id: 9, name: 'PPC Lipolytic Solution', category: 'Lipolytics', categoryKey: 'lipolytic', moq: '100 units', region: 'Licensed Only', image: '/product9.png', medical: true },
+        { id: 10, name: 'Deoxycholic Acid 10ml', category: 'Lipolytics', categoryKey: 'lipolytic', moq: '100 units', region: 'Licensed Only', image: '/product10.png', medical: true },
       ]
     },
     cta: {
@@ -75,29 +70,24 @@ const content = {
       btn: 'Contact for Wholesale'
     },
     footer: {
-      tagline: 'K-Beauty B2B Wholesale Platform',
-      platform: 'Platform',
-      support: 'Support',
-      contact: 'Contact',
-      products: 'Products',
-      about: 'About Us',
-      contactLink: 'Contact',
-      guide: 'Wholesale Guide',
-      shipping: 'Shipping Info',
-      faq: 'FAQ',
-      location: 'Seoul, South Korea',
-      copyright: '© 2024 Young Cosmed. All rights reserved.'
+      companyName: 'Young Cosmed',
+      tagline: 'Medical Aesthetic Products — B2B Wholesale',
+      ceo: 'CEO',
+      ceoName: 'Eun Young Kwak',
+      bizNo: 'Business Reg. No.',
+      bizNoValue: '763-58-00698',
+      address: 'Address',
+      addressValue: '69, Seongsui-ro, Seongdong-gu, Seoul, Republic of Korea',
+      email: 'Email',
+      emailValue: 'wholesale@youngcosmed.com',
+      copyright: '© 2025 Young Cosmed. All rights reserved.'
     }
   },
   ko: {
     nav: {
       products: '제품',
       about: '소개',
-      contact: '문의',
-      cta: '도매 문의',
-      signIn: '로그인',
-      myAccount: '마이페이지',
-      trackOrder: '주문조회'
+      contact: '문의'
     },
     why: {
       title: 'Why Young Cosmed',
@@ -116,37 +106,36 @@ const content = {
         },
         {
           title: '검증된 셀렉션',
-          desc: '신뢰할 수 있는 제조사의 검증된 K-뷰티 제품만 취급합니다.'
+          desc: '신뢰할 수 있는 제조사의 검증된 의료 미용 제품만 취급합니다.'
         }
       ]
     },
     products: {
-      title: 'Young Cosmed Products',
+      title: 'Products',
       inquiryBtn: '대량 견적 요청',
-      inquiryHint: 'MOQ, 가격, 배송 정보를 바로 확인하세요.',
       viewDetails: '상세 보기',
       startInquiry: '문의하기',
       btnCatalog: '전체 카탈로그 보기',
-      medicalNotice: '의료 미용 제품은 자격을 갖춘 바이어만 구매 가능합니다.',
+      medicalNotice: '모든 제품은 의료 전문가 및 인가된 유통업체만 구매 가능합니다.',
       licensedBadge: '자격 바이어 전용',
       categories: [
         { key: 'all', label: '전체' },
-        { key: 'skincare', label: '스킨케어' },
-        { key: 'makeup', label: '메이크업' },
-        { key: 'filler', label: '더말 필러' },
-        { key: 'botox', label: '보툴리눔 톡신' }
+        { key: 'filler', label: '필러' },
+        { key: 'botox', label: '보톡스' },
+        { key: 'skinbooster', label: '스킨부스터' },
+        { key: 'lipolytic', label: '지방분해제' }
       ],
       items: [
-        { id: 1, name: '하이드라 글로우 세럼', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'EU, US, ASIA', image: '/product1.png' },
-        { id: 2, name: '벨벳 매트 립틴트', category: '메이크업', categoryKey: 'makeup', moq: '300개', region: 'Global', image: '/product2.png' },
-        { id: 3, name: '시카 리페어 크림', category: '스킨케어', categoryKey: 'skincare', moq: '400개', region: 'EU, ASIA', image: '/product3.png' },
-        { id: 4, name: '더블 클렌징 오일', category: '스킨케어', categoryKey: 'skincare', moq: '600개', region: 'Global', image: '/product4.png' },
-        { id: 5, name: '펩타이드 아이 컨투어', category: '스킨케어', categoryKey: 'skincare', moq: '350개', region: 'US, EU', image: '/product5.png' },
-        { id: 6, name: '톤업 선쉴드', category: '스킨케어', categoryKey: 'skincare', moq: '500개', region: 'Global', image: '/product6.png' },
-        { id: 7, name: '히알루론 필러 1ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: '딥 볼륨 필러 2ml', category: '더말 필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: '보툴리눔 타입A 100U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: '프리미엄 보톡스 200U', category: '보툴리눔 톡신', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product10.png', medical: true },
+        { id: 1, name: '히알루론 필러 1ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product1.png', medical: true },
+        { id: 2, name: '딥 볼륨 필러 2ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product2.png', medical: true },
+        { id: 3, name: '파인라인 필러 1ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product3.png', medical: true },
+        { id: 4, name: '보툴리눔 타입A 100U', category: '보톡스', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product4.png', medical: true },
+        { id: 5, name: '보툴리눔 타입A 200U', category: '보톡스', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product5.png', medical: true },
+        { id: 6, name: '리쥬란 힐러 2ml', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/product6.png', medical: true },
+        { id: 7, name: 'PDRN 스킨부스터', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/product7.png', medical: true },
+        { id: 8, name: '엑소좀 스킨부스터', category: '스킨부스터', categoryKey: 'skinbooster', moq: '80개', region: 'Licensed Only', image: '/product8.png', medical: true },
+        { id: 9, name: 'PPC 지방분해 용액', category: '지방분해제', categoryKey: 'lipolytic', moq: '100개', region: 'Licensed Only', image: '/product9.png', medical: true },
+        { id: 10, name: '디옥시콜산 10ml', category: '지방분해제', categoryKey: 'lipolytic', moq: '100개', region: 'Licensed Only', image: '/product10.png', medical: true },
       ]
     },
     cta: {
@@ -155,18 +144,17 @@ const content = {
       btn: '도매 문의하기'
     },
     footer: {
-      tagline: 'K-뷰티 B2B 도매 플랫폼',
-      platform: '플랫폼',
-      support: '지원',
-      contact: '연락처',
-      products: '제품',
-      about: '회사 소개',
-      contactLink: '문의하기',
-      guide: '도매 가이드',
-      shipping: '배송 안내',
-      faq: '자주 묻는 질문',
-      location: '대한민국 서울',
-      copyright: '© 2024 Young Cosmed. All rights reserved.'
+      companyName: 'Young Cosmed',
+      tagline: '의료 미용 제품 — B2B 도매',
+      ceo: '대표',
+      ceoName: '곽은영',
+      bizNo: '사업자등록번호',
+      bizNoValue: '763-58-00698',
+      address: '주소',
+      addressValue: '서울특별시 성동구 성수이로 69',
+      email: '이메일',
+      emailValue: 'wholesale@youngcosmed.com',
+      copyright: '© 2025 Young Cosmed. All rights reserved.'
     }
   }
 }
@@ -200,7 +188,7 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const categoryParam = urlParams.get('category')
-    const validCategories = ['skincare', 'makeup', 'filler', 'botox']
+    const validCategories = ['filler', 'botox', 'skinbooster', 'lipolytic']
     if (categoryParam && validCategories.includes(categoryParam)) {
       setSelectedCategory(categoryParam)
     }
@@ -425,19 +413,9 @@ function App() {
                 KR
               </button>
             </div>
-            <button className="header-track-btn" onClick={openOrderLookup}>
-              {t.nav.trackOrder}
+            <button className="header-cta" onClick={openAdmin}>
+              {lang === 'en' ? 'Dashboard' : '관리자'}
             </button>
-            {user ? (
-              <button className="header-account-btn" onClick={handleAccountClick}>
-                {t.nav.myAccount}
-              </button>
-            ) : (
-              <button className="header-account-btn" onClick={handleAccountClick}>
-                {t.nav.signIn}
-              </button>
-            )}
-            <button className="header-cta" onClick={openAdmin}>Inquiry Dashboard</button>
           </div>
         </div>
       </header>
@@ -452,7 +430,6 @@ function App() {
                 <span className="inquiry-btn-text">{t.products.inquiryBtn}</span>
                 <span className="inquiry-btn-arrow">→</span>
               </button>
-              <span className="products-inquiry-hint">{t.products.inquiryHint}</span>
             </div>
           </div>
 
@@ -479,13 +456,6 @@ function App() {
             ))}
           </div>
 
-          {/* Medical Notice */}
-          {(selectedCategory === 'filler' || selectedCategory === 'botox') && (
-            <div className="medical-notice">
-              {t.products.medicalNotice}
-            </div>
-          )}
-
           <div className="products-grid">
             {t.products.items
               .filter(product => selectedCategory === 'all' || product.categoryKey === selectedCategory)
@@ -497,9 +467,6 @@ function App() {
               >
                 <div className="product-image">
                   <img src={product.image} alt={product.name} className="product-img" />
-                  {product.medical && (
-                    <span className="overlay-licensed">{t.products.licensedBadge}</span>
-                  )}
                 </div>
                 <div className="product-info">
                   <h3 className="product-name">{product.name}</h3>
@@ -538,34 +505,41 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-inner">
-          <div className="footer-brand">
-            <div className="logo">Young Cosmed</div>
-            <p>{t.footer.tagline}</p>
-          </div>
-          <div className="footer-links">
-            <div className="footer-col">
-              <h4>{t.footer.platform}</h4>
-              <a href="#products">{t.footer.products}</a>
-              <a href="#about">{t.footer.about}</a>
-              <a href="#contact">{t.footer.contactLink}</a>
+          <div className="footer-top">
+            <div className="footer-brand">
+              <div className="logo">Young Cosmed</div>
+              <p className="footer-tagline">{t.footer.tagline}</p>
             </div>
-            <div className="footer-col">
-              <h4>{t.footer.support}</h4>
-              <a href="#">{t.footer.guide}</a>
-              <a href="#">{t.footer.shipping}</a>
-              <a href="#">{t.footer.faq}</a>
-            </div>
-            <div className="footer-col">
-              <h4>{t.footer.contact}</h4>
-              <a href="mailto:wholesale@youngcosmed.com">wholesale@youngcosmed.com</a>
-              <p className="footer-address">{t.footer.location}</p>
+            <div className="footer-nav">
+              <a href="#products">{t.nav.products}</a>
+              <a href="#about">{t.nav.about}</a>
+              <a href="#contact">{t.nav.contact}</a>
             </div>
           </div>
+          <div className="footer-divider" />
+          <div className="footer-info">
+            <div className="footer-info-item">
+              <span className="footer-info-label">{t.footer.ceo}</span>
+              <span className="footer-info-value">{t.footer.ceoName}</span>
+            </div>
+            <div className="footer-info-item">
+              <span className="footer-info-label">{t.footer.bizNo}</span>
+              <span className="footer-info-value">{t.footer.bizNoValue}</span>
+            </div>
+            <div className="footer-info-item">
+              <span className="footer-info-label">{t.footer.address}</span>
+              <span className="footer-info-value">{t.footer.addressValue}</span>
+            </div>
+            <div className="footer-info-item">
+              <span className="footer-info-label">{t.footer.email}</span>
+              <a href={`mailto:${t.footer.emailValue}`} className="footer-info-value footer-email">{t.footer.emailValue}</a>
+            </div>
+          </div>
+          <div className="footer-divider" />
           <div className="footer-bottom">
             <p>{t.footer.copyright}</p>
             <div className="footer-social">
-              <a href="#" aria-label="LinkedIn">in</a>
-              <a href="https://instagram.com/young_cosmed" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
+              <a href="https://instagram.com/young_cosmed" aria-label="Instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
         </div>
