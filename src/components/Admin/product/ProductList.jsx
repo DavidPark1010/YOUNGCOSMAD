@@ -1,38 +1,76 @@
+import { useState } from 'react'
 import './ProductList.css'
 
-function ProductList({ products, formatDateShort, onOpenForm, onDeleteConfirm }) {
-  // Group products by brand (for display as brand cards)
-  // For now, treat each product as a brand card
+const categoryFilters = ['전체', 'Fillers', 'Botox', 'Skin Boosters', 'Lipolytics']
+
+function ProductList({ products, onOpenForm, onDeleteConfirm, onSelectProduct }) {
+  const [activeFilter, setActiveFilter] = useState('전체')
+
+  const filtered = activeFilter === '전체'
+    ? products
+    : products.filter(p => p.category === activeFilter)
+
   return (
     <>
-      <div className="products-header-simple">
-        <button className="add-product-btn-large" onClick={() => onOpenForm()}>
+      <div className="pl-header">
+        <div className="pl-filters">
+          {categoryFilters.map(cat => (
+            <button
+              key={cat}
+              className={`pl-filter-btn ${activeFilter === cat ? 'active' : ''}`}
+              onClick={() => setActiveFilter(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <button className="pl-add-btn" onClick={() => onOpenForm()}>
           + 새 제품 등록
         </button>
       </div>
-      <div className="product-card-list">
-        {products.map(product => (
-          <div key={product.id} className="product-card">
-            <div className="product-card-info">
-              <span className="product-card-name">{product.nameEn}</span>
-              <span className="product-card-category">{product.category}</span>
+
+      <div className="pl-grid">
+        {filtered.map(product => (
+          <div
+            key={product.id}
+            className="pl-card"
+            onClick={() => onSelectProduct(product)}
+          >
+            <div className="pl-card-image">
+              {product.brandImage ? (
+                <img src={product.brandImage} alt={product.brandName} />
+              ) : (
+                <div className="pl-card-no-image">No Image</div>
+              )}
             </div>
-            <div className="product-card-meta">
-              <span className="product-card-models">
-                MOQ {product.moq}
+            <div className="pl-card-body">
+              <span className="pl-card-category">{product.category}</span>
+              <h3 className="pl-card-brand">{product.brandName}</h3>
+              <span className="pl-card-models">
+                {product.models.length} model{product.models.length > 1 ? 's' : ''}
               </span>
             </div>
-            <div className="product-card-actions">
-              <button className="action-btn edit" onClick={() => onOpenForm(product)}>
+            <div className="pl-card-actions">
+              <button
+                className="pl-action-btn edit"
+                onClick={(e) => { e.stopPropagation(); onOpenForm(product) }}
+              >
                 수정
               </button>
-              <button className="action-btn delete" onClick={() => onDeleteConfirm(product.id)}>
+              <button
+                className="pl-action-btn delete"
+                onClick={(e) => { e.stopPropagation(); onDeleteConfirm(product.id) }}
+              >
                 삭제
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {filtered.length === 0 && (
+        <div className="pl-empty">등록된 제품이 없습니다.</div>
+      )}
     </>
   )
 }

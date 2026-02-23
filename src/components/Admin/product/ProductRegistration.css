@@ -2,9 +2,55 @@
    Product Registration - Brand + Model
 ======================================== */
 .pr-container {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto;
   padding-bottom: 120px;
+}
+
+/* Back button */
+.pr-back {
+  display: inline-block;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #777777;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.pr-back:hover {
+  color: #1A1A1A;
+}
+
+/* Context header */
+.pr-context-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #E8E8E8;
+}
+
+.pr-context-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #F0F0F0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pr-context-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A1A1A;
 }
 
 .pr-form {
@@ -61,6 +107,32 @@
 .pr-input::placeholder {
   color: #999999;
   font-size: 18px;
+}
+
+/* Textarea */
+.pr-textarea {
+  font-size: 18px;
+  padding: 16px 18px;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+  background: #FAFAFA;
+  color: #1A1A1A;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.pr-textarea:focus {
+  outline: none;
+  border-color: #1A1A1A;
+  background: #FFFFFF;
+}
+
+.pr-textarea::placeholder {
+  color: #999999;
+  font-size: 16px;
 }
 
 /* Category Cards */

@@ -2,10 +2,10 @@ import { useState, useRef } from 'react'
 import './ProductRegistration.css'
 
 const categories = [
-  { key: 'fillers', label: 'Fillers' },
-  { key: 'botox', label: 'Botox' },
-  { key: 'skinboosters', label: 'Skin Boosters' },
-  { key: 'lipolytics', label: 'Lipolytics' },
+  { key: 'Fillers', label: 'Fillers' },
+  { key: 'Botox', label: 'Botox' },
+  { key: 'Skin Boosters', label: 'Skin Boosters' },
+  { key: 'Lipolytics', label: 'Lipolytics' },
 ]
 
 function ProductRegistration({ onClose, onSave, editProduct = null }) {
@@ -15,6 +15,7 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
         category: editProduct.category || '',
         brandName: editProduct.brandName || '',
         brandImage: editProduct.brandImage || null,
+        description: editProduct.description || '',
         models: editProduct.models || [{ name: '', description: '' }],
       }
     }
@@ -22,6 +23,7 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
       category: '',
       brandName: '',
       brandImage: null,
+      description: '',
       models: [{ name: '', description: '' }],
     }
   })
@@ -119,6 +121,21 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
 
   return (
     <div className="pr-container">
+      <button className="pr-back" onClick={onClose}>
+        ← 뒤로
+      </button>
+
+      <div className="pr-context-header">
+        {editProduct ? (
+          <>
+            <span className="pr-context-badge">{editProduct.category}</span>
+            <span className="pr-context-title">{editProduct.brandName} 수정 중</span>
+          </>
+        ) : (
+          <span className="pr-context-title">새 제품 등록</span>
+        )}
+      </div>
+
       <div className="pr-form">
         {/* Category */}
         <div className="pr-field-group">
@@ -184,6 +201,18 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
             accept="image/*"
             onChange={(e) => handleImageUpload(e.target.files)}
             style={{ display: 'none' }}
+          />
+        </div>
+
+        {/* Description */}
+        <div className="pr-field-group">
+          <label className="pr-label">설명</label>
+          <textarea
+            className="pr-textarea"
+            value={formData.description}
+            onChange={(e) => updateField('description', e.target.value)}
+            placeholder="브랜드/제품에 대한 자유로운 설명을 입력하세요"
+            rows={4}
           />
         </div>
 

@@ -1,0 +1,175 @@
+/* ========================================
+   Product Detail View
+======================================== */
+.pdv-container {
+  max-width: 800px;
+}
+
+/* Back button */
+.pdv-back {
+  display: inline-block;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #777777;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.pdv-back:hover {
+  color: #1A1A1A;
+}
+
+/* Header: vertical flow */
+.pdv-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+/* Hero image */
+.pdv-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #F5F5F5;
+  border: 2px solid #E8E8E8;
+}
+
+.pdv-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdv-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #BBBBBB;
+  font-size: 15px;
+}
+
+.pdv-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Category badge */
+.pdv-category {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 6px 16px;
+  background: #F0F0F0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pdv-brand {
+  margin: 4px 0 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* Sections */
+.pdv-section {
+  margin-bottom: 32px;
+}
+
+.pdv-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #E8E8E8;
+}
+
+.pdv-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444444;
+}
+
+/* Model list */
+.pdv-model-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pdv-model-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  background: #FAFAFA;
+  border: 2px solid #E8E8E8;
+  border-radius: 12px;
+}
+
+.pdv-model-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.pdv-model-desc {
+  font-size: 15px;
+  color: #777777;
+}
+
+/* Footer */
+.pdv-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.pdv-edit-btn {
+  flex: 1;
+  padding: 14px 36px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pdv-edit-btn:hover {
+  background: #333333;
+}
+
+.pdv-delete-btn {
+  flex: 1;
+  padding: 14px 36px;
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #999999;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pdv-delete-btn:hover {
+  border-color: #E74C3C;
+  color: #E74C3C;
+}

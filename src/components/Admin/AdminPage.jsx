@@ -8,6 +8,7 @@ import uiText from './data/adminI18n'
 import InquiryList from './inquiry/InquiryList'
 import InquiryDetail from './inquiry/InquiryDetail'
 import ProductList from './product/ProductList'
+import ProductDetailView from './product/ProductDetailView'
 import ProductRegistration from './product/ProductRegistration'
 import InvoiceGenerator from './invoice/InvoiceGenerator'
 import DeleteModal from './common/DeleteModal'
@@ -21,9 +22,10 @@ function AdminPage({ onClose }) {
   const [products, setProducts] = useState(initialProducts)
   const [copied, setCopied] = useState(false)
 
-  // Product Form State
+  // Product State
   const [showProductForm, setShowProductForm] = useState(false)
   const [editingProduct, setEditingProduct] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   // Delete Confirm State
   const [deleteConfirm, setDeleteConfirm] = useState(null)
@@ -87,6 +89,7 @@ function AdminPage({ onClose }) {
 
   const openProductForm = (product = null) => {
     setEditingProduct(product || null)
+    setSelectedProduct(null)
     setShowProductForm(true)
   }
 
@@ -111,7 +114,10 @@ function AdminPage({ onClose }) {
   const handleMenuClick = (key) => {
     setActiveMenu(key)
     if (key === 'inquiries') setSelectedInquiry(null)
-    if (key === 'products') setShowProductForm(false)
+    if (key === 'products') {
+      setShowProductForm(false)
+      setSelectedProduct(null)
+    }
   }
 
   return (
@@ -166,12 +172,21 @@ function AdminPage({ onClose }) {
             />
           )}
 
-          {activeMenu === 'products' && !showProductForm && (
+          {activeMenu === 'products' && !showProductForm && !selectedProduct && (
             <ProductList
               products={products}
-              formatDateShort={formatDateShort}
               onOpenForm={openProductForm}
               onDeleteConfirm={setDeleteConfirm}
+              onSelectProduct={setSelectedProduct}
+            />
+          )}
+
+          {activeMenu === 'products' && !showProductForm && selectedProduct && (
+            <ProductDetailView
+              product={selectedProduct}
+              onBack={() => setSelectedProduct(null)}
+              onEdit={openProductForm}
+              onDelete={setDeleteConfirm}
             />
           )}
 
