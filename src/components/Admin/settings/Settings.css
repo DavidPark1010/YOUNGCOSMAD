@@ -1,0 +1,422 @@
+/* ========================================
+   Settings - Card-based Simple UI
+======================================== */
+.settings-page-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 950px;
+  margin: 0 auto;
+  padding-bottom: 200px;
+}
+
+/* Settings Card */
+.settings-card {
+  background: #FFFFFF;
+  border: 3px solid #D0D0D0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.settings-card-header {
+  padding: 40px 48px 32px;
+  border-bottom: 3px solid #EEEEEE;
+  background: #FAFAFA;
+}
+
+.settings-card-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 18px 0;
+  line-height: 1.3;
+}
+
+.settings-card-desc {
+  font-size: 20px;
+  font-weight: 400;
+  color: #444444;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.settings-card-body {
+  padding: 44px 48px 52px;
+}
+
+/* Simple Textarea */
+.simple-textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 26px 28px;
+  font-size: 21px;
+  font-family: var(--font-body);
+  line-height: 1.8;
+  border: 3px solid #999999;
+  border-radius: 16px;
+  background: #FFFFFF;
+  color: #222222;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.simple-textarea:focus {
+  border-color: #1A1A1A;
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
+}
+
+.simple-textarea::placeholder {
+  color: #666666;
+  line-height: 1.8;
+}
+
+/* Simple Input */
+.simple-input {
+  flex: 1;
+  min-height: 64px;
+  padding: 20px 24px;
+  font-size: 21px;
+  font-family: var(--font-body);
+  border: 3px solid #999999;
+  border-radius: 16px;
+  background: #FFFFFF;
+  color: #222222;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.simple-input:focus {
+  border-color: #1A1A1A;
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
+}
+
+.simple-input::placeholder {
+  color: #666666;
+}
+
+.simple-label {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 20px;
+}
+
+/* Tag List */
+.simple-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.simple-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 68px;
+  padding: 18px 30px;
+  background: #F0F0F0;
+  border: 3px solid #BBBBBB;
+  border-radius: 16px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.simple-tag-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #FFFFFF;
+  border: 2px solid #AAAAAA;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simple-tag-remove:hover {
+  background: #E74C3C;
+  border-color: #E74C3C;
+  color: #FFFFFF;
+}
+
+/* Add Row */
+.simple-add-row {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.simple-add-btn {
+  min-height: 68px;
+  padding: 20px 44px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.simple-add-btn:hover {
+  background: #333333;
+}
+
+.simple-add-btn:active {
+  transform: scale(0.98);
+}
+
+.simple-divider {
+  height: 3px;
+  background: #CCCCCC;
+  margin: 40px 0;
+  border-radius: 2px;
+}
+
+/* Radio Group */
+.simple-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.simple-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 80px;
+  padding: 24px 30px;
+  background: #FAFAFA;
+  border: 3px solid #CCCCCC;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simple-radio-option:hover {
+  border-color: #999999;
+  background: #F5F5F5;
+}
+
+.simple-radio-option.selected {
+  background: #F0F8FF;
+  border-color: #1A1A1A;
+}
+
+.simple-radio-option input[type="radio"] {
+  width: 28px;
+  height: 28px;
+  accent-color: #1A1A1A;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.simple-radio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.simple-radio-title {
+  font-size: 23px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.simple-radio-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: #444444;
+  line-height: 1.6;
+}
+
+/* Checkbox Group */
+.simple-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.simple-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 76px;
+  padding: 22px 28px;
+  background: #FAFAFA;
+  border: 3px solid #CCCCCC;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simple-checkbox:hover {
+  border-color: #999999;
+  background: #F5F5F5;
+}
+
+.simple-checkbox.checked {
+  background: #FFF5F5;
+  border-color: #E74C3C;
+}
+
+.simple-checkbox input[type="checkbox"] {
+  width: 28px;
+  height: 28px;
+  accent-color: #1A1A1A;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.simple-checkbox-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222222;
+  line-height: 1.5;
+}
+
+/* Save Button Area - Fixed Bottom */
+.settings-save-area {
+  position: fixed;
+  bottom: 0;
+  left: 400px;
+  right: 0;
+  background: linear-gradient(to top, #F8F8F8 70%, rgba(248, 248, 248, 0.9) 85%, transparent);
+  padding: 28px 60px 36px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+.settings-save-btn-large {
+  width: 70%;
+  max-width: 640px;
+  min-height: 72px;
+  padding: 22px 52px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 18px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.settings-save-btn-large:hover {
+  background: #333333;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.settings-save-btn-large:active {
+  transform: scale(0.98);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1200px) {
+  .settings-save-area {
+    left: 360px;
+  }
+}
+
+@media (max-width: 992px) {
+  .settings-save-area {
+    left: 320px;
+    padding: 24px 40px 32px;
+  }
+
+  .settings-save-btn-large {
+    width: 80%;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .settings-page-simple {
+    gap: 28px;
+    padding-bottom: 140px;
+  }
+
+  .settings-card-header {
+    padding: 24px 24px 18px;
+  }
+
+  .settings-card-title {
+    font-size: 22px;
+  }
+
+  .settings-card-desc {
+    font-size: 15px;
+  }
+
+  .settings-card-body {
+    padding: 24px;
+  }
+
+  .simple-add-row {
+    flex-direction: column;
+  }
+
+  .simple-add-btn {
+    width: 100%;
+  }
+
+  .simple-textarea {
+    min-height: 140px;
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+
+  .simple-input {
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .simple-label {
+    font-size: 18px;
+  }
+
+  .simple-radio-option {
+    min-height: 64px;
+    padding: 18px 22px;
+  }
+
+  .simple-radio-title {
+    font-size: 18px;
+  }
+
+  .simple-radio-desc {
+    font-size: 14px;
+  }
+
+  .simple-checkbox {
+    min-height: 60px;
+    padding: 16px 20px;
+  }
+
+  .simple-checkbox-text {
+    font-size: 17px;
+  }
+
+  .settings-save-area {
+    left: 0;
+    padding: 20px 24px 28px;
+  }
+
+  .settings-save-btn-large {
+    width: 100%;
+    min-height: 56px;
+    font-size: 18px;
+  }
+}

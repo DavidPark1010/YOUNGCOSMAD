@@ -1,3 +1,5 @@
+import './Order.css'
+
 function OrderDetail({ t, order, formatDate, trackingInput, setTrackingInput, notificationSent, onUpdateStatus, onBack }) {
   const statusFlow = ['pending', 'paid', 'preparing', 'shipped', 'delivered']
   const currentIdx = statusFlow.indexOf(order.status)

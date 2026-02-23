@@ -1,0 +1,295 @@
+/* ========================================
+   Inquiry - Status Badges
+======================================== */
+.status-badge.new {
+  background: #F5F0EB;
+  color: #6B5335;
+}
+
+.status-badge.reviewed {
+  background: #F0F2F4;
+  color: #5A5A5D;
+}
+
+.status-badge.responded {
+  background: #EDF5F0;
+  color: #3A6C4C;
+}
+
+/* Contact Badge */
+.contact-badge {
+  display: inline-block;
+  padding: 12px 18px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+}
+
+.contact-badge.whatsapp {
+  background: #E8F5EC;
+  color: #156E2E;
+}
+
+.contact-badge.email {
+  background: #F0F2F4;
+  color: #555555;
+}
+
+.contact-info-cell {
+  font-size: 20px;
+  color: #555555;
+}
+
+.preview-cell {
+  font-size: 19px;
+  color: #666666;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================
+   Inquiry Detail
+======================================== */
+.inquiry-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 40px;
+}
+
+/* Detail Product */
+.detail-product {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.detail-product-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #F0F2F4;
+  margin-bottom: 24px;
+}
+
+.detail-product-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 10px;
+}
+
+.detail-product-category {
+  font-size: 20px;
+  color: #777777;
+}
+
+.detail-status-section {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 2px solid #E0E0E0;
+}
+
+.detail-label {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.status-btn {
+  flex: 1;
+  padding: 16px 18px;
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 12px;
+  font-size: 19px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-btn:hover {
+  border-color: #999999;
+  color: #1A1A1A;
+}
+
+.status-btn.active {
+  background: #1A1A1A;
+  border-color: #1A1A1A;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.detail-contact-section {
+  margin-top: 28px;
+}
+
+.contact-box {
+  background: #FAFBFC;
+  border: 2px solid #D0D0D0;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.contact-method {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.contact-method.whatsapp {
+  background: #E8F5EC;
+  color: #156E2E;
+}
+
+.contact-method.email {
+  background: #F0F2F4;
+  color: #555555;
+}
+
+.contact-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 18px;
+}
+
+.copy-btn {
+  background: #FFFFFF;
+  border: 2px solid #CCCCCC;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  border-color: #1A1A1A;
+  color: #1A1A1A;
+}
+
+/* Detail Conversation */
+.detail-conversation {
+  background: #FFFFFF;
+  border: 2px solid #D0D0D0;
+  border-radius: 16px;
+  padding: 36px;
+}
+
+.conversation-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 28px;
+}
+
+.conversation-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+}
+
+.timeline-time {
+  flex-shrink: 0;
+  width: 70px;
+  font-size: 19px;
+  font-weight: 500;
+  color: #777777;
+  padding-top: 18px;
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 20px 26px;
+  border-radius: 14px;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.timeline-content p {
+  margin: 0;
+}
+
+.timeline-item.user .timeline-content {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+.timeline-item.assistant .timeline-content {
+  background: #FFFFFF;
+  border: 2px solid #E0E0E0;
+  color: #444444;
+}
+
+.timeline-item.price-highlight .timeline-content {
+  background: #FFFAF5;
+  border: 2px solid #E8D5C4;
+}
+
+.price-tag {
+  display: inline-block;
+  background: #D8CFC4;
+  color: #4A3F33;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 10px 18px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .detail-content {
+    grid-template-columns: 300px 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 992px) {
+  .detail-content {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-product {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+  }
+
+  .detail-product-image {
+    margin-bottom: 0;
+  }
+}

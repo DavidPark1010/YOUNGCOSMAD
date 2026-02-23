@@ -1,3 +1,5 @@
+import './Settings.css'
+
 function Settings({ settings, setSettings, aiPolicy, setAiPolicy, settingsSaved, onSave }) {
   return (
     <div className="settings-page-simple">

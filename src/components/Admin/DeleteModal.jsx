@@ -1,3 +1,5 @@
+import './DeleteModal.css'
+
 function DeleteModal({ t, onCancel, onDelete }) {
   return (
     <div className="modal-overlay" onClick={onCancel}>

@@ -1,3 +1,5 @@
+import './Order.css'
+
 function OrderList({ t, orders, orderStats, lang, formatDateShort, onSelectOrder }) {
   return (
     <>

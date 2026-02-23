@@ -1,3 +1,5 @@
+import './Inquiry.css'
+
 function InquiryList({ t, filteredInquiries, stats, filter, setFilter, formatDate, onSelectInquiry }) {
   return (
     <>

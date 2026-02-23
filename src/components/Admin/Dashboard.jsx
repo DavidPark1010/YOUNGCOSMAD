@@ -1,3 +1,5 @@
+import './Dashboard.css'
+
 function Dashboard({ t, stats, inquiries, formatDate, onGoToInquiries, onSelectInquiry }) {
   return (
     <>

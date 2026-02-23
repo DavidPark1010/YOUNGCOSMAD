@@ -1,3 +1,5 @@
+import './Inquiry.css'
+
 function InquiryDetail({ t, inquiry, copied, onCopy, onUpdateStatus, onBack }) {
   return (
     <div className="inquiry-detail">

@@ -1,3 +1,5 @@
+import './ProductList.css'
+
 function ProductList({ products, formatDateShort, onOpenForm, onDeleteConfirm }) {
   return (
     <>
