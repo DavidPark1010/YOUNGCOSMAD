@@ -13,7 +13,7 @@
   padding: 10px 0;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   color: #777777;
   cursor: pointer;
@@ -40,7 +40,7 @@
   padding: 6px 16px;
   background: #F0F0F0;
   border-radius: 20px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: #555555;
   text-transform: uppercase;
@@ -48,7 +48,7 @@
 }
 
 .pr-context-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: #1A1A1A;
 }
@@ -67,13 +67,13 @@
 }
 
 .pr-label {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #1A1A1A;
 }
 
 .pr-error {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   color: #E74C3C;
   padding: 6px 10px;
@@ -84,7 +84,7 @@
 
 /* Input */
 .pr-input {
-  font-size: 20px;
+  font-size: 24px;
   padding: 16px 18px;
   border: 2px solid #E0E0E0;
   border-radius: 10px;
@@ -106,12 +106,12 @@
 
 .pr-input::placeholder {
   color: #999999;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 /* Textarea */
 .pr-textarea {
-  font-size: 18px;
+  font-size: 22px;
   padding: 16px 18px;
   border: 2px solid #E0E0E0;
   border-radius: 10px;
@@ -132,7 +132,7 @@
 
 .pr-textarea::placeholder {
   color: #999999;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* Category Cards */
@@ -147,7 +147,7 @@
   background: #FFFFFF;
   border: 2px solid #E0E0E0;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   color: #555555;
   cursor: pointer;
@@ -184,7 +184,7 @@
   padding: 40px;
   text-align: center;
   color: #999999;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .pr-image-preview {
@@ -207,7 +207,7 @@
   color: #FFFFFF;
   border: none;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 17px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -238,7 +238,7 @@
 }
 
 .pr-model-number {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   color: #555555;
 }
@@ -248,7 +248,7 @@
   background: transparent;
   border: 1px solid #D0D0D0;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 17px;
   color: #999999;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -272,13 +272,13 @@
 }
 
 .pr-model-field label {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 600;
   color: #777777;
 }
 
 .pr-model-field input {
-  font-size: 18px;
+  font-size: 22px;
   padding: 12px 14px;
   border: 2px solid #E0E0E0;
   border-radius: 8px;
@@ -295,7 +295,7 @@
 
 .pr-model-field input::placeholder {
   color: #BBBBBB;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* Add Model Button */
@@ -304,7 +304,7 @@
   background: transparent;
   border: 2px dashed #CCCCCC;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: #888888;
   cursor: pointer;
@@ -336,7 +336,7 @@
   background: #FFFFFF;
   border: 2px solid #D0D0D0;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: #666666;
   cursor: pointer;
@@ -353,7 +353,7 @@
   background: #1A1A1A;
   border: none;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;

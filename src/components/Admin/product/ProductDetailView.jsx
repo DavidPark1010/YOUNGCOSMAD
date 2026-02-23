@@ -7,8 +7,9 @@ function ProductDetailView({ product, onBack, onEdit, onDelete }) {
         ← 목록으로
       </button>
 
-      <div className="pdv-header">
-        <div className="pdv-image">
+      <div className="pdv-layout">
+        {/* Left: Image */}
+        <div className="pdv-image-wrap">
           {product.brandImage ? (
             <img src={product.brandImage} alt={product.brandName} />
           ) : (
@@ -16,15 +17,18 @@ function ProductDetailView({ product, onBack, onEdit, onDelete }) {
           )}
         </div>
 
+        {/* Right: All info */}
         <div className="pdv-info">
           <span className="pdv-category">{product.category}</span>
           <h2 className="pdv-brand">{product.brandName}</h2>
 
           {product.description && (
-            <p className="pdv-info-description">{product.description}</p>
+            <p className="pdv-description">{product.description}</p>
           )}
 
-          <h4 className="pdv-info-models-title">모델 목록</h4>
+          <hr className="pdv-divider" />
+
+          <h4 className="pdv-models-title">모델 목록</h4>
           <div className="pdv-model-list">
             {product.models.map((model, index) => (
               <div key={index} className="pdv-model-card">
@@ -35,16 +39,16 @@ function ProductDetailView({ product, onBack, onEdit, onDelete }) {
               </div>
             ))}
           </div>
-        </div>
-      </div>
 
-      <div className="pdv-footer">
-        <button className="pdv-edit-btn" onClick={() => onEdit(product)}>
-          수정하기
-        </button>
-        <button className="pdv-delete-btn" onClick={() => onDelete(product.id)}>
-          삭제하기
-        </button>
+          <div className="pdv-actions">
+            <button className="pdv-edit-btn" onClick={() => onEdit(product)}>
+              수정하기
+            </button>
+            <button className="pdv-delete-btn" onClick={() => onDelete(product.id)}>
+              삭제하기
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

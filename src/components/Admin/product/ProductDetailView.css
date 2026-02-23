@@ -1,47 +1,52 @@
 /* ========================================
-   Product Detail View
+   Product Detail View — 화면 꽉 차게
 ======================================== */
 .pdv-container {
-  max-width: 900px;
+  max-width: 100%;
 }
 
-/* Back button */
+/* Back button — 크게 */
 .pdv-back {
-  display: inline-block;
-  padding: 10px 0;
-  background: none;
-  border: none;
-  font-size: 17px;
-  font-weight: 600;
-  color: #777777;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: #F5F5F5;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #555555;
   cursor: pointer;
-  transition: color 0.2s ease;
-  margin-bottom: 24px;
+  transition: all 0.2s ease;
+  margin-bottom: 28px;
 }
 
 .pdv-back:hover {
+  background: #EBEBEB;
+  border-color: #CCCCCC;
   color: #1A1A1A;
 }
 
-/* Header: image left + info right */
-.pdv-header {
+/* Main layout: image left + info right, 50/50 */
+.pdv-layout {
   display: flex;
-  gap: 32px;
+  gap: 48px;
   align-items: flex-start;
-  margin-bottom: 36px;
 }
 
-/* Image - compact, no crop */
-.pdv-image {
-  width: 280px;
-  min-width: 280px;
-  border-radius: 14px;
+/* Image — large, sticky, no crop */
+.pdv-image-wrap {
+  flex: 1 1 0;
+  position: sticky;
+  top: 24px;
+  border-radius: 18px;
   overflow: hidden;
   background: #F5F5F5;
   border: 2px solid #E8E8E8;
 }
 
-.pdv-image img {
+.pdv-image-wrap img {
   width: 100%;
   display: block;
   object-fit: contain;
@@ -49,108 +54,115 @@
 
 .pdv-no-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #BBBBBB;
-  font-size: 16px;
+  font-size: 20px;
 }
 
-/* Info panel (right side) */
+/* Info panel */
 .pdv-info {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 4px;
 }
 
 /* Category badge */
 .pdv-category {
   display: inline-block;
   align-self: flex-start;
-  padding: 7px 18px;
+  padding: 10px 24px;
   background: #F0F0F0;
-  border-radius: 20px;
-  font-size: 15px;
-  font-weight: 600;
+  border-radius: 24px;
+  font-size: 18px;
+  font-weight: 700;
   color: #555555;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .pdv-brand {
-  margin: 4px 0 0;
-  font-size: 34px;
-  font-weight: 700;
+  margin: 16px 0 0;
+  font-size: 44px;
+  font-weight: 800;
   color: #1A1A1A;
+  line-height: 1.2;
 }
 
-/* Description inline in info */
-.pdv-info-description {
-  font-size: 17px;
+/* Description */
+.pdv-description {
+  font-size: 20px;
   line-height: 1.7;
   color: #555555;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 
-/* Model list inline in info */
-.pdv-info-models-title {
-  font-size: 18px;
+/* Divider */
+.pdv-divider {
+  height: 2px;
+  background: #E0E0E0;
+  border: none;
+  margin: 28px 0;
+}
+
+/* Model section */
+.pdv-models-title {
+  font-size: 24px;
   font-weight: 700;
   color: #1A1A1A;
-  margin-top: 16px;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #E8E8E8;
+  margin-bottom: 16px;
 }
 
 .pdv-model-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pdv-model-card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 14px 18px;
+  gap: 6px;
+  padding: 20px 24px;
   background: #FAFAFA;
-  border: 2px solid #E8E8E8;
-  border-radius: 12px;
+  border: 2px solid #EBEBEB;
+  border-radius: 14px;
 }
 
 .pdv-model-name {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
   color: #1A1A1A;
 }
 
 .pdv-model-desc {
-  font-size: 16px;
+  font-size: 18px;
   color: #777777;
+  line-height: 1.5;
 }
 
-/* Footer */
-.pdv-footer {
+/* Action buttons */
+.pdv-actions {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   margin-top: 36px;
 }
 
 .pdv-edit-btn {
   flex: 1;
-  padding: 16px 36px;
+  padding: 18px 0;
   background: #1A1A1A;
   border: none;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .pdv-edit-btn:hover {
@@ -159,15 +171,16 @@
 
 .pdv-delete-btn {
   flex: 1;
-  padding: 16px 36px;
+  padding: 18px 0;
   background: #FFFFFF;
   border: 2px solid #D0D0D0;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 700;
   color: #999999;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .pdv-delete-btn:hover {
@@ -176,15 +189,19 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .pdv-header {
+@media (max-width: 768px) {
+  .pdv-layout {
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
 
-  .pdv-image {
+  .pdv-image-wrap {
+    flex: none;
     width: 100%;
-    min-width: unset;
-    max-width: 280px;
+    position: static;
+  }
+
+  .pdv-brand {
+    font-size: 32px;
   }
 }
