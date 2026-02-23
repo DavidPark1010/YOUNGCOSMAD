@@ -47,21 +47,21 @@ const content = {
       categories: [
         { key: 'all', label: 'All' },
         { key: 'filler', label: 'Fillers' },
-        { key: 'botox', label: 'Botox' },
-        { key: 'skinbooster', label: 'Skin Boosters' },
-        { key: 'lipolytic', label: 'Lipolytics' }
+        { key: 'skinbooster', label: 'Skin Boosters' }
       ],
       items: [
-        { id: 1, name: 'Hyaluronic Filler 1ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product1.png', medical: true },
-        { id: 2, name: 'Deep Volume Filler 2ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product2.png', medical: true },
-        { id: 3, name: 'Fine Line Filler 1ml', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/product3.png', medical: true },
-        { id: 4, name: 'Botulinum Type A 100U', category: 'Botox', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product4.png', medical: true },
-        { id: 5, name: 'Botulinum Type A 200U', category: 'Botox', categoryKey: 'botox', moq: '50 units', region: 'Licensed Only', image: '/product5.png', medical: true },
-        { id: 6, name: 'Rejuran Healer 2ml', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/product6.png', medical: true },
-        { id: 7, name: 'PDRN Skin Booster', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: 'Exosome Skin Booster', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '80 units', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: 'PPC Lipolytic Solution', category: 'Lipolytics', categoryKey: 'lipolytic', moq: '100 units', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: 'Deoxycholic Acid 10ml', category: 'Lipolytics', categoryKey: 'lipolytic', moq: '100 units', region: 'Licensed Only', image: '/product10.png', medical: true },
+        { id: 1, name: 'Revolax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/revolax1.png', medical: true },
+        { id: 2, name: 'Elasty', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/ELASTY1.png', medical: true },
+        { id: 3, name: 'Rejeunesse', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/REJEUNESSE.png', medical: true },
+        { id: 4, name: 'Neuramis', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/NEURAMIS.png', medical: true },
+        { id: 5, name: 'Regenovue', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/REGENOVUE.png', medical: true },
+        { id: 6, name: 'Dermalax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/DERMALAX.png', medical: true },
+        { id: 7, name: 'E.P.T.Q', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/E.P.T.Q.png', medical: true },
+        { id: 8, name: 'Sosum', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/SOSUM.png', medical: true },
+        { id: 9, name: 'Starfill', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/STARFILL.png', medical: true },
+        { id: 10, name: 'Line Fill', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/LINE FILL.png', medical: true },
+        { id: 11, name: 'Priere', category: 'Skin Boosters', categoryKey: 'skinbooster', moq: '100 units', region: 'Licensed Only', image: '/PRIERE.png', medical: true },
+        { id: 12, name: 'Lip Star', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/LIP STAR.png', medical: true },
       ]
     },
     cta: {
@@ -121,21 +121,21 @@ const content = {
       categories: [
         { key: 'all', label: '전체' },
         { key: 'filler', label: '필러' },
-        { key: 'botox', label: '보톡스' },
-        { key: 'skinbooster', label: '스킨부스터' },
-        { key: 'lipolytic', label: '지방분해제' }
+        { key: 'skinbooster', label: '스킨부스터' }
       ],
       items: [
-        { id: 1, name: '히알루론 필러 1ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product1.png', medical: true },
-        { id: 2, name: '딥 볼륨 필러 2ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product2.png', medical: true },
-        { id: 3, name: '파인라인 필러 1ml', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/product3.png', medical: true },
-        { id: 4, name: '보툴리눔 타입A 100U', category: '보톡스', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product4.png', medical: true },
-        { id: 5, name: '보툴리눔 타입A 200U', category: '보톡스', categoryKey: 'botox', moq: '50개', region: 'Licensed Only', image: '/product5.png', medical: true },
-        { id: 6, name: '리쥬란 힐러 2ml', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/product6.png', medical: true },
-        { id: 7, name: 'PDRN 스킨부스터', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/product7.png', medical: true },
-        { id: 8, name: '엑소좀 스킨부스터', category: '스킨부스터', categoryKey: 'skinbooster', moq: '80개', region: 'Licensed Only', image: '/product8.png', medical: true },
-        { id: 9, name: 'PPC 지방분해 용액', category: '지방분해제', categoryKey: 'lipolytic', moq: '100개', region: 'Licensed Only', image: '/product9.png', medical: true },
-        { id: 10, name: '디옥시콜산 10ml', category: '지방분해제', categoryKey: 'lipolytic', moq: '100개', region: 'Licensed Only', image: '/product10.png', medical: true },
+        { id: 1, name: 'Revolax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/revolax1.png', medical: true },
+        { id: 2, name: 'Elasty', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/ELASTY1.png', medical: true },
+        { id: 3, name: 'Rejeunesse', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/REJEUNESSE.png', medical: true },
+        { id: 4, name: 'Neuramis', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/NEURAMIS.png', medical: true },
+        { id: 5, name: 'Regenovue', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/REGENOVUE.png', medical: true },
+        { id: 6, name: 'Dermalax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/DERMALAX.png', medical: true },
+        { id: 7, name: 'E.P.T.Q', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/E.P.T.Q.png', medical: true },
+        { id: 8, name: 'Sosum', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/SOSUM.png', medical: true },
+        { id: 9, name: 'Starfill', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/STARFILL.png', medical: true },
+        { id: 10, name: 'Line Fill', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/LINE FILL.png', medical: true },
+        { id: 11, name: 'Priere', category: '스킨부스터', categoryKey: 'skinbooster', moq: '100개', region: 'Licensed Only', image: '/PRIERE.png', medical: true },
+        { id: 12, name: 'Lip Star', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/LIP STAR.png', medical: true },
       ]
     },
     cta: {
@@ -188,7 +188,7 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const categoryParam = urlParams.get('category')
-    const validCategories = ['filler', 'botox', 'skinbooster', 'lipolytic']
+    const validCategories = ['filler', 'skinbooster']
     if (categoryParam && validCategories.includes(categoryParam)) {
       setSelectedCategory(categoryParam)
     }

@@ -3,85 +3,97 @@ import './ProductDetail.css'
 const productDetails = {
   en: {
     1: {
-      name: 'Hydra Glow Serum',
-      category: 'Skincare',
-      tagline: 'Deep hydration serum with hyaluronic acid and niacinamide for radiant skin.',
-      sellingPoints: [
-        'Multi-weight hyaluronic acid for layered hydration',
-        'Brightening niacinamide complex',
-        'Lightweight, fast-absorbing texture'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '500 units'
-    },
-    2: {
-      name: 'Velvet Matte Lip Tint',
-      category: 'Makeup',
-      tagline: 'Long-wear velvet matte lip tint with rich pigmentation.',
-      sellingPoints: [
-        '8-hour long-lasting formula',
-        'Non-drying velvet finish',
-        'Buildable color intensity'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '300 units'
-    },
-    3: {
-      name: 'Cica Repair Cream',
-      category: 'Skincare',
-      tagline: 'Intensive barrier repair cream with Centella Asiatica.',
-      sellingPoints: [
-        'Centella Asiatica for skin barrier restoration',
-        'Vegan certified formula',
-        'Suitable for sensitive skin'
-      ],
-      certTags: ['CPNP', 'FDA', 'Vegan'],
-      moq: '400 units'
-    },
-    4: {
-      name: 'Double Cleansing Oil',
-      category: 'Cleansing',
-      tagline: 'Gentle cleansing oil that dissolves makeup without stripping moisture.',
-      sellingPoints: [
-        'Emulsifying formula for easy rinse',
-        'Plant-based oil blend',
-        'No residue, fresh finish'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '600 units'
-    },
-    5: {
-      name: 'Peptide Eye Contour',
-      category: 'Skincare',
-      tagline: 'Anti-aging eye cream with peptide complex for wrinkles and dark circles.',
-      sellingPoints: [
-        'Acetyl hexapeptide-8 for fine lines',
-        'Caffeine to reduce puffiness',
-        'Fragrance-free formula'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '350 units'
-    },
-    6: {
-      name: 'Tone-Up Sun Shield',
-      category: 'Sun Care',
-      tagline: 'SPF50+ PA++++ sunscreen with natural tone-up effect.',
-      sellingPoints: [
-        'Broad spectrum UV protection',
-        'Subtle tone-up without white cast',
-        'Lightweight daily wear texture'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '500 units'
-    },
-    7: {
-      name: 'Hyaluronic Filler 1ml',
-      category: 'Dermal Fillers',
-      tagline: 'Cross-linked HA filler for facial contouring and wrinkle correction.',
+      name: 'Revolax',
+      category: 'Fillers',
+      tagline: 'Premium hyaluronic acid dermal filler for facial contouring and wrinkle correction.',
       sellingPoints: [
         'Premium cross-linked hyaluronic acid',
         'Contains lidocaine for comfort',
-        'CE and KFDA certified'
+        'Long-lasting natural results'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    2: {
+      name: 'Elasty',
+      category: 'Fillers',
+      tagline: 'High-quality HA filler with excellent elasticity for natural-looking results.',
+      sellingPoints: [
+        'Superior elasticity and cohesiveness',
+        'Smooth injection experience',
+        'Versatile for multiple treatment areas'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    3: {
+      name: 'Rejeunesse',
+      category: 'Fillers',
+      tagline: 'Advanced HA filler with SHAPE technology for long-lasting volume restoration.',
+      sellingPoints: [
+        'Patented SHAPE technology',
+        'Optimal viscoelasticity',
+        'Extended duration of effect'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    4: {
+      name: 'Neuramis',
+      category: 'Fillers',
+      tagline: 'Premium Korean HA filler known for its purity and natural results.',
+      sellingPoints: [
+        'High purity hyaluronic acid',
+        'Natural and soft tissue feel',
+        'Multiple product lines available'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    5: {
+      name: 'Regenovue',
+      category: 'Fillers',
+      tagline: 'Next-generation HA filler with optimal viscoelasticity for smooth injection.',
+      sellingPoints: [
+        'Advanced cross-linking technology',
+        'Excellent moldability',
+        'Suitable for fine lines to deep wrinkles'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    6: {
+      name: 'Dermalax',
+      category: 'Fillers',
+      tagline: 'High-concentration HA filler for effective facial contouring and volume.',
+      sellingPoints: [
+        'High concentration formula',
+        'Strong volumizing effect',
+        'Long-lasting results'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    7: {
+      name: 'E.P.T.Q',
+      category: 'Fillers',
+      tagline: 'Premium European-quality HA filler with advanced cross-linking technology.',
+      sellingPoints: [
+        'European quality standards',
+        'Advanced cross-linking technology',
+        'Multiple product lines for various needs'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
@@ -89,13 +101,13 @@ const productDetails = {
       licenseRequired: true
     },
     8: {
-      name: 'Deep Volume Filler 2ml',
-      category: 'Dermal Fillers',
-      tagline: 'High-viscosity HA filler for deep tissue augmentation.',
+      name: 'Sosum',
+      category: 'Skin Boosters',
+      tagline: 'Advanced skin booster for deep hydration and skin rejuvenation.',
       sellingPoints: [
-        'High concentration for volume restoration',
-        'Long-lasting results',
-        'Smooth injection experience'
+        'Deep skin hydration',
+        'Improves skin texture and elasticity',
+        'Natural radiance enhancement'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
@@ -103,115 +115,155 @@ const productDetails = {
       licenseRequired: true
     },
     9: {
-      name: 'Botulinum Type A 100U',
-      category: 'Botulinum Toxin',
-      tagline: 'Purified botulinum toxin type A for aesthetic procedures.',
+      name: 'Starfill',
+      category: 'Fillers',
+      tagline: 'Versatile HA filler for various facial enhancement applications.',
       sellingPoints: [
-        'High purity formulation',
-        'Consistent clinical results',
-        'Multi-national certifications'
+        'Versatile application range',
+        'Consistent quality',
+        'Reliable clinical results'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50 units',
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
       medical: true,
       licenseRequired: true
     },
     10: {
-      name: 'Premium Botox 200U',
-      category: 'Botulinum Toxin',
-      tagline: 'High-purity botulinum toxin for professional aesthetic applications.',
+      name: 'Line Fill',
+      category: 'Fillers',
+      tagline: 'Precision HA filler designed for fine lines and delicate areas.',
       sellingPoints: [
-        'Premium grade formulation',
-        'Extended shelf life (frozen)',
-        'Globally recognized certifications'
+        'Precision treatment for fine lines',
+        'Smooth and even results',
+        'Minimal downtime'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50 units',
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    11: {
+      name: 'Priere',
+      category: 'Skin Boosters',
+      tagline: 'Premium skin booster for enhanced skin quality and radiance.',
+      sellingPoints: [
+        'Multi-nutrient formula',
+        'Skin rejuvenation effect',
+        'Improved skin tone and texture'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
+      medical: true,
+      licenseRequired: true
+    },
+    12: {
+      name: 'Lip Star',
+      category: 'Fillers',
+      tagline: 'Specialized HA filler designed for lip augmentation and contouring.',
+      sellingPoints: [
+        'Optimized for lip enhancement',
+        'Natural-looking volume',
+        'Soft and smooth results'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100 units',
       medical: true,
       licenseRequired: true
     }
   },
   ko: {
     1: {
-      name: '하이드라 글로우 세럼',
-      category: '스킨케어',
-      tagline: '히알루론산과 나이아신아마이드로 깊은 보습과 광채를 선사하는 수분 세럼.',
-      sellingPoints: [
-        '다중 분자량 히알루론산으로 층층 보습',
-        '브라이트닝 나이아신아마이드 컴플렉스',
-        '가볍고 빠르게 흡수되는 텍스처'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '500개'
-    },
-    2: {
-      name: '벨벳 매트 립틴트',
-      category: '메이크업',
-      tagline: '풍부한 발색의 롱웨어 벨벳 매트 립틴트.',
-      sellingPoints: [
-        '8시간 지속되는 롱래스팅 포뮬러',
-        '건조하지 않은 벨벳 피니시',
-        '레이어링 가능한 컬러 강도'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '300개'
-    },
-    3: {
-      name: '시카 리페어 크림',
-      category: '스킨케어',
-      tagline: '센텔라아시아티카 함유 인텐시브 피부 장벽 회복 크림.',
-      sellingPoints: [
-        '센텔라아시아티카로 피부 장벽 회복',
-        '비건 인증 포뮬러',
-        '민감성 피부에 적합'
-      ],
-      certTags: ['CPNP', 'FDA', 'Vegan'],
-      moq: '400개'
-    },
-    4: {
-      name: '더블 클렌징 오일',
-      category: '클렌징',
-      tagline: '수분을 빼앗지 않고 메이크업을 녹이는 순한 클렌징 오일.',
-      sellingPoints: [
-        '쉽게 헹굴 수 있는 유화 포뮬러',
-        '식물성 오일 블렌드',
-        '잔여감 없는 산뜻한 마무리'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '600개'
-    },
-    5: {
-      name: '펩타이드 아이 컨투어',
-      category: '스킨케어',
-      tagline: '주름과 다크서클을 위한 펩타이드 복합체 함유 안티에이징 아이크림.',
-      sellingPoints: [
-        '잔주름을 위한 아세틸헥사펩타이드-8',
-        '붓기 완화를 위한 카페인 함유',
-        '무향료 포뮬러'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '350개'
-    },
-    6: {
-      name: '톤업 선쉴드',
-      category: '선케어',
-      tagline: '자연스러운 톤업 효과의 SPF50+ PA++++ 선크림.',
-      sellingPoints: [
-        '광범위 자외선 차단',
-        '백탁 현상 없는 은은한 톤업',
-        '가벼운 데일리 텍스처'
-      ],
-      certTags: ['CPNP', 'FDA'],
-      moq: '500개'
-    },
-    7: {
-      name: '히알루론 필러 1ml',
-      category: '더말 필러',
-      tagline: '얼굴 윤곽 및 주름 개선을 위한 가교 HA 필러.',
+      name: 'Revolax',
+      category: '필러',
+      tagline: '얼굴 윤곽 및 주름 개선을 위한 프리미엄 히알루론산 더말 필러.',
       sellingPoints: [
         '프리미엄 가교 히알루론산',
         '편안함을 위한 리도카인 함유',
-        'CE 및 KFDA 인증'
+        '오래 지속되는 자연스러운 결과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    2: {
+      name: 'Elasty',
+      category: '필러',
+      tagline: '자연스러운 결과를 위한 뛰어난 탄력성의 고품질 HA 필러.',
+      sellingPoints: [
+        '우수한 탄력성과 응집력',
+        '부드러운 주입 경험',
+        '다양한 시술 부위에 적용 가능'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    3: {
+      name: 'Rejeunesse',
+      category: '필러',
+      tagline: '오래 지속되는 볼륨 복원을 위한 SHAPE 기술의 고급 HA 필러.',
+      sellingPoints: [
+        '특허 SHAPE 기술',
+        '최적의 점탄성',
+        '연장된 지속 효과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    4: {
+      name: 'Neuramis',
+      category: '필러',
+      tagline: '순도와 자연스러운 결과로 유명한 프리미엄 한국산 HA 필러.',
+      sellingPoints: [
+        '고순도 히알루론산',
+        '자연스럽고 부드러운 조직 느낌',
+        '다양한 제품 라인 제공'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    5: {
+      name: 'Regenovue',
+      category: '필러',
+      tagline: '부드러운 주입을 위한 최적의 점탄성을 갖춘 차세대 HA 필러.',
+      sellingPoints: [
+        '고급 가교 기술',
+        '우수한 성형성',
+        '잔주름부터 깊은 주름까지 적합'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    6: {
+      name: 'Dermalax',
+      category: '필러',
+      tagline: '효과적인 얼굴 윤곽 및 볼륨을 위한 고농도 HA 필러.',
+      sellingPoints: [
+        '고농도 포뮬러',
+        '강력한 볼륨 효과',
+        '오래 지속되는 결과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    7: {
+      name: 'E.P.T.Q',
+      category: '필러',
+      tagline: '고급 가교 기술을 적용한 유럽 품질의 프리미엄 HA 필러.',
+      sellingPoints: [
+        '유럽 품질 기준',
+        '고급 가교 기술',
+        '다양한 니즈를 위한 제품 라인'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
@@ -219,13 +271,13 @@ const productDetails = {
       licenseRequired: true
     },
     8: {
-      name: '딥 볼륨 필러 2ml',
-      category: '더말 필러',
-      tagline: '깊은 조직 증강을 위한 고점도 HA 필러.',
+      name: 'Sosum',
+      category: '스킨부스터',
+      tagline: '깊은 수분 공급과 피부 재생을 위한 고급 스킨부스터.',
       sellingPoints: [
-        '볼륨 복원을 위한 고농도 포뮬러',
-        '오래 지속되는 결과',
-        '부드러운 주입 경험'
+        '깊은 피부 수분 공급',
+        '피부 결과 탄력 개선',
+        '자연스러운 광채 향상'
       ],
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
@@ -233,30 +285,58 @@ const productDetails = {
       licenseRequired: true
     },
     9: {
-      name: '보툴리눔 타입A 100U',
-      category: '보툴리눔 톡신',
-      tagline: '미용 시술을 위한 정제된 보툴리눔 독소 타입 A.',
+      name: 'Starfill',
+      category: '필러',
+      tagline: '다양한 얼굴 개선 시술에 적용 가능한 다목적 HA 필러.',
       sellingPoints: [
-        '고순도 포뮬레이션',
-        '일관된 임상 결과',
-        '다국적 인증 보유'
+        '다양한 적용 범위',
+        '일관된 품질',
+        '신뢰할 수 있는 임상 결과'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50개',
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
       medical: true,
       licenseRequired: true
     },
     10: {
-      name: '프리미엄 보톡스 200U',
-      category: '보툴리눔 톡신',
-      tagline: '전문 미용 시술을 위한 고순도 보툴리눔 독소.',
+      name: 'Line Fill',
+      category: '필러',
+      tagline: '잔주름과 섬세한 부위를 위해 설계된 정밀 HA 필러.',
       sellingPoints: [
-        '프리미엄 등급 포뮬레이션',
-        '연장된 유통기한 (냉동)',
-        '글로벌 인증 보유'
+        '잔주름을 위한 정밀 시술',
+        '부드럽고 균일한 결과',
+        '최소한의 다운타임'
       ],
-      certTags: ['CE', 'KFDA', 'FDA'],
-      moq: '50개',
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    11: {
+      name: 'Priere',
+      category: '스킨부스터',
+      tagline: '향상된 피부 품질과 광채를 위한 프리미엄 스킨부스터.',
+      sellingPoints: [
+        '다중 영양소 포뮬러',
+        '피부 재생 효과',
+        '피부 톤과 결 개선'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
+      medical: true,
+      licenseRequired: true
+    },
+    12: {
+      name: 'Lip Star',
+      category: '필러',
+      tagline: '입술 확대 및 윤곽을 위해 특별히 설계된 HA 필러.',
+      sellingPoints: [
+        '입술 개선에 최적화',
+        '자연스러운 볼륨',
+        '부드럽고 매끄러운 결과'
+      ],
+      certTags: ['CE', 'KFDA', 'ISO 13485'],
+      moq: '100개',
       medical: true,
       licenseRequired: true
     }
@@ -278,11 +358,27 @@ const uiText = {
   }
 }
 
+// 제품 ID별 이미지 경로 매핑
+const productImages = {
+  1: '/revolax1.png',
+  2: '/ELASTY1.png',
+  3: '/REJEUNESSE.png',
+  4: '/NEURAMIS.png',
+  5: '/REGENOVUE.png',
+  6: '/DERMALAX.png',
+  7: '/E.P.T.Q.png',
+  8: '/SOSUM.png',
+  9: '/STARFILL.png',
+  10: '/LINE FILL.png',
+  11: '/PRIERE.png',
+  12: '/LIP STAR.png'
+}
+
 function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInquiry }) {
   const product = productDetails[lang][productId]
   const productEn = productDetails['en'][productId] // For initial message (always English)
   const text = uiText[lang]
-  const imageUrl = `/product${productId}.png`
+  const imageUrl = productImages[productId] || `/product${productId}.png`
 
   const handleInquiry = () => {
     if (onInquiry) {
