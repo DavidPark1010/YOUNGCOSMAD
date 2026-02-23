@@ -1,0 +1,265 @@
+// 샘플 문의 데이터
+export const initialInquiries = [
+  {
+    id: 1,
+    productId: 1,
+    productName: 'Hydra Glow Serum',
+    productCategory: 'Skincare',
+    productImage: '/product1.png',
+    status: 'new',
+    contactMethod: 'whatsapp',
+    contactValue: '+1 555-0123',
+    timestamp: '2024-02-10T09:32:00Z',
+    conversation: [
+      { type: 'user', content: 'I want to know this product', time: '09:30' },
+      { type: 'assistant', content: 'Hydra Glow Serum is a lightweight hydrating serum...', time: '09:30' },
+      { type: 'user', content: 'What is the MOQ?', time: '09:31' },
+      { type: 'assistant', content: 'The minimum order quantity for Hydra Glow Serum is 500 units.', time: '09:31' },
+      { type: 'user', content: 'How much does it cost?', time: '09:32' },
+      { type: 'assistant', content: 'Thank you for your interest. For accurate pricing details, our Sales Operations Team will provide personalized information...', time: '09:32' },
+    ]
+  },
+  {
+    id: 2,
+    productId: 3,
+    productName: 'Cica Repair Cream',
+    productCategory: 'Skincare',
+    productImage: '/product3.png',
+    status: 'new',
+    contactMethod: 'email',
+    contactValue: 'buyer@example.com',
+    timestamp: '2024-02-10T08:15:00Z',
+    conversation: [
+      { type: 'user', content: 'Is this product vegan certified?', time: '08:14' },
+      { type: 'assistant', content: 'Yes, Cica Repair Cream is fully export-ready. Current certifications include: CPNP (EU), FDA Registered, Vegan Certified.', time: '08:14' },
+      { type: 'user', content: 'Great! What about the price for 1000 units?', time: '08:15' },
+      { type: 'assistant', content: 'Thank you for your interest. For accurate pricing details...', time: '08:15' },
+    ]
+  },
+  {
+    id: 3,
+    productId: 2,
+    productName: 'Velvet Matte Lip Tint',
+    productCategory: 'Makeup',
+    productImage: '/product2.png',
+    status: 'responded',
+    contactMethod: 'whatsapp',
+    contactValue: '+44 7700 900123',
+    timestamp: '2024-02-09T14:22:00Z',
+    conversation: [
+      { type: 'user', content: 'I want to know this product', time: '14:20' },
+      { type: 'assistant', content: 'Velvet Matte Lip Tint is long-lasting velvet matte finish lip tint...', time: '14:20' },
+      { type: 'user', content: 'Can you tell me the price?', time: '14:22' },
+      { type: 'assistant', content: 'Thank you for your interest...', time: '14:22' },
+    ]
+  },
+  {
+    id: 4,
+    productId: 6,
+    productName: 'Tone-Up Sun Shield',
+    productCategory: 'Sun Care',
+    productImage: '/product6.png',
+    status: 'reviewed',
+    contactMethod: 'email',
+    contactValue: 'import@beautyco.eu',
+    timestamp: '2024-02-09T11:45:00Z',
+    conversation: [
+      { type: 'user', content: 'Do you ship to Europe?', time: '11:43' },
+      { type: 'assistant', content: 'We ship worldwide via trusted logistics partners...', time: '11:43' },
+      { type: 'user', content: 'What certifications do you have for EU?', time: '11:44' },
+      { type: 'assistant', content: 'Yes, Tone-Up Sun Shield is fully export-ready. Current certifications include: CPNP (EU), FDA Registered.', time: '11:44' },
+      { type: 'user', content: 'Perfect. Please send me pricing info', time: '11:45' },
+      { type: 'assistant', content: 'Thank you for your interest...', time: '11:45' },
+    ]
+  },
+]
+
+// 샘플 주문 데이터
+export const initialOrders = [
+  {
+    id: 'ORD-2024-001',
+    customerEmail: 'buyer@example.com',
+    customerName: 'John Smith',
+    customerCompany: 'Beauty Wholesale Co.',
+    status: 'shipped',
+    trackingNumber: 'KR1234567890',
+    items: [
+      { name: 'Hydra Glow Serum', quantity: 500, price: 4.50 },
+      { name: 'Cica Repair Cream', quantity: 400, price: 3.80 },
+      { name: 'Tone-Up Sun Shield', quantity: 300, price: 3.20 }
+    ],
+    total: 4810.00,
+    shippingAddress: '123 Business St, Suite 100, New York, NY 10001, USA',
+    createdAt: '2024-01-15T09:00:00Z',
+    updatedAt: '2024-01-19T16:00:00Z',
+    timeline: [
+      { status: 'pending', date: '2024-01-15T09:00:00Z', message: 'Order received' },
+      { status: 'paid', date: '2024-01-15T14:30:00Z', message: 'Payment confirmed' },
+      { status: 'preparing', date: '2024-01-17T10:00:00Z', message: 'Preparing shipment' },
+      { status: 'shipped', date: '2024-01-19T16:00:00Z', message: 'Shipped - KR1234567890' }
+    ]
+  },
+  {
+    id: 'ORD-2024-002',
+    customerEmail: 'test@example.com',
+    customerName: 'Sarah Johnson',
+    customerCompany: 'Glow Beauty Ltd.',
+    status: 'preparing',
+    trackingNumber: null,
+    items: [
+      { name: 'Velvet Matte Lip Tint', quantity: 300, price: 2.90 },
+      { name: 'Double Cleansing Oil', quantity: 200, price: 4.40 }
+    ],
+    total: 1750.00,
+    shippingAddress: '456 Commerce Ave, Los Angeles, CA 90001, USA',
+    createdAt: '2024-01-28T11:00:00Z',
+    updatedAt: '2024-01-30T09:00:00Z',
+    timeline: [
+      { status: 'pending', date: '2024-01-28T11:00:00Z', message: 'Order received' },
+      { status: 'paid', date: '2024-01-28T15:00:00Z', message: 'Payment confirmed' },
+      { status: 'preparing', date: '2024-01-30T09:00:00Z', message: 'Preparing shipment' }
+    ]
+  },
+  {
+    id: 'ORD-2024-003',
+    customerEmail: 'wholesale@beautyshop.eu',
+    customerName: 'Emma Wilson',
+    customerCompany: 'European Beauty Imports',
+    status: 'pending',
+    trackingNumber: null,
+    items: [
+      { name: 'Peptide Eye Contour', quantity: 350, price: 5.20 }
+    ],
+    total: 1820.00,
+    shippingAddress: '789 Trade Blvd, Amsterdam, Netherlands',
+    createdAt: '2024-02-01T08:00:00Z',
+    updatedAt: '2024-02-01T08:00:00Z',
+    timeline: [
+      { status: 'pending', date: '2024-02-01T08:00:00Z', message: 'Order received - Awaiting payment' }
+    ]
+  }
+]
+
+// 샘플 제품 데이터
+export const initialProducts = [
+  {
+    id: 1,
+    productId: 'BL-SK-001',
+    nameEn: 'Hydra Glow Serum',
+    nameKr: '하이드라 글로우 세럼',
+    category: 'Skincare',
+    image: '/product1.png',
+    status: 'active',
+    description: 'A lightweight hydrating serum formulated with hyaluronic acid and niacinamide for deep moisture and radiant skin.',
+    ingredients: 'Hyaluronic Acid, Niacinamide, Centella Asiatica Extract, Panthenol',
+    usage: 'Apply 2-3 drops after cleansing. Pat gently for absorption.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered',
+    moq: '500 units',
+    markets: 'EU, US, ASIA',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product1.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-10T09:00:00Z'
+  },
+  {
+    id: 2,
+    productId: 'BL-MK-001',
+    nameEn: 'Velvet Matte Lip Tint',
+    nameKr: '벨벳 매트 립틴트',
+    category: 'Makeup',
+    image: '/product2.png',
+    status: 'active',
+    description: 'Long-lasting velvet matte finish lip tint with intense color payoff and comfortable wear.',
+    ingredients: 'Jojoba Oil, Vitamin E, Natural Pigments',
+    usage: 'Apply directly to lips. Build up for more intense color.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered',
+    moq: '300 units',
+    markets: 'Global',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product2.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-09T15:00:00Z'
+  },
+  {
+    id: 3,
+    productId: 'BL-SK-002',
+    nameEn: 'Cica Repair Cream',
+    nameKr: '시카 리페어 크림',
+    category: 'Skincare',
+    image: '/product3.png',
+    status: 'active',
+    description: 'Intensive repair cream with Centella Asiatica for sensitive and damaged skin barrier restoration.',
+    ingredients: 'Centella Asiatica, Madecassoside, Ceramide NP, Beta-Glucan',
+    usage: 'Apply generously to face and neck as the last step of skincare.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered, Vegan Certified',
+    moq: '400 units',
+    markets: 'EU, ASIA',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product3.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-08T10:00:00Z'
+  },
+  {
+    id: 4,
+    productId: 'BL-CL-001',
+    nameEn: 'Double Cleansing Oil',
+    nameKr: '더블 클렌징 오일',
+    category: 'Cleansing',
+    image: '/product4.png',
+    status: 'active',
+    description: 'Gentle yet effective cleansing oil that removes makeup and impurities without stripping moisture.',
+    ingredients: 'Jojoba Seed Oil, Olive Oil, Grape Seed Oil, Vitamin E',
+    usage: 'Massage onto dry face, emulsify with water, then rinse.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered',
+    moq: '600 units',
+    markets: 'Global',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product4.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-07T14:00:00Z'
+  },
+  {
+    id: 5,
+    productId: 'BL-SK-003',
+    nameEn: 'Peptide Eye Contour',
+    nameKr: '펩타이드 아이 컨투어',
+    category: 'Skincare',
+    image: '/product5.png',
+    status: 'active',
+    description: 'Advanced eye cream with peptide complex targeting fine lines, dark circles, and puffiness.',
+    ingredients: 'Acetyl Hexapeptide-8, Caffeine, Adenosine, Squalane',
+    usage: 'Gently pat around eye area morning and night.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered',
+    moq: '350 units',
+    markets: 'US, EU',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product5.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-06T11:00:00Z'
+  },
+  {
+    id: 6,
+    productId: 'BL-SN-001',
+    nameEn: 'Tone-Up Sun Shield',
+    nameKr: '톤업 선쉴드',
+    category: 'Sun Care',
+    image: '/product6.png',
+    status: 'active',
+    description: 'Lightweight SPF50+ PA++++ sunscreen with tone-up effect for natural, protected skin.',
+    ingredients: 'Zinc Oxide, Niacinamide, Centella Asiatica, Hyaluronic Acid',
+    usage: 'Apply as last step of morning skincare. Reapply every 2-3 hours.',
+    exportReady: true,
+    certifications: 'CPNP (EU), FDA Registered',
+    moq: '500 units',
+    markets: 'Global',
+    priceResponse: 'Thank you for your interest. For accurate pricing, our Sales Team will contact you shortly.',
+    mediaImages: ['/product6.png'],
+    mediaVideo: '',
+    updatedAt: '2024-02-05T09:00:00Z'
+  },
+]

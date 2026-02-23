@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import AdminPage from './components/AdminPage'
-import AuthPage from './components/AuthPage'
-import BuyerDashboard from './components/BuyerDashboard'
-import ChatRoom from './components/ChatRoom'
-import OrderLookup from './components/OrderLookup'
-import ProductDetail from './components/ProductDetail'
+import AdminPage from './components/Admin/AdminPage'
+import AuthPage from './components/Auth/AuthPage'
+import BuyerDashboard from './components/Buyer/BuyerDashboard'
+import ChatRoom from './components/Chat/ChatRoom'
+import OrderLookup from './components/Order/OrderLookup'
+import ProductDetail from './components/Product/ProductDetail'
 
 // 다국어 콘텐츠 - 각 언어를 원문처럼 설계
 const content = {
