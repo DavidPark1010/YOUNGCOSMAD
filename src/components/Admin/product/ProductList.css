@@ -14,16 +14,16 @@
 
 .pl-filters {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .pl-filter-btn {
-  padding: 12px 24px;
+  padding: 14px 28px;
   border: 2px solid #E0E0E0;
-  border-radius: 20px;
+  border-radius: 24px;
   background: #FFFFFF;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #777777;
   cursor: pointer;
@@ -42,11 +42,11 @@
 }
 
 .pl-add-btn {
-  padding: 14px 32px;
+  padding: 16px 36px;
   background: #1A1A1A;
   border: none;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
@@ -114,7 +114,7 @@
 }
 
 .pl-card-category {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #999999;
   text-transform: uppercase;
@@ -123,13 +123,13 @@
 
 .pl-card-brand {
   margin: 6px 0 4px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #1A1A1A;
 }
 
 .pl-card-models {
-  font-size: 14px;
+  font-size: 16px;
   color: #888888;
 }
 
