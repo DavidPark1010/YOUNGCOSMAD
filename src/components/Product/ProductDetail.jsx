@@ -13,76 +13,78 @@ const productVariants = {
     },
     2: { // Elasty
       variants: [
-        { id: 'fine', name: 'Elasty Fine', description: 'For delicate areas and fine lines' },
-        { id: 'deep', name: 'Elasty Deep', description: 'For moderate wrinkles and volume' },
-        { id: 'extra', name: 'Elasty Extra', description: 'For deep folds and facial contouring' }
+        { id: 'f', name: 'Elasty F', description: 'For fine lines, eye area, and forehead' },
+        { id: 'deep', name: 'Elasty D (Deep)', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'plus', name: 'Elasty G / Plus', description: 'For nose, chin, and volume' },
+        { id: 'ultra', name: 'Elasty Ultra / Hard', description: 'For contouring, jawline, and volume' }
       ]
     },
     3: { // Rejeunesse
       variants: [
-        { id: 'fine', name: 'Rejeunesse Fine', description: 'For superficial lines and delicate areas' },
-        { id: 'deep', name: 'Rejeunesse Deep', description: 'For moderate to deep wrinkles' },
-        { id: 'shape', name: 'Rejeunesse Shape', description: 'For volumizing and facial contouring' }
+        { id: 'fine', name: 'Rejeunesse Fine', description: 'For fine lines and eye area' },
+        { id: 'deep', name: 'Rejeunesse Deep', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'shape', name: 'Rejeunesse Shape / Volume', description: 'For nose, chin, and contouring' }
       ]
     },
     4: { // Neuramis
       variants: [
-        { id: 'light', name: 'Neuramis Light', description: 'For fine lines and superficial wrinkles' },
-        { id: 'normal', name: 'Neuramis Normal', description: 'For moderate wrinkles and lips' },
-        { id: 'deep', name: 'Neuramis Deep', description: 'For deep wrinkles and volume' },
-        { id: 'volume', name: 'Neuramis Volume', description: 'For facial contouring and volume' }
+        { id: 'light', name: 'Neuramis Light', description: 'For fine lines and eye area' },
+        { id: 'deep', name: 'Neuramis Deep', description: 'For nasolabial folds and lips' },
+        { id: 'volume', name: 'Neuramis Volume', description: 'For nose, chin, and volume' },
+        { id: 'lidocaine', name: 'Neuramis Lidocaine', description: 'Pain reduction option available' }
       ]
     },
     5: { // Regenovue
       variants: [
-        { id: 'fine', name: 'Regenovue Fine', description: 'For fine lines and skin rejuvenation' },
-        { id: 'deep', name: 'Regenovue Deep', description: 'For deep wrinkles and nasolabial folds' },
-        { id: 'sub-q', name: 'Regenovue Sub-Q', description: 'For volume and facial contouring' }
+        { id: 'fine', name: 'Regenovue Fine', description: 'For fine lines and eye area' },
+        { id: 'deep', name: 'Regenovue Deep / Deep Plus', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'sub-q', name: 'Regenovue Sub-Q', description: 'For nose, chin, and contouring' }
       ]
     },
     6: { // Dermalax
       variants: [
-        { id: 'deep-plus', name: 'Dermalax Deep Plus', description: 'For deep wrinkles and moderate volume' },
-        { id: 'plus', name: 'Dermalax Plus', description: 'For volumizing and facial contouring' },
-        { id: 'implant', name: 'Dermalax Implant Plus', description: 'For chin and nose augmentation' }
+        { id: 'fine', name: 'Dermalax Fine', description: 'For fine lines and eye area' },
+        { id: 'deep', name: 'Dermalax Deep / Deep Plus', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'implant', name: 'Dermalax Implant', description: 'For nose, chin, contouring, and volume' }
       ]
     },
     7: { // E.P.T.Q
       variants: [
-        { id: 's100', name: 'E.P.T.Q S100', description: 'For fine lines and delicate areas' },
-        { id: 's300', name: 'E.P.T.Q S300', description: 'For moderate wrinkles and lips' },
-        { id: 's500', name: 'E.P.T.Q S500', description: 'For deep wrinkles and volume' }
+        { id: 's100', name: 'e.p.t.q S100', description: 'For fine lines and eye area' },
+        { id: 's300', name: 'e.p.t.q S300', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 's500', name: 'e.p.t.q S500', description: 'For nose, chin, contouring, and volume' }
       ]
     },
     8: { // Sosum
       variants: [
-        { id: 'hydro', name: 'Sosum Hydro', description: 'For deep skin hydration' },
-        { id: 'glow', name: 'Sosum Glow', description: 'For skin radiance and rejuvenation' }
+        { id: 'fine', name: 'Sosum Fine', description: 'For fine lines, eye area, and forehead' },
+        { id: 'deep', name: 'Sosum Deep', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'hard', name: 'Sosum Hard / Volume', description: 'For nose, chin, contouring, and volume' }
       ]
     },
     9: { // Starfill
       variants: [
-        { id: 'fine', name: 'Starfill Fine', description: 'For fine lines and superficial wrinkles' },
-        { id: 'deep', name: 'Starfill Deep', description: 'For moderate to deep wrinkles' },
-        { id: 'implant', name: 'Starfill Implant', description: 'For volumizing and contouring' }
+        { id: 'fine', name: 'Starfill Fine', description: 'For fine lines, eye area, and forehead' },
+        { id: 'deep', name: 'Starfill Deep', description: 'For nasolabial folds, lips, and volume' },
+        { id: 'implant', name: 'Starfill Implant / Plus', description: 'For nose, chin, contouring, and volume' }
       ]
     },
-    10: { // Line Fill
+    10: { // STUNMEDICAL - Line Fill
       variants: [
-        { id: 'ultra', name: 'Line Fill Ultra', description: 'For ultra-fine lines and delicate areas' },
-        { id: 'plus', name: 'Line Fill Plus', description: 'For fine to moderate lines' }
+        { id: 'fine', name: 'Line Fill Fine', description: 'For fine lines, eye area, and forehead' },
+        { id: 'deep', name: 'Line Fill Deep', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'sub-q', name: 'Line Fill Sub-Q', description: 'For nose, chin, contouring, and volume' }
       ]
     },
-    11: { // Priere
+    11: { // Priere - Lip Fillers
       variants: [
-        { id: 'boost', name: 'Priere Boost', description: 'For skin hydration and rejuvenation' },
-        { id: 'glow', name: 'Priere Glow', description: 'For radiance and skin quality' }
+        { id: 'tulip', name: 'PRIÈRE (Tulip)', description: 'For lip enhancement, 1.0mL, Lidocaine included' },
+        { id: 'lipvol', name: 'LIP VOL Red', description: 'For lip volume & line, 1.2mL, HA + PDRN + Mannitol' }
       ]
     },
     12: { // Lip Star
       variants: [
-        { id: 'soft', name: 'Lip Star Soft', description: 'For natural lip enhancement' },
-        { id: 'volume', name: 'Lip Star Volume', description: 'For fuller lip augmentation' }
+        { id: 'lipstar', name: 'Lip Star', description: '1.2mL, Red gel with Anthocyanin for lip volume & contour' }
       ]
     }
   },
@@ -96,76 +98,78 @@ const productVariants = {
     },
     2: { // Elasty
       variants: [
-        { id: 'fine', name: 'Elasty Fine', description: '섬세한 부위 및 잔주름용' },
-        { id: 'deep', name: 'Elasty Deep', description: '중등도 주름 및 볼륨용' },
-        { id: 'extra', name: 'Elasty Extra', description: '깊은 주름 및 윤곽용' }
+        { id: 'f', name: 'Elasty F', description: '잔주름, 눈가, 이마용' },
+        { id: 'deep', name: 'Elasty D (Deep)', description: '팔자주름, 입술, 볼용' },
+        { id: 'plus', name: 'Elasty G / Plus', description: '코, 턱, 볼륨용' },
+        { id: 'ultra', name: 'Elasty Ultra / Hard', description: '윤곽, 턱선, 볼륨용' }
       ]
     },
     3: { // Rejeunesse
       variants: [
-        { id: 'fine', name: 'Rejeunesse Fine', description: '표재성 주름 및 섬세한 부위용' },
-        { id: 'deep', name: 'Rejeunesse Deep', description: '중등도 ~ 깊은 주름용' },
-        { id: 'shape', name: 'Rejeunesse Shape', description: '볼륨 및 윤곽용' }
+        { id: 'fine', name: 'Rejeunesse Fine', description: '잔주름, 눈가용' },
+        { id: 'deep', name: 'Rejeunesse Deep', description: '팔자주름, 입술, 볼용' },
+        { id: 'shape', name: 'Rejeunesse Shape / Volume', description: '코, 턱, 윤곽용' }
       ]
     },
     4: { // Neuramis
       variants: [
-        { id: 'light', name: 'Neuramis Light', description: '잔주름 및 표재성 주름용' },
-        { id: 'normal', name: 'Neuramis Normal', description: '중등도 주름 및 입술용' },
-        { id: 'deep', name: 'Neuramis Deep', description: '깊은 주름 및 볼륨용' },
-        { id: 'volume', name: 'Neuramis Volume', description: '윤곽 및 볼륨용' }
+        { id: 'light', name: 'Neuramis Light', description: '잔주름, 눈가용' },
+        { id: 'deep', name: 'Neuramis Deep', description: '팔자주름, 입술용' },
+        { id: 'volume', name: 'Neuramis Volume', description: '코, 턱, 볼륨용' },
+        { id: 'lidocaine', name: 'Neuramis Lidocaine', description: '통증 감소 옵션' }
       ]
     },
     5: { // Regenovue
       variants: [
-        { id: 'fine', name: 'Regenovue Fine', description: '잔주름 및 피부 재생용' },
-        { id: 'deep', name: 'Regenovue Deep', description: '깊은 주름 및 팔자주름용' },
-        { id: 'sub-q', name: 'Regenovue Sub-Q', description: '볼륨 및 윤곽용' }
+        { id: 'fine', name: 'Regenovue Fine', description: '잔주름, 눈가용' },
+        { id: 'deep', name: 'Regenovue Deep / Deep Plus', description: '팔자주름, 입술, 볼용' },
+        { id: 'sub-q', name: 'Regenovue Sub-Q', description: '코, 턱, 윤곽용' }
       ]
     },
     6: { // Dermalax
       variants: [
-        { id: 'deep-plus', name: 'Dermalax Deep Plus', description: '깊은 주름 및 중등도 볼륨용' },
-        { id: 'plus', name: 'Dermalax Plus', description: '볼륨 및 윤곽용' },
-        { id: 'implant', name: 'Dermalax Implant Plus', description: '턱, 코 확대용' }
+        { id: 'fine', name: 'Dermalax Fine', description: '잔주름, 눈가용' },
+        { id: 'deep', name: 'Dermalax Deep / Deep Plus', description: '팔자주름, 입술, 볼용' },
+        { id: 'implant', name: 'Dermalax Implant', description: '코, 턱, 윤곽, 볼륨용' }
       ]
     },
     7: { // E.P.T.Q
       variants: [
-        { id: 's100', name: 'E.P.T.Q S100', description: '잔주름 및 섬세한 부위용' },
-        { id: 's300', name: 'E.P.T.Q S300', description: '중등도 주름 및 입술용' },
-        { id: 's500', name: 'E.P.T.Q S500', description: '깊은 주름 및 볼륨용' }
+        { id: 's100', name: 'e.p.t.q S100', description: '잔주름, 눈가용' },
+        { id: 's300', name: 'e.p.t.q S300', description: '팔자주름, 입술, 볼용' },
+        { id: 's500', name: 'e.p.t.q S500', description: '코, 턱, 윤곽, 볼륨용' }
       ]
     },
     8: { // Sosum
       variants: [
-        { id: 'hydro', name: 'Sosum Hydro', description: '깊은 피부 수분 공급용' },
-        { id: 'glow', name: 'Sosum Glow', description: '피부 광채 및 재생용' }
+        { id: 'fine', name: 'Sosum Fine', description: '잔주름, 눈가, 이마용' },
+        { id: 'deep', name: 'Sosum Deep', description: '팔자주름, 입술, 볼용' },
+        { id: 'hard', name: 'Sosum Hard / Volume', description: '코, 턱, 윤곽, 볼륨용' }
       ]
     },
     9: { // Starfill
       variants: [
-        { id: 'fine', name: 'Starfill Fine', description: '잔주름 및 표재성 주름용' },
-        { id: 'deep', name: 'Starfill Deep', description: '중등도 ~ 깊은 주름용' },
-        { id: 'implant', name: 'Starfill Implant', description: '볼륨 및 윤곽용' }
+        { id: 'fine', name: 'Starfill Fine', description: '잔주름, 눈가, 이마용' },
+        { id: 'deep', name: 'Starfill Deep', description: '팔자주름, 입술, 볼륨용' },
+        { id: 'implant', name: 'Starfill Implant / Plus', description: '코, 턱, 윤곽, 볼륨용' }
       ]
     },
-    10: { // Line Fill
+    10: { // STUNMEDICAL - Line Fill
       variants: [
-        { id: 'ultra', name: 'Line Fill Ultra', description: '극세 주름 및 섬세한 부위용' },
-        { id: 'plus', name: 'Line Fill Plus', description: '잔주름 ~ 중등도 주름용' }
+        { id: 'fine', name: 'Line Fill Fine', description: '잔주름, 눈가, 이마용' },
+        { id: 'deep', name: 'Line Fill Deep', description: '팔자주름, 입술, 볼용' },
+        { id: 'sub-q', name: 'Line Fill Sub-Q', description: '코, 턱, 윤곽, 볼륨용' }
       ]
     },
-    11: { // Priere
+    11: { // Priere - Lip Fillers
       variants: [
-        { id: 'boost', name: 'Priere Boost', description: '피부 수분 및 재생용' },
-        { id: 'glow', name: 'Priere Glow', description: '광채 및 피부 품질용' }
+        { id: 'tulip', name: 'PRIÈRE (Tulip)', description: '입술 개선용, 1.0mL, 리도카인 포함' },
+        { id: 'lipvol', name: 'LIP VOL Red', description: '입술 볼륨 및 라인, 1.2mL, HA + PDRN + Mannitol' }
       ]
     },
     12: { // Lip Star
       variants: [
-        { id: 'soft', name: 'Lip Star Soft', description: '자연스러운 입술 개선용' },
-        { id: 'volume', name: 'Lip Star Volume', description: '풍성한 입술 확대용' }
+        { id: 'lipstar', name: 'Lip Star', description: '1.2mL, Anthocyanin 함유 레드 젤, 입술 볼륨 및 윤곽용' }
       ]
     }
   }
@@ -248,6 +252,226 @@ const sampleReviews = {
         photos: ['/revolax review.jpg']
       }
     ]
+  },
+  2: { // Elasty
+    en: [
+      {
+        id: 1,
+        date: '2025-01-10',
+        rating: 5,
+        content: 'The HIVE-structure technology really makes a difference. Elasty D provides excellent moldability and the results last longer than other fillers I have used. High elasticity with natural feel.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-01-10',
+        rating: 5,
+        content: 'HIVE-structure 기술이 정말 차이를 만듭니다. Elasty D는 뛰어난 성형성을 제공하며 다른 필러보다 결과가 오래 지속됩니다. 자연스러운 느낌의 고탄력 필러입니다.',
+        photos: []
+      }
+    ]
+  },
+  3: { // Rejeunesse
+    en: [
+      {
+        id: 1,
+        date: '2025-01-20',
+        rating: 5,
+        content: 'Best value for quality in the market. The UPHEC purification technology ensures minimal impurities. My clinic has been reordering consistently for over 2 years. Patients are very satisfied with the results.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-01-20',
+        rating: 5,
+        content: '시장에서 가성비가 가장 뛰어난 제품입니다. UPHEC 정제 기술로 불순물이 최소화되어 있습니다. 저희 클리닉에서 2년 넘게 꾸준히 재주문하고 있으며, 환자분들의 만족도가 매우 높습니다.',
+        photos: []
+      }
+    ]
+  },
+  4: { // Neuramis
+    en: [
+      {
+        id: 1,
+        date: '2025-02-05',
+        rating: 5,
+        content: 'The Medytox brand gives us confidence in quality control. SHAPE Technology delivers consistent results. Neuramis Volume works excellently for chin augmentation. The Lidocaine option is a great plus for patient comfort.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-05',
+        rating: 5,
+        content: 'Medytox 브랜드라 품질 관리에 대한 신뢰가 있습니다. SHAPE 기술로 일관된 결과를 얻을 수 있습니다. Neuramis Volume은 턱 확대에 탁월하며, 리도카인 옵션은 환자 편안함에 큰 장점입니다.',
+        photos: []
+      }
+    ]
+  },
+  5: { // Regenovue
+    en: [
+      {
+        id: 1,
+        date: '2025-01-28',
+        rating: 5,
+        content: 'Great quality at a competitive price point. We have been importing Regenovue for our clinics in Dubai and the feedback has been consistently positive. The high-purity process really shows in the results.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-01-28',
+        rating: 5,
+        content: '합리적인 가격에 훌륭한 품질입니다. 두바이 클리닉들을 위해 Regenovue를 수입하고 있으며 피드백이 꾸준히 긍정적입니다. 고순도 정제 공정이 결과에서 확실히 드러납니다.',
+        photos: []
+      }
+    ]
+  },
+  6: { // Dermalax
+    en: [
+      {
+        id: 1,
+        date: '2025-02-10',
+        rating: 5,
+        content: 'We distribute Dermalax across CIS countries and the demand keeps growing. Dermalax Implant is particularly popular for nose and chin procedures. Reliable quality with every shipment.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-10',
+        rating: 5,
+        content: 'CIS 국가들에 Dermalax를 유통하고 있으며 수요가 계속 증가하고 있습니다. Dermalax Implant는 코와 턱 시술에 특히 인기가 높습니다. 매 배송마다 신뢰할 수 있는 품질입니다.',
+        photos: []
+      }
+    ]
+  },
+  7: { // E.P.T.Q
+    en: [
+      {
+        id: 1,
+        date: '2025-02-15',
+        rating: 5,
+        content: 'The High Purification Technology really delivers on its promise. e.p.t.q S300 gives excellent results for lip augmentation. Premium quality at a reasonable price point - true to its name "Exquisite Purity".',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-15',
+        rating: 5,
+        content: 'High Purification Technology가 약속대로 정말 잘 구현되어 있습니다. e.p.t.q S300은 입술 확대에 뛰어난 결과를 제공합니다. 합리적인 가격에 프리미엄 품질 - "Exquisite Purity"라는 이름에 걸맞습니다.',
+        photos: []
+      }
+    ]
+  },
+  8: { // Sosum
+    en: [
+      {
+        id: 1,
+        date: '2025-01-25',
+        rating: 5,
+        content: 'Perfect for our African market distribution. Sosum offers the best value proposition - stable quality at competitive pricing. The uniform gel structure makes injection smooth and predictable.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-01-25',
+        rating: 5,
+        content: '아프리카 시장 유통에 완벽한 제품입니다. Sosum은 최고의 가성비를 제공합니다 - 경쟁력 있는 가격에 안정적인 품질. 균일한 겔 구조로 주입이 부드럽고 예측 가능합니다.',
+        photos: []
+      }
+    ]
+  },
+  9: { // Starfill
+    en: [
+      {
+        id: 1,
+        date: '2025-02-01',
+        rating: 5,
+        content: 'We have been sourcing Starfill for our Southeast Asian distribution network. The consistent quality batch after batch is impressive. Starfill Deep works great for lip enhancement procedures.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-01',
+        rating: 5,
+        content: '동남아시아 유통 네트워크를 위해 Starfill을 공급받고 있습니다. 배치마다 일관된 품질이 인상적입니다. Starfill Deep은 입술 개선 시술에 매우 효과적입니다.',
+        photos: []
+      }
+    ]
+  },
+  10: { // STUNMEDICAL - Line Fill
+    en: [
+      {
+        id: 1,
+        date: '2025-02-08',
+        rating: 5,
+        content: 'STUNMEDICAL Line Fill series offers great versatility. Line Fill Fine is perfect for delicate eye area work, while Line Fill Sub-Q provides excellent projection for nose procedures. Good value for the quality.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-08',
+        rating: 5,
+        content: 'STUNMEDICAL Line Fill 시리즈는 뛰어난 다용도성을 제공합니다. Line Fill Fine은 섬세한 눈가 작업에 완벽하고, Line Fill Sub-Q는 코 시술에 우수한 볼륨감을 제공합니다. 품질 대비 좋은 가성비입니다.',
+        photos: []
+      }
+    ]
+  },
+  11: { // PRIÈRE - Lip Fillers
+    en: [
+      {
+        id: 1,
+        date: '2025-02-12',
+        rating: 5,
+        content: 'LIP VOL Red is a game-changer for lip procedures. The PDRN and Mannitol combination noticeably reduces swelling and improves healing. Patients love the natural feel and the results last beautifully.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-12',
+        rating: 5,
+        content: 'LIP VOL Red는 입술 시술의 판도를 바꾸는 제품입니다. PDRN과 Mannitol 조합이 부기를 눈에 띄게 줄이고 회복을 개선합니다. 환자분들이 자연스러운 느낌을 좋아하고 결과도 아름답게 유지됩니다.',
+        photos: []
+      }
+    ]
+  },
+  12: { // Lip Star
+    en: [
+      {
+        id: 1,
+        date: '2025-02-18',
+        rating: 5,
+        content: 'The unique red gel concept is a great marketing point. Patients are intrigued by the Anthocyanin feature and the hydration effect is noticeable. Perfect for clients wanting a subtle tint along with volume.',
+        photos: []
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2025-02-18',
+        rating: 5,
+        content: '독특한 레드 젤 컨셉이 훌륭한 마케팅 포인트입니다. 환자분들이 Anthocyanin 성분에 관심을 가지며 수분 효과가 눈에 띕니다. 볼륨과 함께 은은한 틴트를 원하는 고객에게 완벽합니다.',
+        photos: []
+      }
+    ]
   }
 }
 
@@ -282,13 +506,8 @@ const productDetails = {
     2: {
       name: 'Elasty',
       category: 'FILLERS',
-      tagline: 'Advanced Elastic Filler Technology',
-      description: 'High-quality HA filler with excellent elasticity for natural-looking results. Superior cohesiveness ensures smooth, even distribution.',
-      sellingPoints: [
-        'Superior elasticity and cohesiveness',
-        'Smooth injection experience',
-        'Versatile for multiple treatment areas'
-      ],
+      tagline: 'HIVE-Structure Technology for High Elasticity',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler with high elasticity and stability. Popular in Middle East, Russia, and Southeast Asian markets with high reorder rates. Features BDDE cross-linking, Lidocaine inclusion, and proprietary HIVE-structure technology for superior high elasticity performance.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -297,13 +516,8 @@ const productDetails = {
     3: {
       name: 'Rejeunesse',
       category: 'FILLERS',
-      tagline: 'SHAPE Technology Innovation',
-      description: 'Advanced HA filler with patented SHAPE technology for long-lasting volume restoration and natural facial contouring.',
-      sellingPoints: [
-        'Patented SHAPE technology',
-        'Optimal viscoelasticity',
-        'Extended duration of effect'
-      ],
+      tagline: 'UPHEC Technology for Ultra-Pure Quality',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler with stable quality and competitive pricing, achieving very high reorder rates in export markets. Features BDDE cross-linking, Lidocaine option, and proprietary UPHEC Technology (Ultra-fine purification process) that minimizes residual BDDE and impurities.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -312,13 +526,8 @@ const productDetails = {
     4: {
       name: 'Neuramis',
       category: 'FILLERS',
-      tagline: 'Pure Korean Excellence',
-      description: 'Premium Korean HA filler renowned for exceptional purity and natural results. Trusted by practitioners for consistent performance.',
-      sellingPoints: [
-        'High purity hyaluronic acid',
-        'Natural and soft tissue feel',
-        'Multiple product lines available'
-      ],
+      tagline: 'SHAPE Technology by Medytox',
+      description: 'Cross-linked Hyaluronic Acid (HA) filler manufactured by Medytox, a trusted pharmaceutical company brand. Features BDDE cross-linking, Lidocaine options, and proprietary SHAPE Technology (Stabilized Hyaluronic Acid & Purification Enhancement) with high-purity purification process that minimizes residual BDDE.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -327,13 +536,8 @@ const productDetails = {
     5: {
       name: 'Regenovue',
       category: 'FILLERS',
-      tagline: 'Next-Generation Viscoelasticity',
-      description: 'Cutting-edge HA filler with optimal viscoelasticity for exceptionally smooth injection and superior moldability.',
-      sellingPoints: [
-        'Advanced cross-linking technology',
-        'Excellent moldability',
-        'Suitable for fine lines to deep wrinkles'
-      ],
+      tagline: 'High-Purity HA Filler',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler with stable quality and competitive pricing, consistently popular in Southeast Asian and Middle Eastern markets. Features BDDE cross-linking, Lidocaine option, and high-purity purification process for reliable results.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -342,28 +546,18 @@ const productDetails = {
     6: {
       name: 'Dermalax',
       category: 'FILLERS',
-      tagline: 'High-Performance Volume Solution',
-      description: 'High-concentration HA filler engineered for effective facial contouring and dramatic volume enhancement.',
-      sellingPoints: [
-        'High concentration formula',
-        'Strong volumizing effect',
-        'Long-lasting results'
-      ],
+      tagline: 'Reliable Quality for Global Markets',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler with stable quality and competitive pricing, consistently exported to Middle East, Southeast Asia, and CIS markets. Features BDDE cross-linking, Lidocaine inclusion, and high-purity purification process.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
       licenseRequired: true
     },
     7: {
-      name: 'E.P.T.Q',
+      name: 'e.p.t.q',
       category: 'FILLERS',
-      tagline: 'European Quality Standards',
-      description: 'Premium HA filler meeting European quality standards with advanced cross-linking technology for diverse aesthetic applications.',
-      sellingPoints: [
-        'European quality standards',
-        'Advanced cross-linking technology',
-        'Multiple product lines for various needs'
-      ],
+      tagline: 'Exquisite Purity & Technology Quality',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler, a stability-focused premium value product based on high-purity and high-quality processes. Features BDDE cross-linking, Lidocaine option, and High Purification Technology that minimizes residual BDDE and impurities. The name e.p.t.q stands for "Exquisite Purity & Technology Quality".',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -371,14 +565,9 @@ const productDetails = {
     },
     8: {
       name: 'Sosum',
-      category: 'SKIN BOOSTERS',
-      tagline: 'Deep Hydration Therapy',
-      description: 'Advanced skin booster delivering deep hydration and comprehensive skin rejuvenation for radiant, healthy-looking skin.',
-      sellingPoints: [
-        'Deep skin hydration',
-        'Improves skin texture and elasticity',
-        'Natural radiance enhancement'
-      ],
+      category: 'FILLERS',
+      tagline: 'Value-Driven Quality for Emerging Markets',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler, a value product used in Middle East, Southeast Asia, and Africa markets based on reasonable pricing and stable quality. Features BDDE cross-linking, Lidocaine inclusion, uniform gel structure, and high-purity purification process.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -387,43 +576,28 @@ const productDetails = {
     9: {
       name: 'Starfill',
       category: 'FILLERS',
-      tagline: 'Versatile Enhancement Solution',
-      description: 'Multi-purpose HA filler offering versatile applications for various facial enhancement procedures with reliable results.',
-      sellingPoints: [
-        'Versatile application range',
-        'Consistent quality',
-        'Reliable clinical results'
-      ],
+      tagline: 'Consistent Quality for Price-Focused Markets',
+      description: 'Korean cross-linked Hyaluronic Acid (HA) filler with stable quality and competitive pricing, consistently selling in price-focused markets such as Middle East, Southeast Asia, and Africa. Features BDDE cross-linking, Lidocaine inclusion, uniform gel structure, and high-purity purification process.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
       licenseRequired: true
     },
     10: {
-      name: 'Line Fill',
+      name: 'STUNMEDICAL',
       category: 'FILLERS',
-      tagline: 'Precision Fine Line Treatment',
-      description: 'Specialized HA filler precisely designed for fine lines and delicate areas requiring subtle, refined correction.',
-      sellingPoints: [
-        'Precision treatment for fine lines',
-        'Smooth and even results',
-        'Minimal downtime'
-      ],
+      tagline: 'Line Fill Series - Premium HA Filler',
+      description: 'Cross-linked Hyaluronic Acid (HA) filler by STUNMEDICAL. The Line Fill series features BDDE cross-linking, Lidocaine inclusion, and 1.0mL volume per syringe. CE certified for reliable quality and performance.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
       licenseRequired: true
     },
     11: {
-      name: 'Priere',
-      category: 'SKIN BOOSTERS',
-      tagline: 'Premium Skin Rejuvenation',
-      description: 'Premium skin booster formulated for enhanced skin quality, improved texture, and natural radiance restoration.',
-      sellingPoints: [
-        'Multi-nutrient formula',
-        'Skin rejuvenation effect',
-        'Improved skin tone and texture'
-      ],
+      name: 'PRIÈRE',
+      category: 'LIP FILLERS',
+      tagline: 'Specialized Lip Enhancement Solutions',
+      description: 'Premium lip-specific filler series featuring PRIÈRE (Tulip) with Cross-linked HA and Lidocaine, and LIP VOL Red with HA + PDRN + Mannitol. Designed for lip volume, shape, and contouring with natural feel and movement. PDRN for tissue regeneration, Mannitol for antioxidant effect and reduced post-procedure swelling.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -431,14 +605,9 @@ const productDetails = {
     },
     12: {
       name: 'Lip Star',
-      category: 'FILLERS',
-      tagline: 'Specialized Lip Enhancement',
-      description: 'Purpose-designed HA filler optimized for lip augmentation and contouring, delivering soft, natural-looking volume.',
-      sellingPoints: [
-        'Optimized for lip enhancement',
-        'Natural-looking volume',
-        'Soft and smooth results'
-      ],
+      category: 'LIP FILLERS',
+      tagline: 'Red Gel with Anthocyanin for Lips',
+      description: 'Cross-linked Hyaluronic Acid lip filler featuring unique red-colored gel with Anthocyanin (natural pigment with antioxidant properties). 1.2mL volume designed specifically for lip volume, contouring, hydration, and natural tint effect. The distinctive red gel emphasizes its lip-specific formulation.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100 units',
       medical: true,
@@ -459,13 +628,8 @@ const productDetails = {
     2: {
       name: 'Elasty',
       category: '필러',
-      tagline: '고급 탄력 필러 기술',
-      description: '자연스러운 결과를 위한 뛰어난 탄력성의 고품질 HA 필러. 우수한 응집력으로 부드럽고 균일한 분포를 보장합니다.',
-      sellingPoints: [
-        '우수한 탄력성과 응집력',
-        '부드러운 주입 경험',
-        '다양한 시술 부위에 적용 가능'
-      ],
+      tagline: 'HIVE-Structure 기술의 고탄력 필러',
+      description: '한국산 가교 히알루론산(HA) 필러로, 높은 탄성과 안정성으로 중동·러시아·동남아 시장에서 재주문율이 높은 제품입니다. BDDE 가교, 리도카인 함유, 독자적인 HIVE-structure 기술로 뛰어난 고탄력 성능을 제공합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -474,13 +638,8 @@ const productDetails = {
     3: {
       name: 'Rejeunesse',
       category: '필러',
-      tagline: 'SHAPE 기술 혁신',
-      description: '특허받은 SHAPE 기술로 오래 지속되는 볼륨 복원과 자연스러운 얼굴 윤곽을 제공하는 고급 HA 필러.',
-      sellingPoints: [
-        '특허 SHAPE 기술',
-        '최적의 점탄성',
-        '연장된 지속 효과'
-      ],
+      tagline: 'UPHEC 기술의 초고순도 필러',
+      description: '한국산 가교 히알루론산(HA) 필러로, 안정적인 품질과 합리적인 가격으로 해외 수출 시장에서 재주문율이 매우 높은 제품입니다. BDDE 가교, 리도카인 포함 옵션, 독자적인 UPHEC Technology(초미세 정제 공정)로 잔류 BDDE 및 불순물을 최소화합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -489,13 +648,8 @@ const productDetails = {
     4: {
       name: 'Neuramis',
       category: '필러',
-      tagline: '순수한 한국의 우수성',
-      description: '뛰어난 순도와 자연스러운 결과로 유명한 프리미엄 한국산 HA 필러. 일관된 성능으로 시술자들의 신뢰를 받고 있습니다.',
-      sellingPoints: [
-        '고순도 히알루론산',
-        '자연스럽고 부드러운 조직 느낌',
-        '다양한 제품 라인 제공'
-      ],
+      tagline: 'Medytox의 SHAPE 기술',
+      description: 'Medytox에서 제조하는 가교 히알루론산(HA) 필러로, 제약회사 브랜드 신뢰도가 강점인 제품입니다. BDDE 가교, 리도카인 포함 제품 선택 가능, 독자적인 SHAPE Technology(Stabilized Hyaluronic Acid & Purification Enhancement)의 고순도 정제 공정으로 잔류 BDDE를 최소화합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -504,13 +658,8 @@ const productDetails = {
     5: {
       name: 'Regenovue',
       category: '필러',
-      tagline: '차세대 점탄성',
-      description: '뛰어나게 부드러운 주입과 우수한 성형성을 위한 최적의 점탄성을 갖춘 최첨단 HA 필러.',
-      sellingPoints: [
-        '고급 가교 기술',
-        '우수한 성형성',
-        '잔주름부터 깊은 주름까지 적합'
-      ],
+      tagline: '고순도 HA 필러',
+      description: '한국산 가교 히알루론산(HA) 필러로, 안정적인 품질과 합리적인 가격으로 동남아·중동 시장에서 꾸준히 판매되는 제품입니다. BDDE 가교, 리도카인 포함 옵션, 고순도 정제 공정을 적용하여 신뢰할 수 있는 결과를 제공합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -519,28 +668,18 @@ const productDetails = {
     6: {
       name: 'Dermalax',
       category: '필러',
-      tagline: '고성능 볼륨 솔루션',
-      description: '효과적인 얼굴 윤곽과 극적인 볼륨 강화를 위해 설계된 고농도 HA 필러.',
-      sellingPoints: [
-        '고농도 포뮬러',
-        '강력한 볼륨 효과',
-        '오래 지속되는 결과'
-      ],
+      tagline: '글로벌 시장을 위한 신뢰할 수 있는 품질',
+      description: '한국산 가교 히알루론산(HA) 필러로, 안정적인 품질과 합리적인 가격으로 중동·동남아·CIS 시장에서 꾸준히 수출되는 제품입니다. BDDE 가교, 리도카인 포함, 고순도 정제 공정을 적용합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
       licenseRequired: true
     },
     7: {
-      name: 'E.P.T.Q',
+      name: 'e.p.t.q',
       category: '필러',
-      tagline: '유럽 품질 기준',
-      description: '다양한 미용 시술을 위한 고급 가교 기술과 유럽 품질 기준을 충족하는 프리미엄 HA 필러.',
-      sellingPoints: [
-        '유럽 품질 기준',
-        '고급 가교 기술',
-        '다양한 니즈를 위한 제품 라인'
-      ],
+      tagline: 'Exquisite Purity & Technology Quality',
+      description: '한국산 가교 히알루론산(HA) 필러로, 고순도·고품질 공정을 기반으로 한 안정성 중심의 프리미엄 가성비 제품입니다. BDDE 가교, 리도카인 포함 옵션, High Purification Technology로 잔류 BDDE 및 불순물을 최소화합니다. e.p.t.q는 "Exquisite Purity & Technology Quality"의 약자입니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -548,14 +687,9 @@ const productDetails = {
     },
     8: {
       name: 'Sosum',
-      category: '스킨부스터',
-      tagline: '딥 하이드레이션 테라피',
-      description: '빛나고 건강한 피부를 위한 깊은 수분 공급과 종합적인 피부 재생을 제공하는 고급 스킨부스터.',
-      sellingPoints: [
-        '깊은 피부 수분 공급',
-        '피부 결과 탄력 개선',
-        '자연스러운 광채 향상'
-      ],
+      category: '필러',
+      tagline: '신흥 시장을 위한 가성비 품질',
+      description: '한국산 가교 히알루론산(HA) 필러로, 합리적인 가격과 안정적인 품질을 기반으로 중동·동남아·아프리카 시장에서 사용되는 가성비 제품입니다. BDDE 가교, 리도카인 포함, 균일한 겔 구조와 고순도 정제 공정을 적용합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -564,43 +698,28 @@ const productDetails = {
     9: {
       name: 'Starfill',
       category: '필러',
-      tagline: '다목적 개선 솔루션',
-      description: '신뢰할 수 있는 결과로 다양한 얼굴 개선 시술에 다목적 적용이 가능한 HA 필러.',
-      sellingPoints: [
-        '다양한 적용 범위',
-        '일관된 품질',
-        '신뢰할 수 있는 임상 결과'
-      ],
+      tagline: '가격 중심 시장을 위한 일관된 품질',
+      description: '한국산 가교 히알루론산(HA) 필러로, 안정적인 품질과 합리적인 가격을 기반으로 중동·동남아·아프리카 등 가격 중심 시장에서 꾸준히 판매되는 제품입니다. BDDE 가교, 리도카인 포함, 균일한 겔 구조 및 고순도 정제 공정을 적용합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
       licenseRequired: true
     },
     10: {
-      name: 'Line Fill',
+      name: 'STUNMEDICAL',
       category: '필러',
-      tagline: '정밀 잔주름 치료',
-      description: '섬세하고 정교한 교정이 필요한 잔주름과 섬세한 부위를 위해 특별히 설계된 HA 필러.',
-      sellingPoints: [
-        '잔주름을 위한 정밀 시술',
-        '부드럽고 균일한 결과',
-        '최소한의 다운타임'
-      ],
+      tagline: 'Line Fill 시리즈 - 프리미엄 HA 필러',
+      description: 'STUNMEDICAL의 가교 히알루론산(HA) 필러입니다. Line Fill 시리즈는 BDDE 가교, 리도카인 포함, 시린지당 1.0mL 용량을 제공합니다. 신뢰할 수 있는 품질과 성능을 위한 CE 인증 제품입니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
       licenseRequired: true
     },
     11: {
-      name: 'Priere',
-      category: '스킨부스터',
-      tagline: '프리미엄 피부 재생',
-      description: '향상된 피부 품질, 개선된 질감, 자연스러운 광채 회복을 위해 조제된 프리미엄 스킨부스터.',
-      sellingPoints: [
-        '다중 영양소 포뮬러',
-        '피부 재생 효과',
-        '피부 톤과 결 개선'
-      ],
+      name: 'PRIÈRE',
+      category: '립 필러',
+      tagline: '입술 전문 개선 솔루션',
+      description: '프리미엄 입술 전용 필러 시리즈입니다. PRIÈRE (Tulip)은 가교 HA와 리도카인을, LIP VOL Red는 HA + PDRN + Mannitol을 함유합니다. 입술 볼륨, 쉐입, 윤곽 개선을 위해 설계되었으며 자연스러운 촉감과 움직임을 제공합니다. PDRN은 조직 재생 효과를, Mannitol은 항산화 효과와 시술 후 부기 감소를 제공합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,
@@ -608,14 +727,9 @@ const productDetails = {
     },
     12: {
       name: 'Lip Star',
-      category: '필러',
-      tagline: '전문 입술 개선',
-      description: '부드럽고 자연스러운 볼륨을 제공하는 입술 확대 및 윤곽을 위해 최적화된 HA 필러.',
-      sellingPoints: [
-        '입술 개선에 최적화',
-        '자연스러운 볼륨',
-        '부드럽고 매끄러운 결과'
-      ],
+      category: '립 필러',
+      tagline: 'Anthocyanin 함유 레드 젤 립 필러',
+      description: 'Anthocyanin(항산화 성분의 천연 색소)을 함유한 독특한 레드 컬러 젤의 가교 히알루론산 립 필러입니다. 1.2mL 용량으로 입술 볼륨, 윤곽, 수분 공급, 자연스러운 틴트 효과를 위해 특별히 설계되었습니다. 독특한 레드 젤이 입술 전용 포뮬러임을 강조합니다.',
       certTags: ['CE', 'KFDA', 'ISO 13485'],
       moq: '100개',
       medical: true,

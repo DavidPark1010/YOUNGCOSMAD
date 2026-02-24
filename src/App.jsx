@@ -47,7 +47,9 @@ const content = {
       categories: [
         { key: 'all', label: 'All' },
         { key: 'filler', label: 'Fillers' },
-        { key: 'skinbooster', label: 'Skin Boosters' }
+        { key: 'botox', label: 'Botox' },
+        { key: 'skinbooster', label: 'Skin Boosters' },
+        { key: 'lipolytic', label: 'Lipolytics' }
       ],
       items: [
         { id: 1, name: 'Revolax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/revolax2.png', medical: true },
@@ -121,7 +123,9 @@ const content = {
       categories: [
         { key: 'all', label: '전체' },
         { key: 'filler', label: '필러' },
-        { key: 'skinbooster', label: '스킨부스터' }
+        { key: 'botox', label: '보톡스' },
+        { key: 'skinbooster', label: '스킨부스터' },
+        { key: 'lipolytic', label: '지방분해' }
       ],
       items: [
         { id: 1, name: 'Revolax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/revolax2.png', medical: true },
@@ -188,7 +192,7 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const categoryParam = urlParams.get('category')
-    const validCategories = ['filler', 'skinbooster']
+    const validCategories = ['filler', 'botox', 'skinbooster', 'lipolytic']
     if (categoryParam && validCategories.includes(categoryParam)) {
       setSelectedCategory(categoryParam)
     }
@@ -423,37 +427,33 @@ function App() {
       {/* Products Section - First Fold */}
       <section className="products-section products-section-hero" id="products">
         <div className="section-inner">
+          {/* Category Filter & Inquiry Button */}
           <div className="products-header-wrapper">
-            <h1 className="products-main-title">{t.products.title}</h1>
-            <div className="products-cta-wrapper">
-              <button className="products-inquiry-btn" onClick={() => openChat()}>
-                <span className="inquiry-btn-text">{t.products.inquiryBtn}</span>
-                <span className="inquiry-btn-arrow">→</span>
-              </button>
+            <div className="category-filter">
+              {t.products.categories.map((cat) => (
+                <button
+                  key={cat.key}
+                  className={`category-tab ${selectedCategory === cat.key ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedCategory(cat.key)
+                    // Update URL parameter
+                    const url = new URL(window.location.href)
+                    if (cat.key === 'all') {
+                      url.searchParams.delete('category')
+                    } else {
+                      url.searchParams.set('category', cat.key)
+                    }
+                    window.history.replaceState({}, '', url)
+                  }}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
-          </div>
-
-          {/* Category Filter */}
-          <div className="category-filter">
-            {t.products.categories.map((cat) => (
-              <button
-                key={cat.key}
-                className={`category-tab ${selectedCategory === cat.key ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedCategory(cat.key)
-                  // Update URL parameter
-                  const url = new URL(window.location.href)
-                  if (cat.key === 'all') {
-                    url.searchParams.delete('category')
-                  } else {
-                    url.searchParams.set('category', cat.key)
-                  }
-                  window.history.replaceState({}, '', url)
-                }}
-              >
-                {cat.label}
-              </button>
-            ))}
+            <button className="products-inquiry-btn" onClick={() => openChat()}>
+              <span className="inquiry-btn-text">{t.products.inquiryBtn}</span>
+              <span className="inquiry-btn-arrow">→</span>
+            </button>
           </div>
 
           <div className="products-grid">
