@@ -485,9 +485,9 @@ const uiText = {
 
 // 제품 ID별 이미지 경로 매핑
 const productImages = {
-  1: '/revolax1.png',
+  1: '/revolax2.png',
   2: '/ELASTY1.png',
-  3: '/REJEUNESSE.png',
+  3: '/REJEUNESSE2.png',
   4: '/NEURAMIS.png',
   5: '/REGENOVUE.png',
   6: '/DERMALAX.png',

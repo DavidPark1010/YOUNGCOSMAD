@@ -50,9 +50,9 @@ const content = {
         { key: 'skinbooster', label: 'Skin Boosters' }
       ],
       items: [
-        { id: 1, name: 'Revolax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/revolax1.png', medical: true },
+        { id: 1, name: 'Revolax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/revolax2.png', medical: true },
         { id: 2, name: 'Elasty', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/ELASTY1.png', medical: true },
-        { id: 3, name: 'Rejeunesse', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/REJEUNESSE.png', medical: true },
+        { id: 3, name: 'Rejeunesse', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/REJEUNESSE2.png', medical: true },
         { id: 4, name: 'Neuramis', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/NEURAMIS.png', medical: true },
         { id: 5, name: 'Regenovue', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/REGENOVUE.png', medical: true },
         { id: 6, name: 'Dermalax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/DERMALAX.png', medical: true },
@@ -124,9 +124,9 @@ const content = {
         { key: 'skinbooster', label: '스킨부스터' }
       ],
       items: [
-        { id: 1, name: 'Revolax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/revolax1.png', medical: true },
+        { id: 1, name: 'Revolax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/revolax2.png', medical: true },
         { id: 2, name: 'Elasty', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/ELASTY1.png', medical: true },
-        { id: 3, name: 'Rejeunesse', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/REJEUNESSE.png', medical: true },
+        { id: 3, name: 'Rejeunesse', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/REJEUNESSE2.png', medical: true },
         { id: 4, name: 'Neuramis', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/NEURAMIS.png', medical: true },
         { id: 5, name: 'Regenovue', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/REGENOVUE.png', medical: true },
         { id: 6, name: 'Dermalax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/DERMALAX.png', medical: true },
