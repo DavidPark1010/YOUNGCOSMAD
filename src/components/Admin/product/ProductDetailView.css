@@ -46,10 +46,30 @@
   border: 2px solid #E8E8E8;
 }
 
-.pdv-image-wrap img {
+.pdv-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.pdv-image-grid.single {
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+
+.pdv-image-grid img {
   width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   display: block;
+  border-radius: 12px;
+}
+
+.pdv-image-grid.single img {
+  aspect-ratio: auto;
   object-fit: contain;
+  border-radius: 0;
 }
 
 .pdv-no-image {

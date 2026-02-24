@@ -11,10 +11,12 @@ const categories = [
 function ProductRegistration({ onClose, onSave, editProduct = null }) {
   const [formData, setFormData] = useState(() => {
     if (editProduct) {
+      const images = editProduct.brandImages
+        || (editProduct.brandImage ? [editProduct.brandImage] : [])
       return {
         category: editProduct.category || '',
         brandName: editProduct.brandName || '',
-        brandImage: editProduct.brandImage || null,
+        brandImages: images,
         description: editProduct.description || '',
         models: editProduct.models || [{ name: '', description: '' }],
       }
@@ -22,7 +24,7 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
     return {
       category: '',
       brandName: '',
-      brandImage: null,
+      brandImages: [],
       description: '',
       models: [{ name: '', description: '' }],
     }
@@ -62,21 +64,23 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
   }
 
   const handleImageUpload = (files) => {
-    const file = files[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      updateField('brandImage', {
-        file,
-        preview: e.target.result,
-        name: file.name
-      })
-    }
-    reader.readAsDataURL(file)
+    Array.from(files).forEach(file => {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setFormData(prev => ({
+          ...prev,
+          brandImages: [...prev.brandImages, { file, preview: e.target.result, name: file.name }]
+        }))
+      }
+      reader.readAsDataURL(file)
+    })
   }
 
-  const removeImage = () => {
-    updateField('brandImage', null)
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      brandImages: prev.brandImages.filter((_, i) => i !== index)
+    }))
   }
 
   const handleDragOver = (e) => {
@@ -168,38 +172,42 @@ function ProductRegistration({ onClose, onSave, editProduct = null }) {
           />
         </div>
 
-        {/* Brand Image */}
+        {/* Brand Images */}
         <div className="pr-field-group">
           <label className="pr-label">브랜드 사진 (선택)</label>
-          <div
-            className="pr-image-upload"
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            {formData.brandImage ? (
-              <div className="pr-image-preview">
-                <img src={formData.brandImage.preview} alt="브랜드 이미지" />
+          <div className="pr-images-grid">
+            {formData.brandImages.map((img, index) => (
+              <div key={index} className="pr-image-card">
+                <img
+                  src={typeof img === 'string' ? img : img.preview}
+                  alt="브랜드 이미지"
+                />
                 <button
                   type="button"
-                  className="pr-image-remove"
-                  onClick={(e) => { e.stopPropagation(); removeImage() }}
+                  className="pr-image-card-remove"
+                  onClick={() => removeImage(index)}
                 >
-                  삭제
+                  ✕
                 </button>
               </div>
-            ) : (
-              <div className="pr-image-placeholder">
-                클릭하여 이미지 업로드
-              </div>
-            )}
+            ))}
+            <div
+              className="pr-image-add-card"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <span className="pr-image-add-icon">+</span>
+              <span className="pr-image-add-text">사진 추가</span>
+            </div>
           </div>
           <input
             ref={fileInputRef}
             type="file"
             accept="image/*"
-            onChange={(e) => handleImageUpload(e.target.files)}
+            multiple
+            onChange={(e) => { handleImageUpload(e.target.files); e.target.value = '' }}
             style={{ display: 'none' }}
           />
         </div>

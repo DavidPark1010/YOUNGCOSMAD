@@ -47,7 +47,9 @@ const content = {
       categories: [
         { key: 'all', label: 'All' },
         { key: 'filler', label: 'Fillers' },
-        { key: 'skinbooster', label: 'Skin Boosters' }
+        { key: 'skinbooster', label: 'Skin Boosters' },
+        { key: 'botox', label: 'Botox' },
+        { key: 'lipolytics', label: 'Lipolytics' }
       ],
       items: [
         { id: 1, name: 'Revolax', category: 'Fillers', categoryKey: 'filler', moq: '100 units', region: 'Licensed Only', image: '/revolax1.png', medical: true },
@@ -121,7 +123,9 @@ const content = {
       categories: [
         { key: 'all', label: '전체' },
         { key: 'filler', label: '필러' },
-        { key: 'skinbooster', label: '스킨부스터' }
+        { key: 'skinbooster', label: '스킨부스터' },
+        { key: 'botox', label: '보톡스' },
+        { key: 'lipolytics', label: '지방분해' }
       ],
       items: [
         { id: 1, name: 'Revolax', category: '필러', categoryKey: 'filler', moq: '100개', region: 'Licensed Only', image: '/revolax1.png', medical: true },
@@ -188,7 +192,7 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const categoryParam = urlParams.get('category')
-    const validCategories = ['filler', 'skinbooster']
+    const validCategories = ['filler', 'skinbooster', 'botox', 'lipolytics']
     if (categoryParam && validCategories.includes(categoryParam)) {
       setSelectedCategory(categoryParam)
     }

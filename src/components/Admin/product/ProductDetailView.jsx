@@ -1,6 +1,8 @@
 import './ProductDetailView.css'
 
 function ProductDetailView({ product, onBack, onEdit, onDelete }) {
+  const images = product.brandImages || (product.brandImage ? [product.brandImage] : [])
+
   return (
     <div className="pdv-container">
       <button className="pdv-back" onClick={onBack}>
@@ -8,10 +10,14 @@ function ProductDetailView({ product, onBack, onEdit, onDelete }) {
       </button>
 
       <div className="pdv-layout">
-        {/* Left: Image */}
+        {/* Left: Images */}
         <div className="pdv-image-wrap">
-          {product.brandImage ? (
-            <img src={product.brandImage} alt={product.brandName} />
+          {images.length > 0 ? (
+            <div className={`pdv-image-grid ${images.length === 1 ? 'single' : ''}`}>
+              {images.map((img, index) => (
+                <img key={index} src={img} alt={`${product.brandName} ${index + 1}`} />
+              ))}
+            </div>
           ) : (
             <div className="pdv-no-image">No Image</div>
           )}

@@ -37,8 +37,8 @@ function ProductList({ products, onOpenForm, onDeleteConfirm, onSelectProduct })
             onClick={() => onSelectProduct(product)}
           >
             <div className="pl-card-image">
-              {product.brandImage ? (
-                <img src={product.brandImage} alt={product.brandName} />
+              {(product.brandImages?.[0] || product.brandImage) ? (
+                <img src={product.brandImages?.[0] || product.brandImage} alt={product.brandName} />
               ) : (
                 <div className="pl-card-no-image">No Image</div>
               )}
