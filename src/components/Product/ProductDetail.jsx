@@ -1,55 +1,179 @@
 import { useState, useEffect } from 'react'
 import './ProductDetail.css'
 
-// Revolax variants 데이터
-const revolaxVariants = {
+// 모든 제품의 variants 데이터 (제품 등록 시 각각 입력)
+const productVariants = {
   en: {
-    description: 'Cross-linked Hyaluronic Acid filler produced in Korea with high viscoelasticity and stability. One of the most traded fillers in the global export market.',
-    features: [
-      {
-        icon: 'molecule',
-        title: 'Cross-linked HA',
-        desc: 'BDDE cross-linking technology'
-      },
-      {
-        icon: 'syringe',
-        title: 'Contains Lidocaine',
-        desc: 'Enhanced patient comfort'
-      },
-      {
-        icon: 'certificate',
-        title: 'CE Certified',
-        desc: 'European conformity standards'
-      },
-      {
-        icon: 'snowflake',
-        title: 'LTS Technology',
-        desc: 'Low Temperature Stabilization'
-      }
-    ],
-    variants: [
-      {
-        id: 'fine',
-        name: 'Revolax Fine',
-        viscosity: 'Low',
-        viscosityLevel: 1,
-        applications: ['Fine lines', 'Eye area', 'Forehead']
-      },
-      {
-        id: 'deep',
-        name: 'Revolax Deep',
-        viscosity: 'Medium',
-        viscosityLevel: 2,
-        applications: ['Nasolabial folds', 'Lips', 'Cheeks']
-      },
-      {
-        id: 'sub-q',
-        name: 'Revolax Sub-Q',
-        viscosity: 'High',
-        viscosityLevel: 3,
-        applications: ['Chin', 'Nose', 'Volume', 'Contouring']
-      }
-    ],
+    1: { // Revolax
+      variants: [
+        { id: 'fine', name: 'Revolax Fine', description: 'For fine lines, eye area, and forehead' },
+        { id: 'deep', name: 'Revolax Deep', description: 'For nasolabial folds, lips, and cheeks' },
+        { id: 'sub-q', name: 'Revolax Sub-Q', description: 'For chin, nose, volume, and contouring' }
+      ]
+    },
+    2: { // Elasty
+      variants: [
+        { id: 'fine', name: 'Elasty Fine', description: 'For delicate areas and fine lines' },
+        { id: 'deep', name: 'Elasty Deep', description: 'For moderate wrinkles and volume' },
+        { id: 'extra', name: 'Elasty Extra', description: 'For deep folds and facial contouring' }
+      ]
+    },
+    3: { // Rejeunesse
+      variants: [
+        { id: 'fine', name: 'Rejeunesse Fine', description: 'For superficial lines and delicate areas' },
+        { id: 'deep', name: 'Rejeunesse Deep', description: 'For moderate to deep wrinkles' },
+        { id: 'shape', name: 'Rejeunesse Shape', description: 'For volumizing and facial contouring' }
+      ]
+    },
+    4: { // Neuramis
+      variants: [
+        { id: 'light', name: 'Neuramis Light', description: 'For fine lines and superficial wrinkles' },
+        { id: 'normal', name: 'Neuramis Normal', description: 'For moderate wrinkles and lips' },
+        { id: 'deep', name: 'Neuramis Deep', description: 'For deep wrinkles and volume' },
+        { id: 'volume', name: 'Neuramis Volume', description: 'For facial contouring and volume' }
+      ]
+    },
+    5: { // Regenovue
+      variants: [
+        { id: 'fine', name: 'Regenovue Fine', description: 'For fine lines and skin rejuvenation' },
+        { id: 'deep', name: 'Regenovue Deep', description: 'For deep wrinkles and nasolabial folds' },
+        { id: 'sub-q', name: 'Regenovue Sub-Q', description: 'For volume and facial contouring' }
+      ]
+    },
+    6: { // Dermalax
+      variants: [
+        { id: 'deep-plus', name: 'Dermalax Deep Plus', description: 'For deep wrinkles and moderate volume' },
+        { id: 'plus', name: 'Dermalax Plus', description: 'For volumizing and facial contouring' },
+        { id: 'implant', name: 'Dermalax Implant Plus', description: 'For chin and nose augmentation' }
+      ]
+    },
+    7: { // E.P.T.Q
+      variants: [
+        { id: 's100', name: 'E.P.T.Q S100', description: 'For fine lines and delicate areas' },
+        { id: 's300', name: 'E.P.T.Q S300', description: 'For moderate wrinkles and lips' },
+        { id: 's500', name: 'E.P.T.Q S500', description: 'For deep wrinkles and volume' }
+      ]
+    },
+    8: { // Sosum
+      variants: [
+        { id: 'hydro', name: 'Sosum Hydro', description: 'For deep skin hydration' },
+        { id: 'glow', name: 'Sosum Glow', description: 'For skin radiance and rejuvenation' }
+      ]
+    },
+    9: { // Starfill
+      variants: [
+        { id: 'fine', name: 'Starfill Fine', description: 'For fine lines and superficial wrinkles' },
+        { id: 'deep', name: 'Starfill Deep', description: 'For moderate to deep wrinkles' },
+        { id: 'implant', name: 'Starfill Implant', description: 'For volumizing and contouring' }
+      ]
+    },
+    10: { // Line Fill
+      variants: [
+        { id: 'ultra', name: 'Line Fill Ultra', description: 'For ultra-fine lines and delicate areas' },
+        { id: 'plus', name: 'Line Fill Plus', description: 'For fine to moderate lines' }
+      ]
+    },
+    11: { // Priere
+      variants: [
+        { id: 'boost', name: 'Priere Boost', description: 'For skin hydration and rejuvenation' },
+        { id: 'glow', name: 'Priere Glow', description: 'For radiance and skin quality' }
+      ]
+    },
+    12: { // Lip Star
+      variants: [
+        { id: 'soft', name: 'Lip Star Soft', description: 'For natural lip enhancement' },
+        { id: 'volume', name: 'Lip Star Volume', description: 'For fuller lip augmentation' }
+      ]
+    }
+  },
+  ko: {
+    1: { // Revolax
+      variants: [
+        { id: 'fine', name: 'Revolax Fine', description: '잔주름, 눈가, 이마용' },
+        { id: 'deep', name: 'Revolax Deep', description: '팔자주름, 입술, 볼용' },
+        { id: 'sub-q', name: 'Revolax Sub-Q', description: '턱, 코, 볼륨, 윤곽용' }
+      ]
+    },
+    2: { // Elasty
+      variants: [
+        { id: 'fine', name: 'Elasty Fine', description: '섬세한 부위 및 잔주름용' },
+        { id: 'deep', name: 'Elasty Deep', description: '중등도 주름 및 볼륨용' },
+        { id: 'extra', name: 'Elasty Extra', description: '깊은 주름 및 윤곽용' }
+      ]
+    },
+    3: { // Rejeunesse
+      variants: [
+        { id: 'fine', name: 'Rejeunesse Fine', description: '표재성 주름 및 섬세한 부위용' },
+        { id: 'deep', name: 'Rejeunesse Deep', description: '중등도 ~ 깊은 주름용' },
+        { id: 'shape', name: 'Rejeunesse Shape', description: '볼륨 및 윤곽용' }
+      ]
+    },
+    4: { // Neuramis
+      variants: [
+        { id: 'light', name: 'Neuramis Light', description: '잔주름 및 표재성 주름용' },
+        { id: 'normal', name: 'Neuramis Normal', description: '중등도 주름 및 입술용' },
+        { id: 'deep', name: 'Neuramis Deep', description: '깊은 주름 및 볼륨용' },
+        { id: 'volume', name: 'Neuramis Volume', description: '윤곽 및 볼륨용' }
+      ]
+    },
+    5: { // Regenovue
+      variants: [
+        { id: 'fine', name: 'Regenovue Fine', description: '잔주름 및 피부 재생용' },
+        { id: 'deep', name: 'Regenovue Deep', description: '깊은 주름 및 팔자주름용' },
+        { id: 'sub-q', name: 'Regenovue Sub-Q', description: '볼륨 및 윤곽용' }
+      ]
+    },
+    6: { // Dermalax
+      variants: [
+        { id: 'deep-plus', name: 'Dermalax Deep Plus', description: '깊은 주름 및 중등도 볼륨용' },
+        { id: 'plus', name: 'Dermalax Plus', description: '볼륨 및 윤곽용' },
+        { id: 'implant', name: 'Dermalax Implant Plus', description: '턱, 코 확대용' }
+      ]
+    },
+    7: { // E.P.T.Q
+      variants: [
+        { id: 's100', name: 'E.P.T.Q S100', description: '잔주름 및 섬세한 부위용' },
+        { id: 's300', name: 'E.P.T.Q S300', description: '중등도 주름 및 입술용' },
+        { id: 's500', name: 'E.P.T.Q S500', description: '깊은 주름 및 볼륨용' }
+      ]
+    },
+    8: { // Sosum
+      variants: [
+        { id: 'hydro', name: 'Sosum Hydro', description: '깊은 피부 수분 공급용' },
+        { id: 'glow', name: 'Sosum Glow', description: '피부 광채 및 재생용' }
+      ]
+    },
+    9: { // Starfill
+      variants: [
+        { id: 'fine', name: 'Starfill Fine', description: '잔주름 및 표재성 주름용' },
+        { id: 'deep', name: 'Starfill Deep', description: '중등도 ~ 깊은 주름용' },
+        { id: 'implant', name: 'Starfill Implant', description: '볼륨 및 윤곽용' }
+      ]
+    },
+    10: { // Line Fill
+      variants: [
+        { id: 'ultra', name: 'Line Fill Ultra', description: '극세 주름 및 섬세한 부위용' },
+        { id: 'plus', name: 'Line Fill Plus', description: '잔주름 ~ 중등도 주름용' }
+      ]
+    },
+    11: { // Priere
+      variants: [
+        { id: 'boost', name: 'Priere Boost', description: '피부 수분 및 재생용' },
+        { id: 'glow', name: 'Priere Glow', description: '광채 및 피부 품질용' }
+      ]
+    },
+    12: { // Lip Star
+      variants: [
+        { id: 'soft', name: 'Lip Star Soft', description: '자연스러운 입술 개선용' },
+        { id: 'volume', name: 'Lip Star Volume', description: '풍성한 입술 확대용' }
+      ]
+    }
+  }
+}
+
+// UI 텍스트 (variant 선택용)
+const variantSelectText = {
+  en: {
     selectTitle: 'Select Product Variants',
     selectSubtitle: 'Choose one or more products for your inquiry',
     selectedBadge: (count) => `${count} selected`,
@@ -57,52 +181,6 @@ const revolaxVariants = {
     ctaHint: 'Ask about pricing, MOQ, certifications and global shipping.'
   },
   ko: {
-    description: '한국에서 생산되는 가교 히알루론산(HA) 필러로, 높은 점탄성과 안정성으로 글로벌 수출 시장에서 가장 많이 거래되는 필러 중 하나입니다.',
-    features: [
-      {
-        icon: 'molecule',
-        title: '가교 히알루론산',
-        desc: 'BDDE 가교 기술'
-      },
-      {
-        icon: 'syringe',
-        title: '리도카인 함유',
-        desc: '시술 시 통증 감소'
-      },
-      {
-        icon: 'certificate',
-        title: 'CE 인증',
-        desc: '유럽 적합성 기준 충족'
-      },
-      {
-        icon: 'snowflake',
-        title: 'LTS 기술',
-        desc: '저온 안정화 기술'
-      }
-    ],
-    variants: [
-      {
-        id: 'fine',
-        name: 'Revolax Fine',
-        viscosity: '낮음',
-        viscosityLevel: 1,
-        applications: ['잔주름', '눈가', '이마']
-      },
-      {
-        id: 'deep',
-        name: 'Revolax Deep',
-        viscosity: '중간',
-        viscosityLevel: 2,
-        applications: ['팔자주름', '입술', '볼']
-      },
-      {
-        id: 'sub-q',
-        name: 'Revolax Sub-Q',
-        viscosity: '높음',
-        viscosityLevel: 3,
-        applications: ['턱', '코', '볼륨', '윤곽']
-      }
-    ],
     selectTitle: '제품 라인업 선택',
     selectSubtitle: '문의하실 제품을 선택해주세요',
     selectedBadge: (count) => `${count}개 선택`,
@@ -110,6 +188,84 @@ const revolaxVariants = {
     ctaHint: '가격, MOQ, 인증, 글로벌 배송에 대해 문의하세요.'
   }
 }
+
+// 고객 후기 섹션 텍스트
+const reviewSectionText = {
+  en: {
+    title: 'Customer Reviews',
+    subtitle: 'Real feedback from our valued partners',
+    noReviews: 'No reviews yet. Be the first to share your experience!',
+    writeReview: 'Write a Review',
+    photoGallery: 'Customer Photos',
+    // Modal texts
+    modalTitle: 'Write a Review',
+    ratingLabel: 'Your Rating',
+    photoLabel: 'Add Photos',
+    photoHint: 'Drag & drop or click to upload',
+    contentLabel: 'Your Review',
+    contentPlaceholder: 'Share your experience with this product...',
+    submitBtn: 'Submit Review',
+    cancelBtn: 'Cancel',
+    ratingRequired: 'Please select a rating'
+  },
+  ko: {
+    title: '고객 후기',
+    subtitle: '실제 파트너사의 생생한 후기',
+    noReviews: '아직 후기가 없습니다. 첫 번째 후기를 작성해주세요!',
+    writeReview: '후기 작성',
+    photoGallery: '고객 사진',
+    // Modal texts
+    modalTitle: '후기 작성',
+    ratingLabel: '별점',
+    photoLabel: '사진 추가',
+    photoHint: '드래그하거나 클릭하여 업로드',
+    contentLabel: '후기 내용',
+    contentPlaceholder: '제품 사용 경험을 공유해주세요...',
+    submitBtn: '후기 등록',
+    cancelBtn: '취소',
+    ratingRequired: '별점을 선택해주세요'
+  }
+}
+
+// 샘플 리뷰 데이터 (제품별) - 간소화: 별점, 날짜, 내용, 사진만
+const sampleReviews = {
+  1: { // Revolax
+    en: [
+      {
+        id: 1,
+        date: '2024-12-15',
+        rating: 5,
+        content: 'Exceptional quality filler with outstanding consistency. My patients love the natural results and minimal downtime. The Revolax Deep variant works perfectly for nasolabial folds.',
+        photos: ['/revolax review.jpg']
+      }
+    ],
+    ko: [
+      {
+        id: 1,
+        date: '2024-12-15',
+        rating: 5,
+        content: '일관성이 뛰어난 최고 품질의 필러입니다. 환자분들이 자연스러운 결과와 최소한의 다운타임을 매우 만족해하십니다. Revolax Deep은 팔자주름에 완벽하게 작용합니다.',
+        photos: ['/revolax review.jpg']
+      }
+    ]
+  }
+}
+
+// Close Icon Component
+const CloseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+)
+
+// Plus Icon Component
+const PlusIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
+  </svg>
+)
 
 const productDetails = {
   en: {
@@ -499,52 +655,28 @@ const productImages = {
   12: '/LIP STAR.png'
 }
 
-// Feature Icon Component
-const FeatureIcon = ({ type }) => {
-  const icons = {
-    molecule: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="3" />
-        <circle cx="12" cy="4" r="2" />
-        <circle cx="12" cy="20" r="2" />
-        <circle cx="4" cy="12" r="2" />
-        <circle cx="20" cy="12" r="2" />
-        <line x1="12" y1="6" x2="12" y2="9" />
-        <line x1="12" y1="15" x2="12" y2="18" />
-        <line x1="6" y1="12" x2="9" y2="12" />
-        <line x1="15" y1="12" x2="18" y2="12" />
-      </svg>
-    ),
-    syringe: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M18 2l4 4-1 1-4-4 1-1z" />
-        <path d="M16 4l4 4-11 11H5v-4L16 4z" />
-        <line x1="9" y1="11" x2="13" y2="15" />
-        <line x1="2" y1="22" x2="5" y2="19" />
-      </svg>
-    ),
-    certificate: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="3" width="18" height="14" rx="2" />
-        <path d="M8 21l4-4 4 4" />
-        <line x1="12" y1="17" x2="12" y2="21" />
-        <line x1="7" y1="8" x2="17" y2="8" />
-        <line x1="7" y1="12" x2="13" y2="12" />
-      </svg>
-    ),
-    snowflake: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <line x1="12" y1="2" x2="12" y2="22" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
-        <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" />
-        <polyline points="12,6 14,4 12,2" />
-        <polyline points="12,6 10,4 12,2" />
-      </svg>
-    )
-  }
-  return <span className="feature-icon">{icons[type]}</span>
-}
+// Star Icon Component (for reviews)
+const StarIcon = ({ filled }) => (
+  <svg viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+)
+
+// Camera Icon Component
+const CameraIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+    <circle cx="12" cy="13" r="4" />
+  </svg>
+)
+
+// Edit Icon Component
+const EditIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+  </svg>
+)
 
 // Check Icon Component
 const CheckIcon = () => (
@@ -556,15 +688,21 @@ const CheckIcon = () => (
 function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInquiry }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [selectedVariants, setSelectedVariants] = useState([])
+  const [showReviewModal, setShowReviewModal] = useState(false)
+  const [reviewRating, setReviewRating] = useState(0)
+  const [reviewContent, setReviewContent] = useState('')
+  const [reviewPhotos, setReviewPhotos] = useState([])
 
   const product = productDetails[lang][productId]
   const productEn = productDetails['en'][productId]
   const text = uiText[lang]
   const imageUrl = productImages[productId] || `/product${productId}.png`
 
-  const isRevolax = productId === 1
-  const revolaxData = isRevolax ? revolaxVariants[lang] : null
-  const revolaxDataEn = isRevolax ? revolaxVariants['en'] : null
+  // 모든 제품에 대한 variant 데이터
+  const variantData = productVariants[lang][productId]
+  const variantDataEn = productVariants['en'][productId]
+  const selectText = variantSelectText[lang]
+  const reviewText = reviewSectionText[lang]
 
   useEffect(() => {
     // Trigger animations after mount
@@ -584,8 +722,8 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
     if (onInquiry) {
       let initialMessage = ''
 
-      if (isRevolax && selectedVariants.length > 0) {
-        const selectedNames = revolaxDataEn.variants
+      if (selectedVariants.length > 0 && variantDataEn) {
+        const selectedNames = variantDataEn.variants
           .filter(v => selectedVariants.includes(v.id))
           .map(v => v.name)
           .join(', ')
@@ -603,7 +741,7 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
         certTags: product.certTags,
         image: imageUrl,
         initialMessage: initialMessage,
-        selectedVariants: isRevolax ? selectedVariants : null
+        selectedVariants: selectedVariants.length > 0 ? selectedVariants : null
       })
     }
   }
@@ -614,6 +752,38 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
     } else {
       onClose()
     }
+  }
+
+  // Review Modal Functions
+  const openReviewModal = () => {
+    setShowReviewModal(true)
+    setReviewRating(0)
+    setReviewContent('')
+    setReviewPhotos([])
+  }
+
+  const closeReviewModal = () => {
+    setShowReviewModal(false)
+  }
+
+  const handlePhotoUpload = (e) => {
+    const files = Array.from(e.target.files)
+    const newPhotos = files.map(file => URL.createObjectURL(file))
+    setReviewPhotos(prev => [...prev, ...newPhotos].slice(0, 5)) // Max 5 photos
+  }
+
+  const removePhoto = (index) => {
+    setReviewPhotos(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const handleSubmitReview = () => {
+    if (reviewRating === 0) {
+      alert(reviewText.ratingRequired)
+      return
+    }
+    // Here you would submit the review to your backend
+    console.log({ rating: reviewRating, content: reviewContent, photos: reviewPhotos })
+    closeReviewModal()
   }
 
   return (
@@ -643,131 +813,236 @@ function ProductDetail({ productId, lang, onClose, onNavigateToProducts, onInqui
           </div>
 
           <div className="hero-content">
-            {/* ===== REVOLAX: VARIANTS + CTA ===== */}
-            {isRevolax ? (
-              <div className="product-selector">
-                <div className="selector-header">
-                  <h2>{revolaxData.selectTitle}</h2>
-                  <p>{revolaxData.selectSubtitle}</p>
-                </div>
+            {/* ===== 모든 제품: VARIANTS + CTA ===== */}
+            <div className="product-selector">
+              <div className="selector-header">
+                <h2>{selectText.selectTitle}</h2>
+                <p>{selectText.selectSubtitle}</p>
+              </div>
 
-                <div className="variants-list">
-                  {revolaxData.variants.map((variant) => (
-                    <div
-                      key={variant.id}
-                      className={`variant-item ${selectedVariants.includes(variant.id) ? 'selected' : ''}`}
-                      onClick={() => handleVariantToggle(variant.id)}
-                    >
-                      <div className={`variant-checkbox ${selectedVariants.includes(variant.id) ? 'checked' : ''}`}>
-                        {selectedVariants.includes(variant.id) && <CheckIcon />}
-                      </div>
-                      <div className="variant-info">
-                        <span className="variant-name">{variant.name}</span>
-                        <span className="variant-apps">{variant.applications.join(' · ')}</span>
-                      </div>
-                      <div className="viscosity-indicator">
-                        {[1, 2, 3].map((level) => (
-                          <span
-                            key={level}
-                            className={`viscosity-dot ${level <= variant.viscosityLevel ? 'active' : ''}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="selector-cta">
-                  {selectedVariants.length > 0 && (
-                    <span className="selected-count">{revolaxData.selectedBadge(selectedVariants.length)}</span>
-                  )}
-                  <button
-                    className={`cta-button ${selectedVariants.length === 0 ? 'disabled' : ''}`}
-                    onClick={handleInquiry}
-                    disabled={selectedVariants.length === 0}
+              <div className="variants-list">
+                {variantData.variants.map((variant) => (
+                  <div
+                    key={variant.id}
+                    className={`variant-item ${selectedVariants.includes(variant.id) ? 'selected' : ''}`}
+                    onClick={() => handleVariantToggle(variant.id)}
                   >
-                    <span>{revolaxData.ctaButton}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </button>
-                  <p className="cta-hint">{revolaxData.ctaHint}</p>
-                </div>
+                    <div className={`variant-checkbox ${selectedVariants.includes(variant.id) ? 'checked' : ''}`}>
+                      {selectedVariants.includes(variant.id) && <CheckIcon />}
+                    </div>
+                    <div className="variant-info">
+                      <span className="variant-name">{variant.name}</span>
+                      <span className="variant-desc">{variant.description}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ) : (
-              <div className="product-selector">
-                <p className="product-tagline">{product.tagline}</p>
 
-                {/* Certification Badges */}
-                <div className="cert-badges">
-                  {product.certTags.map((tag, idx) => (
-                    <span key={idx} className="cert-badge">{tag}</span>
-                  ))}
-                  {product.licenseRequired && (
-                    <span className="license-badge">{text.licenseNote}</span>
-                  )}
-                </div>
-
-                <div className="selector-cta">
-                  <button className="cta-button" onClick={handleInquiry}>
-                    <span>{text.ctaButton}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </button>
-                  <p className="cta-hint">{text.ctaHint}</p>
-                </div>
+              <div className="selector-cta">
+                {selectedVariants.length > 0 && (
+                  <span className="selected-count">{selectText.selectedBadge(selectedVariants.length)}</span>
+                )}
+                <button
+                  className={`cta-button ${selectedVariants.length === 0 ? 'disabled' : ''}`}
+                  onClick={handleInquiry}
+                  disabled={selectedVariants.length === 0}
+                >
+                  <span>{selectText.ctaButton}</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+                <p className="cta-hint">{selectText.ctaHint}</p>
               </div>
-            )}
+            </div>
           </div>
         </section>
 
         {/* ===== DETAILS SECTION (Below Hero) ===== */}
         <section className="details-section">
           <div className="details-content">
-            {isRevolax && (
-              <div className="cert-badges">
-                {product.certTags.map((tag, idx) => (
-                  <span key={idx} className="cert-badge">{tag}</span>
-                ))}
-                {product.licenseRequired && (
-                  <span className="license-badge">{text.licenseNote}</span>
-                )}
-              </div>
-            )}
+            {/* Certification Badges */}
+            <div className="cert-badges">
+              {product.certTags.map((tag, idx) => (
+                <span key={idx} className="cert-badge">{tag}</span>
+              ))}
+              {product.licenseRequired && (
+                <span className="license-badge">{text.licenseNote}</span>
+              )}
+            </div>
 
+            {/* Brand Description */}
             <div className="product-description-block">
               <p>{product.description}</p>
             </div>
-
-            {isRevolax ? (
-              <div className="features-grid">
-                {revolaxData.features.map((feature, idx) => (
-                  <div key={idx} className="feature-card" style={{ animationDelay: `${idx * 0.1}s` }}>
-                    <FeatureIcon type={feature.icon} />
-                    <div className="feature-text">
-                      <h4>{feature.title}</h4>
-                      <p>{feature.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              product.sellingPoints && (
-                <div className="selling-points-grid">
-                  {product.sellingPoints.map((point, idx) => (
-                    <div key={idx} className="selling-point-card" style={{ animationDelay: `${idx * 0.1}s` }}>
-                      <span className="selling-point-number">0{idx + 1}</span>
-                      <p>{point}</p>
-                    </div>
-                  ))}
-                </div>
-              )
-            )}
           </div>
         </section>
+
+        {/* ===== CUSTOMER REVIEWS SECTION ===== */}
+        <section className="reviews-section">
+          <div className="reviews-content">
+            <div className="reviews-header">
+              <span className="reviews-label">REVIEWS</span>
+              <h2>{reviewText.title}</h2>
+              <p>{reviewText.subtitle}</p>
+            </div>
+
+            {/* Write Review Button */}
+            <div className="review-actions">
+              <button className="review-action-btn primary" onClick={openReviewModal}>
+                <EditIcon />
+                <span>{reviewText.writeReview}</span>
+              </button>
+            </div>
+
+            {/* Photo Gallery Section */}
+            {sampleReviews[productId] && sampleReviews[productId][lang] && (
+              <div className="review-photo-gallery">
+                <h3 className="gallery-title">{reviewText.photoGallery}</h3>
+                <div className="gallery-grid">
+                  {sampleReviews[productId][lang].flatMap(review =>
+                    review.photos.map((photo, idx) => (
+                      <div key={`photo-${review.id}-${idx}`} className="gallery-item">
+                        <img src={photo} alt="Customer review" />
+                        <div className="gallery-overlay">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            <line x1="11" y1="8" x2="11" y2="14" />
+                            <line x1="8" y1="11" x2="14" y2="11" />
+                          </svg>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Reviews List - Simplified: rating, date, content, photos only */}
+            <div className="reviews-list">
+              {sampleReviews[productId] && sampleReviews[productId][lang] ? (
+                sampleReviews[productId][lang].map(review => (
+                  <div key={review.id} className="review-card">
+                    <div className="review-card-main">
+                      {/* Review Photo (Large) */}
+                      {review.photos && review.photos.length > 0 && (
+                        <div className="review-photo-large">
+                          <img src={review.photos[0]} alt="Review" />
+                        </div>
+                      )}
+
+                      {/* Review Content - Simplified */}
+                      <div className="review-card-content">
+                        <div className="review-rating-row">
+                          <div className="review-stars">
+                            {[1, 2, 3, 4, 5].map(star => (
+                              <StarIcon key={star} filled={star <= review.rating} />
+                            ))}
+                          </div>
+                          <span className="review-date">{review.date}</span>
+                        </div>
+
+                        <p className="review-text">{review.content}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="no-reviews">
+                  <div className="no-reviews-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      <line x1="9" y1="9" x2="15" y2="9" />
+                      <line x1="9" y1="13" x2="12" y2="13" />
+                    </svg>
+                  </div>
+                  <p>{reviewText.noReviews}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== REVIEW MODAL ===== */}
+        {showReviewModal && (
+          <div className="review-modal-overlay" onClick={closeReviewModal}>
+            <div className="review-modal" onClick={e => e.stopPropagation()}>
+              <button className="modal-close-btn" onClick={closeReviewModal}>
+                <CloseIcon />
+              </button>
+
+              <h2 className="modal-title">{reviewText.modalTitle}</h2>
+
+              {/* Star Rating */}
+              <div className="modal-section">
+                <label className="modal-label">{reviewText.ratingLabel}</label>
+                <div className="rating-selector">
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <button
+                      key={star}
+                      className={`rating-star ${star <= reviewRating ? 'active' : ''}`}
+                      onClick={() => setReviewRating(star)}
+                    >
+                      <StarIcon filled={star <= reviewRating} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Photo Upload */}
+              <div className="modal-section">
+                <label className="modal-label">{reviewText.photoLabel}</label>
+                <div className="photo-upload-area">
+                  {reviewPhotos.map((photo, idx) => (
+                    <div key={idx} className="uploaded-photo">
+                      <img src={photo} alt={`Upload ${idx + 1}`} />
+                      <button className="remove-photo-btn" onClick={() => removePhoto(idx)}>
+                        <CloseIcon />
+                      </button>
+                    </div>
+                  ))}
+                  {reviewPhotos.length < 5 && (
+                    <label className="photo-upload-btn">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handlePhotoUpload}
+                        hidden
+                      />
+                      <PlusIcon />
+                      <span>{reviewText.photoHint}</span>
+                    </label>
+                  )}
+                </div>
+              </div>
+
+              {/* Review Content */}
+              <div className="modal-section">
+                <label className="modal-label">{reviewText.contentLabel}</label>
+                <textarea
+                  className="review-textarea"
+                  placeholder={reviewText.contentPlaceholder}
+                  value={reviewContent}
+                  onChange={e => setReviewContent(e.target.value)}
+                  rows={5}
+                />
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="modal-actions">
+                <button className="modal-btn cancel" onClick={closeReviewModal}>
+                  {reviewText.cancelBtn}
+                </button>
+                <button className="modal-btn submit" onClick={handleSubmitReview}>
+                  {reviewText.submitBtn}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
